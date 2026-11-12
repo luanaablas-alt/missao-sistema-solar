@@ -269,6 +269,13 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .gq{font:700 42px/1 var(--display);text-align:center;margin:10px 0 14px;font-variant-numeric:tabular-nums}
 .gform{display:flex;gap:8px;margin:0 0 10px}
 .gform input{flex:1;min-width:0;font:700 24px/1 var(--display);text-align:center;color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px}
+.acf label[for]{display:block;font-weight:700;margin:0 0 6px}
+.acf input[type=email]{width:100%;font:600 18px/1.2 var(--body,inherit);color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
+.consent{border:2px solid var(--sun);border-radius:14px;padding:12px;margin:0 0 10px;background:rgba(255,200,60,.07)}
+.consent p{margin:0 0 8px}
+.consent label{display:flex;gap:10px;align-items:flex-start;margin:0 0 8px;font-size:15px}
+.consent input{width:22px;height:22px;flex:0 0 auto;margin:1px 0 0;accent-color:var(--sun)}
+.consent a{color:var(--ice)}
 .gerr{color:#ffb3a5;min-height:1.3em;margin:0 0 6px;text-align:center}
 .whos{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0 4px}
 .whos button{display:grid;justify-items:center;gap:6px;padding:12px 8px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font:700 18px/1.1 var(--display);cursor:pointer}
@@ -395,6 +402,7 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
   <div class="ovl" id="who" hidden><div class="ovl-card" id="who-body"></div></div>
   <div class="ovl" id="rest" hidden><div class="ovl-card" id="rest-body"></div></div>
   <div class="ovl" id="pais" role="dialog" aria-modal="true" aria-label="Área dos pais" hidden><div class="ovl-card wide" id="pais-body"></div></div>
+  <div class="ovl" id="conta" role="dialog" aria-modal="true" aria-label="Conta da família" hidden><div class="ovl-card" id="conta-body"></div></div>
   <div class="ovl" id="gate" role="dialog" aria-modal="true" aria-label="Só para adultos" hidden><div class="ovl-card" id="gate-body"></div></div>
 </div>
 
@@ -1371,12 +1379,12 @@ function paisHtml(){
     '<h3>Voz</h3><div class="seg" role="group" aria-label="Velocidade da voz">'+[[.8,"Devagar"],[1,"Normal"]].map(function(o){return '<button type="button" id="rate-'+(o[0]*10)+'" data-pa="rate" data-v="'+o[0]+'" aria-pressed="'+(RATE===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
     '<h3>Níveis e progresso</h3><div class="nav"><button type="button" class="btn sm" id="pa-unlock" data-pa="unlock">Abrir todos os níveis</button>'+
       '<button type="button" class="btn sm'+(PA.reset?' danger':'')+'" id="pa-reset" data-pa="reset">'+(PA.reset?'Confirmar: apagar o progresso de '+esc(me.nome):'Apagar o progresso')+'</button></div>'+
-    '<h3>Privacidade</h3><p class="note" style="margin:0 0 10px">O progresso fica salvo só neste aparelho, separado para cada criança. O jogo não tem anúncios e não envia dados das crianças para a internet.</p>'+
+    AC.paisHtml()+'<h3>Privacidade</h3><p class="note" style="margin:0 0 10px">O progresso fica salvo só neste aparelho, separado para cada criança. O jogo não tem anúncios e não envia dados das crianças para a internet.</p>'+
     (LEGAL?'<div class="nav"><a class="btn sm" href="'+LEGAL.priv+'" target="_blank" rel="noopener">Política de privacidade</a><a class="btn sm" href="'+LEGAL.termos+'" target="_blank" rel="noopener">Termos de uso</a>'+
       '<button type="button" class="btn sm" id="pa-export" data-pa="export">Baixar os dados de '+esc(me.nome)+'</button></div>':'');
 }
 function me0(){return PROF.list.filter(function(q){return q.id===PROF.cur;})[0]||PROF.list[0];}
-function openPais(){PA.del=null;PA.reset=false;stopVoice();$("pais-body").innerHTML=paisHtml();ovl("pais",true);}
+function openPais(){PA.del=null;PA.reset=false;AC.resetConfirm();stopVoice();$("pais-body").innerHTML=paisHtml();ovl("pais",true);}
 function paisRedraw(focusId){var el=$("pais-body"),sc=el.parentNode.scrollTop;el.innerHTML=paisHtml();el.parentNode.scrollTop=sc;var f=focusId&&$(focusId);if(f)try{f.focus({preventScroll:true});}catch(e){}}
 function paisAct(a,v,t){
   if(a==="open"){askGate(openPais);}
@@ -1408,6 +1416,121 @@ document.addEventListener("click",function(ev){
   ev.preventDefault();var href=a.href;
   askGate(function(){var x=document.createElement("a");x.href=href;x.target="_blank";x.rel="noopener";document.body.appendChild(x);x.click();x.remove();});
 },true);
+/* ---------- Conta da família e assinatura (só na versão do site; no artefato CONTA fica null) ---------- */
+var CONTA={"url": "https://jxughlhudhnkydnnbocs.supabase.co", "chave": "sb_publishable_0-xklnpDLoYPTKx2JuhYsQ_fKrOxz_n", "checkout": ""}; /* na versão do site: {url, chave, checkout} */
+var AC=(function(){
+  var CONS_VER="2026-11-v1",K_SES="mss:auth",K_AC="mss:acesso";
+  var st={passo:"email",email:"",erro:"",msg:"",ocupado:false,depois:null,reenviar:0,apagar:false};
+  function sesGet(){return PROF.get(K_SES);}
+  function sesSet(s){if(s)PROF.set(K_SES,s);else try{localStorage.removeItem(K_SES);}catch(e){}}
+  function acGet(){return PROF.get(K_AC);}
+  function acSet(a){if(a)PROF.set(K_AC,a);else try{localStorage.removeItem(K_AC);}catch(e){}}
+  function api(path,body,token){
+    var h={"Content-Type":"application/json","apikey":CONTA.chave};if(token)h.Authorization="Bearer "+token;
+    return fetch(CONTA.url+path,{method:"POST",headers:h,body:JSON.stringify(body||{})}).then(function(r){
+      return r.text().then(function(t){var j=null;try{j=t?JSON.parse(t):null;}catch(e){}
+        if(!r.ok){var er=new Error((j&&(j.msg||j.message||j.error_description||j.error))||("erro "+r.status));er.status=r.status;er.code=j&&(j.error_code||j.code);throw er;}
+        return j;});});
+  }
+  function guardar(j){var s={at:j.access_token,rt:j.refresh_token,exp:Date.now()+((j.expires_in||3600)-60)*1000,email:(j.user&&j.user.email)||st.email};sesSet(s);return s;}
+  function token(){var s=sesGet();if(!s)return Promise.reject(Object.assign(new Error("sem login"),{status:401}));
+    if(Date.now()<s.exp)return Promise.resolve(s.at);
+    return api("/auth/v1/token?grant_type=refresh_token",{refresh_token:s.rt}).then(function(j){return guardar(j).at;});}
+  function rpc(nome,body){return token().then(function(t){return api("/rest/v1/rpc/"+nome,body||{},t);});}
+  function verificar(){return rpc("meu_acesso").then(function(a){a.checado=Date.now();acSet(a);return a;});}
+  function data(d){try{return new Date(d).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric"});}catch(e){return "";}}
+  function diasAte(d){return Math.max(0,Math.ceil((new Date(d).getTime()-Date.now())/864e5));}
+  function liberadoOffline(a){if(!a)return false;var fim=Math.max(a.teste_ate?new Date(a.teste_ate).getTime():0,(a.assinatura&&a.assinatura!=="reembolsada"&&a.acesso_ate)?new Date(a.acesso_ate).getTime():0);
+    return a.liberado&&(Date.now()<fim||Date.now()-a.checado<3*864e5);}
+  function abrirCheckout(){if(!CONTA.checkout)return;askGate(function(){var x=document.createElement("a");x.href=CONTA.checkout;x.target="_blank";x.rel="noopener";document.body.appendChild(x);x.click();x.remove();});}
+
+  function html(){
+    var L=LEGAL||{priv:"#",termos:"#"},e=esc(st.email),b=st.ocupado?' disabled':'';
+    var erro='<p class="gerr" id="ac-err" aria-live="polite">'+esc(st.erro||"")+'</p>',msg=st.msg?'<p class="note" style="margin:0 0 10px">'+esc(st.msg)+'</p>':'';
+    if(st.passo==="email")return '<h2>Olá! Esta parte é para um adulto</h2>'+
+      '<p style="margin:0 0 12px">Crie a conta da família para usar o jogo <b>grátis por 7 dias</b>, com tudo liberado. A conta é do adulto: pedimos só o seu e-mail. Nenhum dado da criança é pedido.</p>'+
+      '<form id="ac-f-email" class="acf"><label for="ac-email">Seu e-mail</label><input type="email" id="ac-email" autocomplete="email" inputmode="email" required value="'+e+'">'+
+      '<div class="consent" role="group" aria-label="Autorização do responsável"><p><b>Autorização do responsável</b> (obrigatória)</p>'+
+      '<label><input type="checkbox" id="ac-c1" required><span>Tenho 18 anos ou mais e sou responsável pela criança que vai jogar.</span></label>'+
+      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a> e autorizo a criança a usar o jogo, com o progresso salvo só neste aparelho.</span></label></div>'+
+      erro+'<button type="submit" class="btn go" id="ac-send"'+b+'>'+(st.ocupado?"Enviando…":"Receber código por e-mail")+'</button></form>'+
+      '<p class="note">Já tem conta? Use o mesmo e-mail para entrar neste aparelho. Você pode cancelar quando quiser.</p>';
+    if(st.passo==="codigo")return '<h2>Digite o código</h2>'+msg+
+      '<p style="margin:0 0 10px">Enviamos um código para <b>'+e+'</b>. Se não chegar em 1 minuto, olhe a caixa de spam.</p>'+
+      '<form id="ac-f-cod" class="gform"><label for="ac-cod" style="position:absolute;left:-9999px">Código</label><input type="text" id="ac-cod" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required><button type="submit" class="btn go" id="ac-ok"'+b+'>Entrar</button></form>'+erro+
+      '<div class="nav"><button type="button" class="btn sm" id="ac-re" data-ac="reenviar"'+(st.reenviar>Date.now()?" disabled":"")+'>Mandar outro código</button><button type="button" class="btn sm" id="ac-outro" data-ac="outro">Usar outro e-mail</button></div>';
+    if(st.passo==="pagar"){var a=acGet()||{},tit,txt;
+      if(a.assinatura==="atrasada"){tit="O pagamento está pendente";txt="A Kiwify ainda não confirmou o pagamento da assinatura. Quando ele for aprovado, o jogo volta a abrir.";}
+      else if(a.assinatura==="cancelada"||a.assinatura==="reembolsada"){tit="A assinatura terminou";txt="Para continuar a missão, assine de novo com o e-mail "+(a.email||"")+".";}
+      else{tit="Os 7 dias grátis terminaram";txt="Gostou da viagem? Assine para continuar. Na compra, use o mesmo e-mail da conta: "+(a.email||"")+".";}
+      return '<h2>'+tit+'</h2><p style="margin:0 0 12px">'+esc(txt)+'</p>'+msg+erro+
+        '<p class="note" style="margin:0 0 12px">O progresso das crianças continua guardado neste aparelho.</p>'+
+        '<div class="nav">'+(CONTA.checkout?'<button type="button" class="btn go" id="ac-assinar" data-ac="assinar">Assinar</button>':'<p class="note" style="margin:0">A assinatura abre em breve.</p>')+
+        '<button type="button" class="btn sm" id="ac-ja" data-ac="checar"'+b+'>'+(st.ocupado?"Verificando…":"Já assinei")+'</button><button type="button" class="btn sm" id="ac-sair" data-ac="sair">Sair da conta</button></div>';}
+    return "";
+  }
+  function show(){$("conta-body").innerHTML=html();ovl("conta",true);var f=$(st.passo==="email"?"ac-email":st.passo==="codigo"?"ac-cod":"ac-assinar");if(f)try{f.focus();}catch(e){}}
+  function liberar(){ovl("conta",false);var f=st.depois;st.depois=null;if(f)f();}
+  function decidir(a){if(!a.conta){st.passo="email";st.erro="Confirme a autorização do responsável para continuar.";show();return;}
+    if(a.liberado)liberar();else{st.passo="pagar";show();}}
+  function sair(){var s=sesGet();if(s)token().then(function(t){return api("/auth/v1/logout",{},t);}).catch(function(){});
+    sesSet(null);acSet(null);st.passo="email";st.erro="";st.msg="";ovl("pais",false);if(!st.depois)st.depois=function(){};show();}
+  function erroTxt(er){if(!navigator.onLine||er instanceof TypeError)return "Sem internet. Confira a conexão e tente de novo.";
+    if(er.status===429||/rate|limit/i.test(er.message))return "Muitas tentativas. Espere alguns minutos e tente de novo.";
+    if(er.code==="otp_expired"||/expired|invalid/i.test(er.message))return "Código errado ou vencido. Confira ou peça outro.";
+    return "Não deu certo agora. Tente de novo em instantes.";}
+  function enviar(){st.ocupado=true;st.erro="";show();
+    api("/auth/v1/otp",{email:st.email,create_user:true}).then(function(){st.ocupado=false;st.passo="codigo";st.msg="";st.reenviar=Date.now()+60000;show();setTimeout(function(){if(st.passo==="codigo"&&!$("conta").hidden)show();},60500);})
+    .catch(function(er){st.ocupado=false;st.erro=erroTxt(er);show();});}
+
+  document.addEventListener("submit",function(ev){var f=ev.target;if(!f||!f.id||f.id.indexOf("ac-f-")!==0)return;ev.preventDefault();if(st.ocupado)return;
+    if(f.id==="ac-f-email"){var v=($("ac-email").value||"").trim().toLowerCase();st.email=v;
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){st.erro="Confira o e-mail.";show();return;}
+      if(!$("ac-c1").checked||!$("ac-c2").checked){st.erro="Marque as duas caixas da autorização para continuar.";show();$("ac-c1").checked=false;return;}
+      st.consent=true;enviar();}
+    else if(f.id==="ac-f-cod"){var c=($("ac-cod").value||"").replace(/\D/g,"");if(c.length<6){st.erro="O código tem 6 números.";show();return;}
+      st.ocupado=true;st.erro="";show();
+      api("/auth/v1/verify",{type:"email",email:st.email,token:c}).then(function(j){guardar(j);return rpc("iniciar_conta",{versao:CONS_VER});})
+      .then(verificar).then(function(a){st.ocupado=false;decidir(a);})
+      .catch(function(er){st.ocupado=false;st.erro=erroTxt(er);show();});}
+  });
+  document.addEventListener("click",function(ev){var t=ev.target&&ev.target.closest&&ev.target.closest("[data-ac]");if(!t||t.disabled)return;var a=t.dataset.ac;
+    if(a==="reenviar")enviar();
+    else if(a==="outro"){st.passo="email";st.erro="";show();}
+    else if(a==="assinar")abrirCheckout();
+    else if(a==="checar"){st.ocupado=true;st.erro="";show();verificar().then(function(x){st.ocupado=false;if(x.liberado)liberar();else{st.msg="Ainda não recebemos a confirmação da Kiwify. Ela costuma chegar em poucos minutos depois do pagamento.";show();}})
+      .catch(function(er){st.ocupado=false;st.erro=erroTxt(er);show();});}
+    else if(a==="sair")sair();
+    else if(a==="psair"){sair();}
+    else if(a==="papagar"){if(!st.apagar){st.apagar=true;paisRedraw("pa-apagar");return;}
+      t.disabled=true;t.textContent="Apagando…";rpc("apagar_minha_conta").then(function(){st.apagar=false;sesSet(null);acSet(null);st.passo="email";ovl("pais",false);st.depois=function(){};st.msg="";show();})
+      .catch(function(er){t.disabled=false;t.textContent=erroTxt(er);});}
+  });
+  document.addEventListener("visibilitychange",function(){if(!CONTA||document.hidden||!sesGet())return;var a=acGet();
+    if(a&&Date.now()-(a.checado||0)>6*36e5)verificar().then(function(x){if(!x.liberado&&$("conta").hidden){st.passo="pagar";st.depois=function(){};show();}}).catch(function(){});});
+
+  return {
+    boot:function(next){if(!CONTA){next();return;}st.depois=next;
+      var s=sesGet();if(!s){st.passo="email";show();return;}
+      st.email=s.email||"";var cache=acGet();
+      if(liberadoOffline(cache)){liberar();verificar().then(function(x){if(!x.liberado){st.passo="pagar";st.depois=function(){};show();}}).catch(function(){});return;}
+      verificar().then(decidir).catch(function(er){
+        if(er.status===401||er.status===400||er.status===403){sesSet(null);st.passo="email";show();}
+        else{st.passo="pagar";st.erro=erroTxt(er);show();}});},
+    paisHtml:function(){if(!CONTA)return "";var a=acGet()||{},s=sesGet()||{},sit;
+      if(a.assinatura==="ativa"&&a.acesso_ate)sit="Assinatura ativa, renova em "+data(a.acesso_ate)+".";
+      else if(a.assinatura==="cancelada"&&a.acesso_ate&&new Date(a.acesso_ate)>new Date())sit="Assinatura cancelada. O acesso vale até "+data(a.acesso_ate)+".";
+      else if(a.assinatura==="atrasada")sit="Pagamento pendente na Kiwify.";
+      else if(a.teste_ate&&new Date(a.teste_ate)>new Date())sit="Teste grátis: faltam "+diasAte(a.teste_ate)+" dia(s), até "+data(a.teste_ate)+".";
+      else sit="Sem assinatura ativa.";
+      return '<h3>Conta e assinatura</h3><p style="margin:0 0 4px">Conta: <b>'+esc(s.email||a.email||"")+'</b></p><p style="margin:0 0 10px">'+esc(sit)+'</p>'+
+        '<div class="nav">'+(CONTA.checkout&&a.assinatura!=="ativa"?'<button type="button" class="btn sm go" id="pa-assinar" data-ac="assinar">Assinar</button>':'')+
+        '<button type="button" class="btn sm" id="pa-sair" data-ac="psair">Sair da conta neste aparelho</button>'+
+        '<button type="button" class="btn sm'+(st.apagar?' danger':'')+'" id="pa-apagar" data-ac="papagar">'+(st.apagar?'Confirmar: apagar a conta':'Apagar a conta')+'</button></div>'+
+        '<p class="note">Para cancelar a assinatura, use o e-mail da compra na Kiwify. Apagar a conta remove o seu e-mail e o registro da autorização dos nossos servidores; o progresso que fica neste aparelho você apaga em "Níveis e progresso".</p>';},
+    resetConfirm:function(){st.apagar=false;}
+  };
+})();
 function applyCaps(){stage.classList.toggle("caps",!!state.caps);$("btn-caps").setAttribute("aria-pressed",String(!!state.caps));}
 
 /* ---------- Fila de planetas ---------- */
@@ -2288,7 +2411,7 @@ function start(saved){
     stage.insertBefore(p,stage.firstChild);
   }
   if(hot&&hot.snapshot)hot.snapshot(function(){return {sel:state.sel};});
-  if(PROF.list.length>1&&!pickedNow())showWho();else checkLimit();
+  AC.boot(function(){if(PROF.list.length>1&&!pickedNow())showWho();else checkLimit();});
 }
 if(hot&&hot.ready)hot.ready(start);else start((hot&&hot.data)||{});
 })();

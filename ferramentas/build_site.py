@@ -32,6 +32,12 @@ rep('''<link rel="preconnect" href="https://fonts.googleapis.com">
 </style>''')
 rep('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>','<script src="/vendor/three-r128.min.js"></script>')
 rep('var LEGAL=null;','var LEGAL={priv:"/privacidade",termos:"/termos"};')
+# conta da família e assinatura: endereço do Supabase, chave pública e link de compra da Kiwify (ferramentas/conta.json)
+CONTA=json.load(open(os.path.join(TOOLS,'conta.json'),encoding='utf-8'))
+rep('var CONTA=null;','var CONTA='+json.dumps(CONTA)+';')
+vj=os.path.join(OUT,'vercel.json');v=open(vj,encoding='utf-8').read()
+v=re.sub(r"connect-src 'self'[^;]*;","connect-src 'self' "+CONTA['url']+";",v)
+open(vj,'w',encoding='utf-8').write(v)
 s=s.replace('src="tex/','src="/tex/').replace("url(tex/","url(/tex/").replace('"tex/"+','"/tex/"+')
 rep('</body>','''<script>
 if("serviceWorker" in navigator&&location.protocol==="https:"){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}
