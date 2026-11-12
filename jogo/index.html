@@ -211,9 +211,20 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .gh-st{color:var(--sun)}
 .gh-msg{align-self:center;margin:0;max-width:min(34ch,92%);text-align:center;background:rgba(6,10,26,.8);border:1px solid var(--line);border-radius:16px;padding:10px 14px;font:600 17px/1.3 var(--display);opacity:0;transition:opacity .25s;pointer-events:none}
 .gh-msg.on{opacity:1}
-.gh-bot{display:grid;gap:10px}
+.gh-bot{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);min-width:0}.gh-barra{min-width:0}.gh-pal{min-width:0}
 .gh-ctl{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
-.gh-tools{align-self:center;background:var(--panel)}
+.gh-tools{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+.gh-tools button{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted);border-radius:999px;padding:9px 12px;font:700 14px/1 var(--display);cursor:pointer}
+.gh-tools button[aria-pressed="true"]{background:var(--sun);color:#221400}
+.gh-tools .ic,.gh-tabs .ic{font-size:18px;line-height:1}
+.gh-right{display:flex;align-items:flex-end;gap:10px}
+.gh-barra{display:grid;gap:8px}
+.gh-top .ghup{flex:0 0 auto}
+.ghmsgb{margin-left:auto;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:20px;cursor:pointer;position:relative}
+.ghmsgb.new::after{content:"";position:absolute;top:4px;right:4px;width:11px;height:11px;border-radius:50%;background:var(--sun);border:2px solid var(--panel-solid);animation:pulso 1s ease-in-out 3}
+@keyframes pulso{50%{transform:scale(1.5)}}
+.gh-tabs button{position:relative;display:flex;align-items:center;gap:6px}
+.gh-tabs .qt{position:absolute;right:-4px;top:-6px;min-width:18px;height:18px;border-radius:9px;background:var(--sun);color:#221400;font:700 11px/18px var(--display);font-style:normal;padding:0 4px}
 .joy{position:relative;flex:none;width:124px;height:124px;border-radius:50%;background:rgba(6,10,26,.5);border:2px solid rgba(255,255,255,.3);touch-action:none;cursor:grab}
 .knob{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(245,240,227,.92);box-shadow:0 4px 10px rgba(0,0,0,.45);pointer-events:none}
 .jumpb{flex:none;width:88px;height:88px;border-radius:50%;border:0;background:var(--sun);color:#221400;font:700 18px/1 var(--display);touch-action:none;cursor:pointer;box-shadow:0 6px 14px rgba(0,0,0,.45)}
@@ -225,9 +236,19 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .pb .oi{display:grid;place-items:center;background:#1b2550;color:var(--ink);font:700 18px/1 var(--display)}
 .caps .pb,.caps .gh-msg,.caps .gh-name{text-transform:uppercase}
 @media (max-width:819px){
-  .gh-ctl{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"tools tools tools" "joy . jump"}
-  .gh-tools{grid-area:tools;justify-self:center}.joy{grid-area:joy;width:112px;height:112px}.jumpb{grid-area:jump;width:80px;height:80px}
-  .gh-name,.gh-st{font-size:16px;padding:8px 12px}
+  .ghud{padding:10px;gap:8px}
+  .gh-top .ghup{width:44px;height:44px;padding:0;border-radius:50%;font-size:20px}.ghup .tx,.gh-name{display:none}
+  .gh-st{font-size:15px;padding:8px 12px}
+  .gh-ctl{align-items:flex-end}.joy{width:104px;height:104px}
+  .gh-right{flex-direction:column;align-items:flex-end;gap:8px}
+  .gh-tools{flex-direction:column;border-radius:24px}.gh-tools button{width:44px;height:44px;justify-content:center;padding:0}.gh-tools .tx{display:none}
+  .jumpb{width:72px;height:72px;font-size:15px}
+  .gh-barra{display:flex;gap:6px;align-items:stretch;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:5px}
+  .gh-tabs{gap:3px;overflow:visible;padding-right:5px;border-right:1px solid var(--line)}.gh-tabs button{width:38px;height:46px;padding:0;justify-content:center;border-radius:12px}.gh-tabs .tx{display:none}
+  .gh-tabs .lojab{margin-left:0}.gh-tabs .lojab b{display:none}
+  .gh-pal{background:none;border:0;padding:2px;flex:1;min-width:0;align-items:center}
+  .pb{min-width:46px;padding:4px 2px}.pb .pn{display:none}.pb img,.pb .oi{width:38px;height:38px}
+  .gh-msg{position:absolute;top:60px;right:10px;left:auto;max-width:72%;font-size:15px}
 }
 .ovl{position:absolute;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:rgba(4,7,20,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ovl[hidden]{display:none}
@@ -420,9 +441,10 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
   </div>
   <div class="ghud" id="ghud">
     <div class="gh-top">
-      <button type="button" class="btn go" id="gh-up" data-gh="up" style="flex:0 0 auto">▴ Decolar</button>
+      <button type="button" class="btn go ghup" id="gh-up" data-gh="up" aria-label="Decolar e voltar ao espaço"><span aria-hidden="true">▴</span><span class="tx"> Decolar</span></button>
       <span class="gh-name" id="gh-name"></span>
       <span class="gh-st" id="gh-st"></span>
+      <button type="button" class="ghmsgb" id="gh-msgb" data-gh="msg" aria-label="Ver o último recado">💬</button>
     </div>
     <p class="gh-msg" id="gh-msg" aria-live="polite"></p>
     <div class="ghsheet" id="gh-loja" role="dialog" aria-label="Loja espacial" hidden>
@@ -432,19 +454,23 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
     <div class="gh-bot">
       <div class="gh-ctl">
         <div class="joy" id="joy" role="img" aria-label="Controle para andar: arraste a bolinha"><span class="knob" id="knob"></span></div>
-        <div class="seg gh-tools" role="group" aria-label="O que o toque na tela faz">
-          <button type="button" id="gh-explorar" data-gh="tool" data-v="explorar" aria-pressed="true">Explorar</button>
-          <button type="button" id="gh-colocar" data-gh="tool" data-v="colocar" aria-pressed="false">Colocar</button>
-          <button type="button" id="gh-tirar" data-gh="tool" data-v="tirar" aria-pressed="false">Tirar</button>
+        <div class="gh-right">
+          <div class="gh-tools" role="group" aria-label="O que o toque na tela faz">
+            <button type="button" id="gh-explorar" data-gh="tool" data-v="explorar" aria-pressed="true" aria-label="Explorar"><span class="ic" aria-hidden="true">🚶</span><span class="tx">Explorar</span></button>
+            <button type="button" id="gh-colocar" data-gh="tool" data-v="colocar" aria-pressed="false" aria-label="Colocar"><span class="ic" aria-hidden="true">➕</span><span class="tx">Colocar</span></button>
+            <button type="button" id="gh-tirar" data-gh="tool" data-v="tirar" aria-pressed="false" aria-label="Tirar"><span class="ic" aria-hidden="true">⛏️</span><span class="tx">Tirar</span></button>
+          </div>
+          <button type="button" class="jumpb" id="gh-jump" aria-label="Pular">Pular</button>
         </div>
-        <button type="button" class="jumpb" id="gh-jump" aria-label="Pular">Pular</button>
       </div>
+      <div class="gh-barra">
       <div class="gh-tabs" role="group" aria-label="O que mostrar embaixo">
-        <button type="button" id="gh-t-construir" data-gh="ptab" data-v="construir" aria-pressed="true">🧱 Construir</button>
-        <button type="button" id="gh-t-mala" data-gh="ptab" data-v="mala" aria-pressed="false">🎒 Mala espacial</button>
-        <button type="button" id="gh-t-loja" class="lojab" data-gh="loja">🛍️ Loja <b id="gh-saldo"></b></button>
+        <button type="button" id="gh-t-construir" data-gh="ptab" data-v="construir" aria-pressed="true" aria-label="Construir"><span class="ic" aria-hidden="true">🧱</span><span class="tx">Construir</span></button>
+        <button type="button" id="gh-t-mala" data-gh="ptab" data-v="mala" aria-pressed="false" aria-label="Mala espacial"><span class="ic" aria-hidden="true">🎒</span><span class="tx">Mala espacial</span><i class="qt" id="gh-mala-n"></i></button>
+        <button type="button" id="gh-t-loja" class="lojab" data-gh="loja" aria-label="Loja"><span class="ic" aria-hidden="true">🛍️</span><span class="tx">Loja</span> <b id="gh-saldo"></b></button>
       </div>
       <div class="gh-pal" id="gh-pal" role="group" aria-label="Blocos e objetos"></div>
+      </div>
     </div>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1435,24 +1461,37 @@ var LOJA=[
  {id:"cachorro",cat:"animais",nome:"Cachorro",p:40,ico:"🐶"},{id:"gato",cat:"animais",nome:"Gato",p:40,ico:"🐱"},{id:"coelho",cat:"animais",nome:"Coelho",p:35,ico:"🐰"},
  {id:"pinguim",cat:"animais",nome:"Pinguim",p:50,ico:"🐧"},{id:"tartaruga",cat:"animais",nome:"Tartaruga",p:45,ico:"🐢"},{id:"dino",cat:"animais",nome:"Dinossauro",p:80,ico:"🦕"},
  {id:"alien",cat:"animais",nome:"Alienígena amigo",p:70,ico:"👽"},{id:"robo",cat:"animais",nome:"Robô",p:60,ico:"🤖"},
+ {id:"s-margarida",cat:"plantas",nome:"Semente de margarida",p:5,ico:"🌼",fl:{c:"#ffffff",m:"#ffd23a",est:1,nome:"Margarida"}},
+ {id:"s-girassol",cat:"plantas",nome:"Semente de girassol",p:6,ico:"🌻",fl:{c:"#ffcc1f",m:"#6b3d12",est:1,nome:"Girassol",alto:1}},
+ {id:"s-tulipa",cat:"plantas",nome:"Semente de tulipa",p:8,ico:"🌷",fl:{c:"#ff5f8f",m:"#ff9ab8",est:1,nome:"Tulipa"}},
+ {id:"s-rosa",cat:"plantas",nome:"Semente de rosa",p:10,ico:"🌹",fl:{c:"#e2283a",m:"#a8141f",est:1,nome:"Rosa"}},
+ {id:"s-lua",cat:"plantas",nome:"Semente de flor da lua",p:20,ico:"🪻",fl:{c:"#9f8cff",m:"#e8f6ff",est:2,nome:"Flor da lua",brilho:1}},
+ {id:"racao",cat:"cuidados",nome:"Ração",p:2,ico:"🥣"},{id:"remedio",cat:"cuidados",nome:"Remédio",p:6,ico:"💊"},
  {id:"arvore",cat:"objetos",nome:"Árvore",p:15,ico:"🌳"},{id:"casa",cat:"objetos",nome:"Casa",p:30,ico:"🏠"},{id:"lampiao",cat:"objetos",nome:"Poste de luz",p:20,ico:"💡"},
  {id:"telescopio",cat:"objetos",nome:"Telescópio",p:35,ico:"🔭"},{id:"castelo",cat:"objetos",nome:"Castelo",p:90,ico:"🏰"},
  {id:"b15",cat:"blocos",nome:"Bloco de ouro",p:20,blk:15},{id:"b16",cat:"blocos",nome:"Bloco de diamante",p:30,blk:16},{id:"b17",cat:"blocos",nome:"Bloco de lava",p:25,blk:17},
  {id:"b18",cat:"blocos",nome:"Bloco arco-íris",p:35,blk:18},{id:"b19",cat:"blocos",nome:"Pedra roxa",p:15,blk:19},
  {id:"r-ouro",cat:"roupas",nome:"Roupa dourada",p:40,cor:"#d9a92e"},{id:"r-prata",cat:"roupas",nome:"Roupa prateada",p:30,cor:"#b9c2cf"},{id:"r-noite",cat:"roupas",nome:"Roupa da noite",p:30,cor:"#2b2f6b"},
  {id:"r-neon",cat:"roupas",nome:"Roupa verde-neon",p:35,cor:"#39e66b"},{id:"r-rosa",cat:"roupas",nome:"Roupa rosa-choque",p:35,cor:"#ff3fa4"},{id:"r-branca",cat:"roupas",nome:"Roupa branca da NASA",p:25,cor:"#f4f6fb"}];
-var LCAT=[["animais","Animais"],["objetos","Objetos"],["blocos","Blocos"],["roupas","Roupas"]];
+var LCAT=[["animais","Animais"],["plantas","Plantas"],["cuidados","Comida e remédio"],["objetos","Objetos"],["blocos","Blocos"],["roupas","Roupas"]];
 function tem(id){return OWN.indexOf(id)>=0;}
 function lojaItem(id){return LOJA.filter(function(x){return x.id===id;})[0];}
 /* mala espacial: animais e objetos comprados ficam guardados aqui até serem colocados num planeta */
-function eUnid(it){return it&&(it.cat==="animais"||it.cat==="objetos");}
+function eUnid(it){return !!it&&(it.cat==="animais"||it.cat==="objetos"||it.cat==="plantas"||it.cat==="cuidados");}
+function ePlanta(it){return !!it&&it.cat==="plantas";}function eAnimal(it){return !!it&&it.cat==="animais";}function eCuidado(it){return !!it&&it.cat==="cuidados";}
+/* tempos da fazenda */
+var FLOR_MS=20*60*1000,DIA_MS=24*3600*1000;
+function plantaEstado(meta,now){var e=now-(meta&&meta.t||now);if(e<FLOR_MS/3)return {st:0};if(e<FLOR_MS)return {st:1,falta:FLOR_MS-e};
+  var pronto=!meta.h||now-meta.h>=DIA_MS;return {st:2,pronto:pronto,falta:pronto?0:DIA_MS-(now-meta.h)};}
+function animalEstado(meta,now){if(!meta)return "feliz";if(meta.s)return "doente";var e=now-(meta.f||now);return e<DIA_MS?"feliz":e<3*DIA_MS?"fome":"doente";}
+function tempoTxt(ms){var m=Math.ceil(ms/60000);if(m<60)return m+(m===1?" minuto":" minutos");var h=Math.ceil(m/60);return h+(h===1?" hora":" horas");}
 var MALA=store.get("mala",null);
 if(!MALA){MALA={};OWN.forEach(function(id){if(eUnid(lojaItem(id)))MALA[id]=1;});}
 function malaN(id){return MALA[id]||0;}
 function malaAdd(id,n){MALA[id]=Math.max(0,malaN(id)+n);store.set("mala",MALA);}
 function malaItens(){return LOJA.filter(function(x){return eUnid(x)&&malaN(x.id)>0;});}
 function comprar(id){var it=lojaItem(id);if(!it||saldo()<it.p||(!eUnid(it)&&tem(id)))return false;GASTO+=it.p;if(!tem(id))OWN.push(id);store.set("gasto",GASTO);store.set("loja",OWN);
-  if(eUnid(it))malaAdd(id,1);return true;}
+  if(eUnid(it))malaAdd(id,1);if(eAnimal(it))malaAdd("racao",1);return true;}
 function suitsAll(){return SUITS.concat(LOJA.filter(function(x){return x.cor&&tem(x.id);}).map(function(x){return x.cor;}));}
 function vobjAll(){return VOBJ.concat(LOJA.filter(eUnid).map(function(x){return [x.id,x.nome,x.ico];}));}
 function palbAll(){return PALB.concat(LOJA.filter(function(x){return x.blk&&tem(x.id);}).map(function(x){return x.blk;}));}
@@ -1467,7 +1506,9 @@ function lojaBody(){var m=state.my,cat=m.cat||"animais",sd=saldo();
       return '<div class="sitem'+(own?" own":"")+'">'+lojaIco(it)+'<b>'+it.nome+'</b><span class="pr">★ '+it.p+'</span>'+tag+
         ((!un&&own)?'':conf?'<button type="button" class="btn sm go" id="buy-'+it.id+'" data-my="buyok" data-v="'+it.id+'">Trocar '+it.p+' ★</button><button type="button" class="btn sm" id="buyno-'+it.id+'" data-my="buyno">Agora não</button>':
           '<button type="button" class="btn sm" id="buyq-'+it.id+'" data-my="buy" data-v="'+it.id+'"'+(falta>0?' disabled':'')+'>'+(falta>0?"Faltam "+falta+" ★":own?"Quero mais um":"Quero este")+'</button>')+'</div>';}).join("")+'</div>'+
-    '<p class="note">'+(cat==="roupas"?"As roupas ficam liberadas para sempre: escolha no Mapa, em Meu astronauta.":cat==="blocos"?"Os blocos ficam liberados para sempre: aparecem em Construir quando você pousa num planeta.":"Cada compra põe um na sua mala espacial. Colocar no planeta tira da mala; tirar do planeta devolve para a mala.")+' Não tem caixa surpresa: você sempre vê o que vai ganhar.</p>';}
+    '<p class="note">'+(cat==="plantas"?"Plante a semente no chão do planeta. Em 20 minutos ela floresce e deixa estrelas para colher. Depois, cada flor dá estrela de novo a cada dia.":
+      cat==="cuidados"?"Os animais comem uma vez por dia. Sem ração, eles ficam com fome e depois doentes, mas sempre saram com remédio e comida. Cada animal novo vem com uma ração de presente.":
+      cat==="roupas"?"As roupas ficam liberadas para sempre: escolha no Mapa, em Meu astronauta.":cat==="blocos"?"Os blocos ficam liberados para sempre: aparecem em Construir quando você pousa num planeta.":"Cada compra põe um na sua mala espacial. Colocar no planeta tira da mala; tirar do planeta devolve para a mala.")+' Não tem caixa surpresa: você sempre vê o que vai ganhar.</p>';}
 function lojaHtml(head){return head("Loja")+'<h2 class="say" id="say-nome">Loja espacial</h2>'+lojaBody()+'<div class="nav"><button type="button" class="btn" id="loja-back" data-my="lojasair">← Voltar</button></div>';}
 function lojaNoMundo(){var el=$("gh-loja");return !!(el&&!el.hidden);}
 function lojaRedraw(f){if(lojaNoMundo()){var b=$("gh-loja-body"),sc=b.scrollTop;b.innerHTML=lojaBody();b.scrollTop=sc;var x=f&&$(f);if(x)try{x.focus({preventScroll:true});}catch(e){}if(myw&&myw.pal)myw.pal();}else redraw(f);}
@@ -1760,7 +1801,7 @@ function meuAct(act,v,btnId){
   else if(act==="buy"){m.conf=v;lojaRedraw("buy-"+v);var it0=lojaItem(v);speakFree("Trocar "+it0.p+" estrelas por "+it0.nome.toLowerCase()+"?");}
   else if(act==="buyno"){m.conf=null;lojaRedraw();}
   else if(act==="buyok"){var it=lojaItem(v);m.conf=null;if(comprar(v)){lojaRedraw();buddy("happy",2600);
-      var txt=it.cat==="roupas"?"Que roupa linda! Escolha ela no Mapa, em Meu astronauta.":it.cat==="blocos"?"Agora o "+it.nome.toLowerCase()+" é seu! Ele aparece em Construir.":it.nome+" foi para a sua mala espacial!";
+      var txt=eAnimal(it)?it.nome+" foi para a sua mala espacial, com uma ração de presente!":ePlanta(it)?"A semente foi para a sua mala espacial. Plante no chão do planeta!":it.cat==="roupas"?"Que roupa linda! Escolha ela no Mapa, em Meu astronauta.":it.cat==="blocos"?"Agora o "+it.nome.toLowerCase()+" é seu! Ele aparece em Construir.":it.nome+" foi para a sua mala espacial!";
       speakFree(txt);toast(eUnid(it)?"🎒 "+it.nome+" foi para a mala espacial":"★ "+it.nome+" liberado");}else lojaRedraw();}
   else if(act==="lojasair"){m.mode="build";m.conf=null;redraw();}
   else if(act==="pilot"){m.mode="pilot";m.turbo=false;if(myw)myw.pilot();redraw();speakPanel();}
@@ -1808,7 +1849,7 @@ function ghAct(a,v){
   if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();
   if(!myw)return;
   if(a==="up"){myw.lojaOpen(false);meuAct("takeoff");}else if(a==="tool")myw.tool(v);else if(a==="blk")myw.pick(v);
-  else if(a==="ptab")myw.palTab(v);else if(a==="loja")myw.lojaOpen(true);else if(a==="lojafechar")myw.lojaOpen(false);
+  else if(a==="ptab")myw.palTab(v);else if(a==="msg")myw.msg();else if(a==="loja")myw.lojaOpen(true);else if(a==="lojafechar")myw.lojaOpen(false);
 }
 /* ---------- Área dos pais ---------- */
 var TIME=store.get("time",{}),PA={del:null,reset:false};
@@ -2713,7 +2754,21 @@ function boot3D(){
       m.count=n;m.instanceMatrix.needsUpdate=true;}
   }
   /* objetos que a criança coloca (e as plantinhas do terreno) */
-  function makeVObj(kind,r){var g=new T.Group();
+  var EMOT={};
+  function emojiSp(e,sc){var tx=EMOT[e];if(!tx){var c=mk(64,64),x=c.getContext("2d");x.font="48px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText(e,32,36);tx=EMOT[e]=new T.CanvasTexture(c);}
+    var sp2=new T.Sprite(new T.SpriteMaterial({map:tx,depthWrite:false,transparent:true}));sp2.scale.set(sc||.7,sc||.7,1);return sp2;}
+  function makePlanta(it,meta){var g=new T.Group(),f=it.fl,e=plantaEstado(meta,Date.now()),verde=0x3f9a4f;
+    var terra=new T.Mesh(new T.CylinderGeometry(.32,.36,.08,12),mat(0x5a3a1e));terra.position.y=.04;g.add(terra);
+    if(e.st===0){var b=cy(g,.03,.03,.22,verde,0,.15,0);sp(g,.07,0x57c46a,.06,.26,0,1.4,.6,1);sp(g,.07,0x57c46a,-.06,.26,0,1.4,.6,1);return g;}
+    var h=e.st===1?.45:(f.alto?1.25:.8);cy(g,.035,.045,h,verde,0,h/2,0);
+    [[.12,.3],[-.12,.45]].forEach(function(q){var lf=sp(g,.1,0x57c46a,q[0],Math.min(q[1],h*.7),0,1.5,.4,1);lf.rotation.z=q[0]>0?-.5:.5;});
+    if(e.st===1){sp(g,.08,0x6fd07a,0,h+.04,0,1,1.3,1);return g;}
+    var em=f.brilho?lin(f.c):0x000000,cen=sp(g,.09,parseInt(f.m.slice(1),16),0,h+.02,0,1,1,1,f.brilho?lin(f.m):0);
+    for(var i=0;i<(f.alto?10:6);i++){var a=i/(f.alto?10:6)*6.2832,pt=sp(g,f.alto?.11:.09,parseInt(f.c.slice(1),16),Math.cos(a)*(f.alto?.17:.13),h,Math.sin(a)*(f.alto?.17:.13),1,.45,1,em);pt.rotation.y=-a;}
+    if(e.pronto){var st=new T.Group(),gl=new T.Sprite(new T.SpriteMaterial({map:glowT,color:0xffd23a,depthWrite:false,transparent:true,blending:T.AdditiveBlending}));gl.scale.set(1.1,1.1,1);st.add(gl);
+      st.add(new T.Mesh(new T.OctahedronGeometry(.16,0),new T.MeshBasicMaterial({color:0xffe27a})));st.position.y=h+.55;st.name="estrela";g.add(st);}
+    return g;}
+  function makeVObj(kind,r,meta){var g=new T.Group(),itp=lojaItem(kind);if(ePlanta(itp))return makePlanta(itp,meta);
     if(kind==="bandeira"){var pole=new T.Mesh(new T.CylinderGeometry(.05,.05,2.4,8),mat(0xf2f4fa,0x30333c));pole.position.y=1.2;g.add(pole);
       var fl=new T.Mesh(new T.BoxGeometry(1,.62,.05),new T.MeshLambertMaterial({color:lin(BUD.suit)}));fl.position.set(.52,2.05,0);g.add(fl);}
     else if(kind==="base"){var dm=new T.Mesh(new T.SphereGeometry(1.35,24,12,0,6.2832,0,Math.PI/2),mat(0xeef1f8,0x2a2d36));g.add(dm);
@@ -2727,8 +2782,37 @@ function boot3D(){
       [[0,.85,0,.32],[.25,.62,0,.2],[-.22,.6,.1,.18]].forEach(function(q,k){var lf=new T.Mesh(new T.SphereGeometry(q[3],10,8),mat(k?0x57c46a:cA,k?0x10301a:cA));lf.position.set(q[0],q[1],q[2]);g.add(lf);});}
     return g;}
   function buildObjs(){while(LS.objG.children.length)LS.objG.remove(LS.objG.children[0]);
-    (LS.p.vobj||[]).forEach(function(o,i){var m=makeVObj(o[3]);m.position.set(o[0]+.5,o[1],o[2]+.5);m.rotation.y=o[4]||0;m.userData.vi=i;
-      var it=lojaItem(o[3]);if(it&&it.cat==="animais")m.userData.anim={y:m.position.y,r:m.rotation.y,ph:i*1.7};LS.objG.add(m);});}
+    var now=Date.now();LS.vsig="";
+    (LS.p.vobj||[]).forEach(function(o,i){var it=lojaItem(o[3]);if(eAnimal(it)&&!o[5]){o[5]={f:now};}
+      var m=makeVObj(o[3],null,o[5]);m.position.set(o[0]+.5,o[1],o[2]+.5);m.rotation.y=o[4]||0;m.userData.vi=i;
+      if(eAnimal(it)){var es=animalEstado(o[5],now);if(es==="doente"&&!o[5].s)o[5].s=true;
+        m.userData.anim={y:m.position.y,r:m.rotation.y,ph:i*1.7,es:es};
+        if(es==="doente"){m.rotation.z=1.25;m.position.y+=.15;}
+        if(es!=="feliz"){var ic=emojiSp(es==="fome"?"🍖":"🤒");ic.position.set(0,es==="doente"?.4:1.35,0);ic.name="ico";m.add(ic);}}
+      LS.vsig+=i+(eAnimal(it)?animalEstado(o[5],now):ePlanta(it)?JSON.stringify(plantaEstado(o[5],now).st)+plantaEstado(o[5],now).pronto:"")+";";
+      LS.objG.add(m);});}
+  function vsigAgora(){var now=Date.now(),sg="";(LS.p.vobj||[]).forEach(function(o,i){var it=lojaItem(o[3]);sg+=i+(eAnimal(it)?animalEstado(o[5],now):ePlanta(it)?JSON.stringify(plantaEstado(o[5],now).st)+plantaEstado(o[5],now).pronto:"")+";";});return sg;}
+  /* colher a estrela de uma flor */
+  function colher(i){var o=LS.p.vobj[i],it=o&&lojaItem(o[3]);if(!ePlanta(it))return false;var e=plantaEstado(o[5],Date.now());if(e.st!==2||!e.pronto)return false;
+    o[5].h=Date.now();saveMeu();addStars(it.fl.est);diaAdd("estrela");sparkle(o[0]+.5,o[1]+1.2,o[2]+.5);buildObjs();updStars();
+    say("Você colheu "+(it.fl.est===1?"1 estrela":it.fl.est+" estrelas")+" da "+it.fl.nome.toLowerCase()+"! Volte amanhã para colher de novo.",true);return true;}
+  /* tocar num objeto: ver como está, colher ou cuidar */
+  function objNoToque(){var oh=ray.intersectObjects(LS.objG.children,true);if(!oh.length)return null;var g=oh[0].object;while(g.parent&&g.parent!==LS.objG)g=g.parent;return {g:g,i:g.userData.vi,o:LS.p.vobj[g.userData.vi],d:oh[0].distance};}
+  function cuidar(t,item){var it=lojaItem(t.o[3]);
+    if(!eAnimal(it)){say("Ração e remédio são para os animais. Toque num animal.",true);return;}
+    var nome=it.nome.toLowerCase(),es=animalEstado(t.o[5],Date.now());
+    if(item==="racao"){if(es==="doente"){say("O "+nome+" está doente. Primeiro dê um remédio, depois a ração.",true);return;}
+      if(es==="feliz"){say("O "+nome+" já comeu hoje e está feliz!",true);return;}
+      t.o[5].f=Date.now();malaAdd("racao",-1);saveMeu();buildObjs();buildPal();sparkle(t.o[0]+.5,t.o[1]+1,t.o[2]+.5);say("Nham! O "+nome+" comeu e ficou feliz.",true);buddy("happy",2000);}
+    else{if(es!=="doente"){say("O "+nome+" não está doente. Remédio só quando ele estiver doente.",true);return;}
+      t.o[5].s=false;t.o[5].f=Date.now()-DIA_MS-60000;malaAdd("remedio",-1);saveMeu();buildObjs();buildPal();sparkle(t.o[0]+.5,t.o[1]+1,t.o[2]+.5);say("O "+nome+" sarou! Agora ele está com fome: dê uma ração.",true);}
+    if(malaN(item)<=0){LS.block=3;toolUI();}}
+  function infoObj(t){var it=lojaItem(t.o[3]),now=Date.now();
+    if(ePlanta(it)){if(colher(t.i))return;var e=plantaEstado(t.o[5],now);
+      say(e.st<2?it.fl.nome+": está crescendo. Vai florescer em "+tempoTxt(e.falta)+".":it.fl.nome+": já deu a estrela de hoje. A próxima fica pronta em "+tempoTxt(e.falta)+".",true);return;}
+    if(eAnimal(it)){var es=animalEstado(t.o[5],now),nm=it.nome;
+      say(es==="feliz"?nm+" está feliz e alimentado.":es==="fome"?nm+" está com fome! Escolha a ração na mala espacial e toque nele.":nm+" está doente. Dê um remédio e depois ração. Remédio e ração ficam na loja.",true);return;}
+    var vo=vobjAll().filter(function(x){return x[0]===t.o[3];})[0];if(vo)say(vo[1]+".",true);}
   /* animais e objetos da loja, feitos de formas simples */
   function bx(g,w,h,d,c,x,y,z,e){var m=new T.Mesh(new T.BoxGeometry(w,h,d),mat(c,e));m.position.set(x,y,z);g.add(m);return m;}
   function sp(g,r,c,x,y,z,sx,sy,sz,e){var m=new T.Mesh(new T.SphereGeometry(r,16,12),mat(c,e));m.position.set(x,y,z);if(sx)m.scale.set(sx,sy,sz);g.add(m);return m;}
@@ -2795,16 +2879,18 @@ function boot3D(){
       gr.position.set(x+.5,h+1.9,z+.5);gr.visible=got.indexOf(i)<0;LS.scene.add(gr);LS.stars.push({m:gr,core:core,y:h+1.9,i:i});}
     updStars();}
   function updStars(){var el=$("gh-st");if(el)el.textContent="★ "+(LS.p.got||[]).length+" de 5";}
-  function say(txt,speak){var el=$("gh-msg");if(!el)return;el.textContent=txt;el.classList.add("on");clearTimeout(LS.msgT);
+  function say(txt,speak,force){var el=$("gh-msg"),b=$("gh-msgb");if(!el)return;LS.lastMsg=txt;
+    if(window.innerWidth<820&&!force){el.classList.remove("on");if(b){b.classList.remove("new");void b.offsetWidth;b.classList.add("new");}if(speak)speakFree(txt);return;}
+    el.textContent=txt;el.classList.add("on");if(b)b.classList.remove("new");clearTimeout(LS.msgT);
     LS.msgT=setTimeout(function(){el.classList.remove("on");},Math.max(2600,txt.length*75));if(speak)speakFree(txt);}
   function buildPal(){var el=$("gh-pal");if(!el)return;var tab=LS.palTab||"construir";
     ["construir","mala"].forEach(function(k){var b=$("gh-t-"+k);if(b)b.setAttribute("aria-pressed",String(tab===k));});
-    var sd=$("gh-saldo");if(sd)sd.textContent="★ "+saldo();var mb=$("gh-t-mala"),tot=0;malaItens().forEach(function(x){tot+=malaN(x.id);});if(mb)mb.textContent="🎒 Mala espacial"+(tot?" ("+tot+")":"");
+    var sd=$("gh-saldo");if(sd)sd.textContent="★ "+saldo();var mn=$("gh-mala-n"),tot=0;malaItens().forEach(function(x){tot+=malaN(x.id);});if(mn){mn.textContent=tot||"";mn.style.display=tot?"":"none";}
     if(tab==="mala"){var its=malaItens();
-      el.innerHTML=its.length?its.map(function(x){return '<button type="button" class="pb" id="pb-'+x.id+'" data-gh="blk" data-v="'+x.id+'" aria-pressed="false"><span class="oi emo" aria-hidden="true">'+x.ico+'<i class="qt">'+malaN(x.id)+'</i></span>'+x.nome+'</button>';}).join(""):
+      el.innerHTML=its.length?its.map(function(x){return '<button type="button" class="pb" id="pb-'+x.id+'" data-gh="blk" data-v="'+x.id+'" aria-pressed="false" aria-label="'+x.nome+', '+malaN(x.id)+' na mala"><span class="oi emo" aria-hidden="true">'+x.ico+'<i class="qt">'+malaN(x.id)+'</i></span><span class="pn">'+x.nome+'</span></button>';}).join(""):
         '<p class="pal-vazia">Sua mala está vazia. Toque em <b>Loja</b> para trocar estrelas por animais e objetos.</p>';}
-    else el.innerHTML=palbAll().map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false"><img alt="" src="'+LS.urls[t]+'">'+BLK[t].n+'</button>';}).join("")+
-      VOBJ.map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false"><span class="oi" aria-hidden="true">'+o[2]+'</span>'+o[1]+'</button>';}).join("");
+    else el.innerHTML=palbAll().map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false" aria-label="'+BLK[t].n+'"><img alt="" src="'+LS.urls[t]+'"><span class="pn">'+BLK[t].n+'</span></button>';}).join("")+
+      VOBJ.map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false" aria-label="'+o[1]+'"><span class="oi" aria-hidden="true">'+o[2]+'</span><span class="pn">'+o[1]+'</span></button>';}).join("");
     toolUI();}
   function palTab(v){LS.palTab=v;buildPal();if(v==="mala")say(malaItens().length?"Sua mala espacial. Escolha um e toque no chão para colocar.":"Sua mala está vazia. Toque em Loja para trocar estrelas.",true);}
   function lojaOpen(on){var el=$("gh-loja");if(!el)return;if(on){state.my.conf=null;$("gh-loja-body").innerHTML=lojaBody();el.hidden=false;speakFree("Loja espacial. Você tem "+stTxt(saldo())+".");var x=$("gh-loja-x");if(x)x.focus();}
@@ -2856,14 +2942,18 @@ function boot3D(){
   /* toque na tela: coloca ou tira o bloco que o dedo apontou */
   function landTap(cx,cy){
     if(MY.mode!=="land"||!LS.landed)return;
-    if(LS.tool==="explorar"){say("Toque em Colocar ou em Tirar para construir.",false);return;}
     var rc=canvas.getBoundingClientRect();ndc.set((cx-rc.left)/rc.width*2-1,-((cy-rc.top)/rc.height)*2+1);ray.setFromCamera(ndc,camera);
-    var hit=dda(ray.ray.origin,ray.ray.direction,48);
+    var hit=dda(ray.ray.origin,ray.ray.direction,48),tob=(LS.tool!=="tirar")?objNoToque():null;if(tob&&hit&&tob.d>hit.t)tob=null;
+    if(LS.tool==="explorar"){if(tob){infoObj(tob);return;}say("Toque em Colocar ou em Tirar para construir.",false);return;}
+    if(LS.tool==="colocar"&&typeof LS.block==="string"&&eCuidado(lojaItem(LS.block))){if(malaN(LS.block)<=0){say("Acabou na mala. Troque mais estrelas na Loja.",true);return;}
+      if(tob)cuidar(tob,LS.block);else say("Toque num animal para dar "+(LS.block==="racao"?"a ração.":"o remédio."),true);return;}
+    if(LS.tool==="colocar"&&tob&&ePlanta(lojaItem(tob.o[3]))&&colher(tob.i))return;
     if(LS.tool==="tirar"){
       var oh=ray.intersectObjects(LS.objG.children,true);
       if(oh.length&&(!hit||oh[0].distance<hit.t)){var g=oh[0].object;while(g.parent&&g.parent!==LS.objG)g=g.parent;
         var kd=LS.p.vobj[g.userData.vi]&&LS.p.vobj[g.userData.vi][3];LS.p.vobj.splice(g.userData.vi,1);puff(g.position.x,g.position.y+.5,g.position.z,0);buildObjs();saveMeu();
-        if(eUnid(lojaItem(kd))){malaAdd(kd,1);buildPal();say(lojaItem(kd).nome+" voltou para a mala espacial.",true);}return;}
+        if(ePlanta(lojaItem(kd))){say("A planta foi arrancada.",true);return;}
+        if(eUnid(lojaItem(kd))){malaAdd(kd,1);buildPal();say(lojaItem(kd).nome+" voltou para a mala espacial"+(eAnimal(lojaItem(kd))?" e foi dormir.":"."),true);}return;}
       if(!hit)return;if(hit.y===0){say("Esse chão é forte demais para tirar.",true);return;}
       puff(hit.x+.5,hit.y+.5,hit.z+.5,hit.b);setBlock(hit.x,hit.y,hit.z,0);return;}
     if(!hit)return;var px=hit.px,py=hit.py,pz=hit.pz;
@@ -2873,7 +2963,11 @@ function boot3D(){
       if(!(py===hit.y+1&&px===hit.x&&pz===hit.z)){say("Coloque em cima de um bloco.",true);return;}
       if(LS.p.vobj.length>=40){say("Já tem muitos objetos neste planeta.",true);return;}
       var lit=lojaItem(LS.block);if(eUnid(lit)&&malaN(LS.block)<=0){say("Acabou "+lit.nome.toLowerCase()+" na mala. Troque mais estrelas na Loja.",true);return;}
-      LS.p.vobj.push([px,py,pz,LS.block,+LS.camYaw.toFixed(2)]);buildObjs();saveMeu();sparkle(px+.5,py+.4,pz+.5);
+      if(ePlanta(lit)){var gb=LS.grid[IDX(hit.x,hit.y,hit.z)];if(gb!==2&&gb!==3){say("Plante em chão de terra ou de grama.",true);return;}
+        if(LS.p.vobj.filter(function(o){return ePlanta(lojaItem(o[3]));}).length>=12){say("Este planeta já tem 12 plantas. Que tal plantar em outro?",true);return;}}
+      var meta=ePlanta(lit)?{t:Date.now(),h:0}:eAnimal(lit)?{f:Date.now()-DIA_MS-60000}:null;
+      LS.p.vobj.push(meta?[px,py,pz,LS.block,+LS.camYaw.toFixed(2),meta]:[px,py,pz,LS.block,+LS.camYaw.toFixed(2)]);buildObjs();saveMeu();sparkle(px+.5,py+.4,pz+.5);
+      if(ePlanta(lit))say("Semente plantada! Ela floresce em 20 minutos.",true);else if(eAnimal(lit))say("O "+lit.nome.toLowerCase()+" acordou com fome! Dê uma ração da mala espacial.",true);
       if(eUnid(lit)){malaAdd(LS.block,-1);buildPal();if(malaN(LS.block)<=0){LS.block=3;toolUI();}}return;}
     var P=LS.pos;if(px+1>P.x-.3&&px<P.x+.3&&pz+1>P.z-.3&&pz<P.z+.3&&py+1>P.y&&py<P.y+1.7){say("Você está no caminho!",true);return;}
     if(Object.keys(LS.edits).length>=6000){say("Seu planeta está cheio de construções!",true);return;}
@@ -2918,7 +3012,12 @@ function boot3D(){
         s.m.visible=false;LS.p.got.push(s.i);saveMeu();addStars(1);diaAdd("estrela");updStars();sparkle(s.m.position.x,s.m.position.y,s.m.position.z);
         var got=LS.p.got.length;if(got>=5){addStars(2);say("Você achou todas as estrelas deste planeta!",true);}else say("Você achou uma estrela! "+(5-got===1?"Falta 1.":"Faltam "+(5-got)+"."),true);}}
     /* animais da loja: respiram e olham em volta */
-    for(i=0;i<LS.objG.children.length;i++){var an=LS.objG.children[i],ud=an.userData.anim;if(!ud)continue;an.position.y=ud.y+Math.abs(Math.sin(t*2.4+ud.ph))*.06;an.rotation.y=ud.r+Math.sin(t*.6+ud.ph)*.7;}
+    for(i=0;i<LS.objG.children.length;i++){var an=LS.objG.children[i],ud=an.userData.anim;
+      if(!ud){var es2=an.getObjectByName("estrela");if(es2){es2.rotation.y+=dt*2;es2.position.y+=Math.sin(t*3+i)*.003;}continue;}
+      if(ud.es==="doente")continue;var sl=ud.es==="fome"?.4:1;an.position.y=ud.y+Math.abs(Math.sin(t*2.4*sl+ud.ph))*.06;an.rotation.y=ud.r+Math.sin(t*.6*sl+ud.ph)*.7;}
+    if(LS.landed&&(!LS.vchk||t-LS.vchk>1)){LS.vchk=t;
+      if(vsigAgora()!==LS.vsig)buildObjs();
+      (LS.p.vobj||[]).forEach(function(o,k){if(ePlanta(lojaItem(o[3]))&&Math.abs(o[0]+.5-P.x)<1.2&&Math.abs(o[2]+.5-P.z)<1.2&&Math.abs(o[1]-P.y)<2)colher(k);});}
     /* pedacinhos e brilhos */
     for(i=LS.fx.length-1;i>=0;i--){var f=LS.fx[i];f.v.y-=9.8*dt;f.m.position.addScaledVector(f.v,dt);f.life-=dt;if(f.fade)f.m.material.opacity=Math.max(0,f.life*2);
       if(f.life<=0){LS.scene.remove(f.m);if(f.fade)f.m.material.dispose();LS.fx.splice(i,1);}}
@@ -2931,7 +3030,7 @@ function boot3D(){
   myw={enter:function(){MY.on=true;MY.mode="build";sysVis(false);MY.group.visible=true;MY.land.visible=false;myBuild();myFocus(null);},
     exit:function(){toBuild();MY.on=false;sysVis(true);MY.group.visible=false;myClear();MY.focus=-1;MY.fpos=null;},
     rebuild:function(){var f=MY.focus;myBuild();MY.focus=f<MY.pl.length?f:-1;MY.fpos=MY.focus<0?null:MY.pl[MY.focus].pos;},
-    focus:myFocus,pilot:pilotStart,pal:function(){if(MY.mode==="land")buildPal();},palTab:palTab,lojaOpen:lojaOpen,toBuild:toBuild,turbo:function(v){MY.turbo=!!v;},land:landStart,tap:landTap,tool:landTool,pick:landPick,flush:flushLand,
+    focus:myFocus,pilot:pilotStart,msg:function(){if(LS.lastMsg)say(LS.lastMsg,true,true);},pal:function(){if(MY.mode==="land")buildPal();},palTab:palTab,lojaOpen:lojaOpen,toBuild:toBuild,turbo:function(v){MY.turbo=!!v;},land:landStart,tap:landTap,tool:landTool,pick:landPick,flush:flushLand,
     mode:function(){return MY.mode;},got:function(){return [MY.got,MY.stars.length];},rename:function(i,n){if(MY.tags[i])MY.tags[i].textContent=n;}};
 
   var ptrs={},down=null,pinch=0;
