@@ -296,6 +296,16 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .sitem .btn{width:100%}
 .lico{display:grid;place-items:center;width:56px;height:56px}.lico.emo{font-size:42px;line-height:1}.lico svg{width:56px;height:56px}
 .lico.blk{width:44px;height:44px;border-radius:8px;border:2px solid rgba(0,0,0,.25);box-shadow:inset 0 0 0 3px rgba(255,255,255,.2)}
+.gh-tabs{display:flex;gap:6px;overflow-x:auto;pointer-events:auto}
+.gh-tabs button{flex:0 0 auto;background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:9px 14px;font:700 14px/1 var(--display);cursor:pointer}
+.gh-tabs button[aria-pressed="true"]{background:var(--ice);color:#06202b;border-color:var(--ice)}
+.gh-tabs .lojab{margin-left:auto;background:var(--sun);color:#221400;border-color:var(--sun)}.gh-tabs .lojab b{font-weight:700}
+.pb .oi.emo{position:relative;font-size:26px;background:#1b2550}.pb .qt{position:absolute;right:-6px;top:-6px;min-width:18px;height:18px;border-radius:9px;background:var(--sun);color:#221400;font:700 11px/18px var(--display);font-style:normal;padding:0 4px}
+.pal-vazia{margin:4px 6px;font:600 14px/1.3 var(--body);color:var(--muted)}
+.ghsheet{position:absolute;left:10px;right:10px;top:64px;bottom:10px;z-index:5;display:flex;flex-direction:column;background:var(--panel-solid);border:1px solid var(--line);border-radius:20px;pointer-events:auto;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.ghsheet[hidden]{display:none}
+.ghsheet-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font:700 18px/1 var(--display)}
+.ghsheet-body{overflow:auto;padding:12px 14px}
 .acf label[for]{display:block;font-weight:700;margin:0 0 6px}
 .acf input[type=email]{width:100%;font:600 18px/1.2 var(--body,inherit);color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
 .consent{border:2px solid var(--sun);border-radius:14px;padding:12px;margin:0 0 10px;background:rgba(255,200,60,.07)}
@@ -413,6 +423,10 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
       <span class="gh-st" id="gh-st"></span>
     </div>
     <p class="gh-msg" id="gh-msg" aria-live="polite"></p>
+    <div class="ghsheet" id="gh-loja" role="dialog" aria-label="Loja espacial" hidden>
+      <div class="ghsheet-top"><b>🛍️ Loja espacial</b><button type="button" class="btn sm go" id="gh-loja-x" data-gh="lojafechar">Voltar ao planeta</button></div>
+      <div class="ghsheet-body" id="gh-loja-body"></div>
+    </div>
     <div class="gh-bot">
       <div class="gh-ctl">
         <div class="joy" id="joy" role="img" aria-label="Controle para andar: arraste a bolinha"><span class="knob" id="knob"></span></div>
@@ -422,6 +436,11 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
           <button type="button" id="gh-tirar" data-gh="tool" data-v="tirar" aria-pressed="false">Tirar</button>
         </div>
         <button type="button" class="jumpb" id="gh-jump" aria-label="Pular">Pular</button>
+      </div>
+      <div class="gh-tabs" role="group" aria-label="O que mostrar embaixo">
+        <button type="button" id="gh-t-construir" data-gh="ptab" data-v="construir" aria-pressed="true">🧱 Construir</button>
+        <button type="button" id="gh-t-mala" data-gh="ptab" data-v="mala" aria-pressed="false">🎒 Mala espacial</button>
+        <button type="button" id="gh-t-loja" class="lojab" data-gh="loja">🛍️ Loja <b id="gh-saldo"></b></button>
       </div>
       <div class="gh-pal" id="gh-pal" role="group" aria-label="Blocos e objetos"></div>
     </div>
@@ -1415,22 +1434,33 @@ var LOJA=[
 var LCAT=[["animais","Animais"],["objetos","Objetos"],["blocos","Blocos"],["roupas","Roupas"]];
 function tem(id){return OWN.indexOf(id)>=0;}
 function lojaItem(id){return LOJA.filter(function(x){return x.id===id;})[0];}
-function comprar(id){var it=lojaItem(id);if(!it||tem(id)||saldo()<it.p)return false;GASTO+=it.p;OWN.push(id);store.set("gasto",GASTO);store.set("loja",OWN);return true;}
+/* mala espacial: animais e objetos comprados ficam guardados aqui até serem colocados num planeta */
+function eUnid(it){return it&&(it.cat==="animais"||it.cat==="objetos");}
+var MALA=store.get("mala",null);
+if(!MALA){MALA={};OWN.forEach(function(id){if(eUnid(lojaItem(id)))MALA[id]=1;});}
+function malaN(id){return MALA[id]||0;}
+function malaAdd(id,n){MALA[id]=Math.max(0,malaN(id)+n);store.set("mala",MALA);}
+function malaItens(){return LOJA.filter(function(x){return eUnid(x)&&malaN(x.id)>0;});}
+function comprar(id){var it=lojaItem(id);if(!it||saldo()<it.p||(!eUnid(it)&&tem(id)))return false;GASTO+=it.p;if(!tem(id))OWN.push(id);store.set("gasto",GASTO);store.set("loja",OWN);
+  if(eUnid(it))malaAdd(id,1);return true;}
 function suitsAll(){return SUITS.concat(LOJA.filter(function(x){return x.cor&&tem(x.id);}).map(function(x){return x.cor;}));}
-function vobjAll(){return VOBJ.concat(LOJA.filter(function(x){return (x.cat==="animais"||x.cat==="objetos")&&tem(x.id);}).map(function(x){return [x.id,x.nome,x.ico];}));}
+function vobjAll(){return VOBJ.concat(LOJA.filter(eUnid).map(function(x){return [x.id,x.nome,x.ico];}));}
 function palbAll(){return PALB.concat(LOJA.filter(function(x){return x.blk&&tem(x.id);}).map(function(x){return x.blk;}));}
 function lojaIco(it){if(it.blk)return '<span class="lico blk" style="background:'+(it.blk===18?"linear-gradient(#ff5a5a,#ffb938,#6fdc7a,#2f7bff,#b48cff)":BLK[it.blk].c)+'"></span>';
   if(it.cor)return '<span class="lico" style="--c:'+it.cor+'">'+astroFor({nome:"",suit:it.cor,skin:BUD.skin,hair:BUD.hair})+'</span>';return '<span class="lico emo" aria-hidden="true">'+it.ico+'</span>';}
-function lojaHtml(head){var m=state.my,cat=m.cat||"animais",sd=saldo();
-  return head("Loja")+'<h2 class="say" id="say-nome">Loja espacial</h2><p class="gstars" style="font-size:22px">★ '+stTxt(sd)+' para gastar</p>'+
-    '<p class="lead say" id="say-lead">Troque suas estrelas por animais, objetos, blocos e roupas. Tudo aqui se ganha estudando: não precisa de dinheiro.</p>'+
+function lojaBody(){var m=state.my,cat=m.cat||"animais",sd=saldo();
+  return '<p class="gstars" style="font-size:22px">★ '+stTxt(sd)+' para gastar</p>'+
+    '<p class="lead say" id="say-lead">Troque suas estrelas por animais, objetos, blocos e roupas. O que você comprar vai para a sua mala espacial. Tudo aqui se ganha estudando: não precisa de dinheiro.</p>'+
     '<div class="seg" role="group" aria-label="Tipo" style="margin-bottom:12px;flex-wrap:wrap">'+LCAT.map(function(c){return '<button type="button" id="lc-'+c[0]+'" data-my="lcat" data-v="'+c[0]+'" aria-pressed="'+(cat===c[0])+'">'+c[1]+'</button>';}).join("")+'</div>'+
-    '<div class="shop">'+LOJA.filter(function(x){return x.cat===cat;}).map(function(it){var own=tem(it.id),conf=m.conf===it.id,falta=it.p-sd;
-      return '<div class="sitem'+(own?" own":"")+'">'+lojaIco(it)+'<b>'+it.nome+'</b><span class="pr">★ '+it.p+'</span>'+
-        (own?'<span class="tag2">É seu</span>':conf?'<button type="button" class="btn sm go" id="buy-'+it.id+'" data-my="buyok" data-v="'+it.id+'">Trocar '+it.p+' ★</button><button type="button" class="btn sm" id="buyno-'+it.id+'" data-my="buyno">Agora não</button>':
-          '<button type="button" class="btn sm" id="buyq-'+it.id+'" data-my="buy" data-v="'+it.id+'"'+(falta>0?' disabled':'')+'>'+(falta>0?"Faltam "+falta+" ★":"Quero este")+'</button>')+'</div>';}).join("")+'</div>'+
-    '<p class="note">'+(cat==="roupas"?"As roupas aparecem para escolher no Mapa, em Meu astronauta.":cat==="blocos"?"Os blocos aparecem quando você pousa num planeta e toca em Colocar.":"Pouse num planeta e toque em Colocar para pôr o que você ganhou.")+' Não tem caixa surpresa: você sempre vê o que vai ganhar.</p>'+
-    '<div class="nav"><button type="button" class="btn" id="loja-back" data-my="lojasair">← Voltar</button></div>';}
+    '<div class="shop">'+LOJA.filter(function(x){return x.cat===cat;}).map(function(it){var un=eUnid(it),own=un?malaN(it.id)>0:tem(it.id),conf=m.conf===it.id,falta=it.p-sd,
+        tag=un?(own?'<span class="tag2">Na mala: '+malaN(it.id)+'</span>':''):(own?'<span class="tag2">É seu</span>':'');
+      return '<div class="sitem'+(own?" own":"")+'">'+lojaIco(it)+'<b>'+it.nome+'</b><span class="pr">★ '+it.p+'</span>'+tag+
+        ((!un&&own)?'':conf?'<button type="button" class="btn sm go" id="buy-'+it.id+'" data-my="buyok" data-v="'+it.id+'">Trocar '+it.p+' ★</button><button type="button" class="btn sm" id="buyno-'+it.id+'" data-my="buyno">Agora não</button>':
+          '<button type="button" class="btn sm" id="buyq-'+it.id+'" data-my="buy" data-v="'+it.id+'"'+(falta>0?' disabled':'')+'>'+(falta>0?"Faltam "+falta+" ★":own?"Quero mais um":"Quero este")+'</button>')+'</div>';}).join("")+'</div>'+
+    '<p class="note">'+(cat==="roupas"?"As roupas ficam liberadas para sempre: escolha no Mapa, em Meu astronauta.":cat==="blocos"?"Os blocos ficam liberados para sempre: aparecem em Construir quando você pousa num planeta.":"Cada compra põe um na sua mala espacial. Colocar no planeta tira da mala; tirar do planeta devolve para a mala.")+' Não tem caixa surpresa: você sempre vê o que vai ganhar.</p>';}
+function lojaHtml(head){return head("Loja")+'<h2 class="say" id="say-nome">Loja espacial</h2>'+lojaBody()+'<div class="nav"><button type="button" class="btn" id="loja-back" data-my="lojasair">← Voltar</button></div>';}
+function lojaNoMundo(){var el=$("gh-loja");return !!(el&&!el.hidden);}
+function lojaRedraw(f){if(lojaNoMundo()){var b=$("gh-loja-body"),sc=b.scrollTop;b.innerHTML=lojaBody();b.scrollTop=sc;var x=f&&$(f);if(x)try{x.focus({preventScroll:true});}catch(e){}if(myw&&myw.pal)myw.pal();}else redraw(f);}
 
 /* ---------- Telas dos jogos ---------- */
 function gameHtml(){
@@ -1715,11 +1745,12 @@ function meuAct(act,v,btnId){
   else if(act==="star"){MEU.star=v;rb();}
   else if(act==="obj"){var q=v.split(":"),o=OBJS.filter(function(x){return x[0]===q[0];})[0];MEU.objs[q[0]]=cl((MEU.objs[q[0]]||0)+(+q[1]),0,o[2]);rb();}
   else if(act==="loja"){m.mode="loja";m.conf=null;redraw();panel.scrollTop=0;speakPanel();}
-  else if(act==="lcat"){m.cat=v;m.conf=null;redraw(btnId);}
-  else if(act==="buy"){m.conf=v;redraw("buy-"+v);var it0=lojaItem(v);speakFree("Trocar "+it0.p+" estrelas por "+it0.nome.toLowerCase()+"?");}
-  else if(act==="buyno"){m.conf=null;redraw();}
-  else if(act==="buyok"){var it=lojaItem(v);m.conf=null;if(comprar(v)){redraw();buddy("happy",2600);
-      speakFree((it.cat==="roupas"?"Que roupa linda! Escolha ela no Mapa, em Meu astronauta.":it.cat==="blocos"?"Agora "+it.nome.toLowerCase()+" é seu! Pouse num planeta para construir.":"Agora "+it.nome.toLowerCase()+" é seu! Pouse num planeta e toque em Colocar."));}else redraw();}
+  else if(act==="lcat"){m.cat=v;m.conf=null;lojaRedraw(btnId);}
+  else if(act==="buy"){m.conf=v;lojaRedraw("buy-"+v);var it0=lojaItem(v);speakFree("Trocar "+it0.p+" estrelas por "+it0.nome.toLowerCase()+"?");}
+  else if(act==="buyno"){m.conf=null;lojaRedraw();}
+  else if(act==="buyok"){var it=lojaItem(v);m.conf=null;if(comprar(v)){lojaRedraw();buddy("happy",2600);
+      var txt=it.cat==="roupas"?"Que roupa linda! Escolha ela no Mapa, em Meu astronauta.":it.cat==="blocos"?"Agora o "+it.nome.toLowerCase()+" é seu! Ele aparece em Construir.":it.nome+" foi para a sua mala espacial!";
+      speakFree(txt);toast(eUnid(it)?"🎒 "+it.nome+" foi para a mala espacial":"★ "+it.nome+" liberado");}else lojaRedraw();}
   else if(act==="lojasair"){m.mode="build";m.conf=null;redraw();}
   else if(act==="pilot"){m.mode="pilot";m.turbo=false;if(myw)myw.pilot();redraw();speakPanel();}
   else if(act==="turbo"){m.turbo=!m.turbo;if(myw)myw.turbo(m.turbo);redraw(btnId);}
@@ -1765,7 +1796,8 @@ var JOY={x:0,y:0,id:null,jump:false};
 function ghAct(a,v){
   if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();
   if(!myw)return;
-  if(a==="up")meuAct("takeoff");else if(a==="tool")myw.tool(v);else if(a==="blk")myw.pick(v);
+  if(a==="up"){myw.lojaOpen(false);meuAct("takeoff");}else if(a==="tool")myw.tool(v);else if(a==="blk")myw.pick(v);
+  else if(a==="ptab")myw.palTab(v);else if(a==="loja")myw.lojaOpen(true);else if(a==="lojafechar")myw.lojaOpen(false);
 }
 /* ---------- Área dos pais ---------- */
 var TIME=store.get("time",{}),PA={del:null,reset:false};
@@ -2754,13 +2786,22 @@ function boot3D(){
   function updStars(){var el=$("gh-st");if(el)el.textContent="★ "+(LS.p.got||[]).length+" de 5";}
   function say(txt,speak){var el=$("gh-msg");if(!el)return;el.textContent=txt;el.classList.add("on");clearTimeout(LS.msgT);
     LS.msgT=setTimeout(function(){el.classList.remove("on");},Math.max(2600,txt.length*75));if(speak)speakFree(txt);}
-  function buildPal(){var el=$("gh-pal");if(!el)return;
-    el.innerHTML=palbAll().map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false"><img alt="" src="'+LS.urls[t]+'">'+BLK[t].n+'</button>';}).join("")+
-      vobjAll().map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false"><span class="oi" aria-hidden="true">'+o[2]+'</span>'+o[1]+'</button>';}).join("");}
+  function buildPal(){var el=$("gh-pal");if(!el)return;var tab=LS.palTab||"construir";
+    ["construir","mala"].forEach(function(k){var b=$("gh-t-"+k);if(b)b.setAttribute("aria-pressed",String(tab===k));});
+    var sd=$("gh-saldo");if(sd)sd.textContent="★ "+saldo();var mb=$("gh-t-mala"),tot=0;malaItens().forEach(function(x){tot+=malaN(x.id);});if(mb)mb.textContent="🎒 Mala espacial"+(tot?" ("+tot+")":"");
+    if(tab==="mala"){var its=malaItens();
+      el.innerHTML=its.length?its.map(function(x){return '<button type="button" class="pb" id="pb-'+x.id+'" data-gh="blk" data-v="'+x.id+'" aria-pressed="false"><span class="oi emo" aria-hidden="true">'+x.ico+'<i class="qt">'+malaN(x.id)+'</i></span>'+x.nome+'</button>';}).join(""):
+        '<p class="pal-vazia">Sua mala está vazia. Toque em <b>Loja</b> para trocar estrelas por animais e objetos.</p>';}
+    else el.innerHTML=palbAll().map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false"><img alt="" src="'+LS.urls[t]+'">'+BLK[t].n+'</button>';}).join("")+
+      VOBJ.map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false"><span class="oi" aria-hidden="true">'+o[2]+'</span>'+o[1]+'</button>';}).join("");
+    toolUI();}
+  function palTab(v){LS.palTab=v;buildPal();if(v==="mala")say(malaItens().length?"Sua mala espacial. Escolha um e toque no chão para colocar.":"Sua mala está vazia. Toque em Loja para trocar estrelas.",true);}
+  function lojaOpen(on){var el=$("gh-loja");if(!el)return;if(on){state.my.conf=null;$("gh-loja-body").innerHTML=lojaBody();el.hidden=false;speakFree("Loja espacial. Você tem "+stTxt(saldo())+".");var x=$("gh-loja-x");if(x)x.focus();}
+    else{el.hidden=true;state.my.conf=null;buildPal();}}
   function toolUI(){["explorar","colocar","tirar"].forEach(function(k){var b=$("gh-"+k);if(b)b.setAttribute("aria-pressed",String(LS.tool===k));});
     var pb=document.querySelectorAll("#gh-pal .pb");for(var i=0;i<pb.length;i++)pb[i].setAttribute("aria-pressed",String(LS.tool==="colocar"&&pb[i].dataset.v===String(LS.block)));}
   function landTool(v){LS.tool=v;toolUI();say({explorar:"Explorar: ande e procure as estrelas.",colocar:"Colocar: escolha um bloco e toque onde quer pôr.",tirar:"Tirar: toque no bloco que quer tirar."}[v],true);}
-  function landPick(v){var num=/^\d+$/.test(v);LS.block=num?+v:v;LS.tool="colocar";toolUI();var vo=num?null:vobjAll().filter(function(o){return o[0]===v;})[0];say(num?BLK[+v].n:(vo?vo[1]:v),true);}
+  function landPick(v){var num=/^\d+$/.test(v);LS.block=num?+v:v;LS.tool="colocar";toolUI();var vo=num?null:vobjAll().filter(function(o){return o[0]===v;})[0],li=num?null:lojaItem(v);say(num?BLK[+v].n:(vo?vo[1]:v)+(li?": tem "+malaN(v)+" na mala":""),true);}
   function landStart(i){
     var q=MY.pl[i];if(!q)return;var p=q.p;
     if(p.seed==null)p.seed=Math.floor(Math.random()*1e6);if(!p.vobj)p.vobj=[];if(!p.got)p.got=[];saveMeu();
@@ -2810,7 +2851,8 @@ function boot3D(){
     if(LS.tool==="tirar"){
       var oh=ray.intersectObjects(LS.objG.children,true);
       if(oh.length&&(!hit||oh[0].distance<hit.t)){var g=oh[0].object;while(g.parent&&g.parent!==LS.objG)g=g.parent;
-        LS.p.vobj.splice(g.userData.vi,1);puff(g.position.x,g.position.y+.5,g.position.z,0);buildObjs();saveMeu();return;}
+        var kd=LS.p.vobj[g.userData.vi]&&LS.p.vobj[g.userData.vi][3];LS.p.vobj.splice(g.userData.vi,1);puff(g.position.x,g.position.y+.5,g.position.z,0);buildObjs();saveMeu();
+        if(eUnid(lojaItem(kd))){malaAdd(kd,1);buildPal();say(lojaItem(kd).nome+" voltou para a mala espacial.",true);}return;}
       if(!hit)return;if(hit.y===0){say("Esse chão é forte demais para tirar.",true);return;}
       puff(hit.x+.5,hit.y+.5,hit.z+.5,hit.b);setBlock(hit.x,hit.y,hit.z,0);return;}
     if(!hit)return;var px=hit.px,py=hit.py,pz=hit.pz;
@@ -2819,7 +2861,9 @@ function boot3D(){
     if(typeof LS.block==="string"){
       if(!(py===hit.y+1&&px===hit.x&&pz===hit.z)){say("Coloque em cima de um bloco.",true);return;}
       if(LS.p.vobj.length>=40){say("Já tem muitos objetos neste planeta.",true);return;}
-      LS.p.vobj.push([px,py,pz,LS.block,+LS.camYaw.toFixed(2)]);buildObjs();saveMeu();sparkle(px+.5,py+.4,pz+.5);return;}
+      var lit=lojaItem(LS.block);if(eUnid(lit)&&malaN(LS.block)<=0){say("Acabou "+lit.nome.toLowerCase()+" na mala. Troque mais estrelas na Loja.",true);return;}
+      LS.p.vobj.push([px,py,pz,LS.block,+LS.camYaw.toFixed(2)]);buildObjs();saveMeu();sparkle(px+.5,py+.4,pz+.5);
+      if(eUnid(lit)){malaAdd(LS.block,-1);buildPal();if(malaN(LS.block)<=0){LS.block=3;toolUI();}}return;}
     var P=LS.pos;if(px+1>P.x-.3&&px<P.x+.3&&pz+1>P.z-.3&&pz<P.z+.3&&py+1>P.y&&py<P.y+1.7){say("Você está no caminho!",true);return;}
     if(Object.keys(LS.edits).length>=6000){say("Seu planeta está cheio de construções!",true);return;}
     setBlock(px,py,pz,LS.block);sparkle(px+.5,py+.5,pz+.5);diaAdd("blocos");
@@ -2876,7 +2920,7 @@ function boot3D(){
   myw={enter:function(){MY.on=true;MY.mode="build";sysVis(false);MY.group.visible=true;MY.land.visible=false;myBuild();myFocus(null);},
     exit:function(){toBuild();MY.on=false;sysVis(true);MY.group.visible=false;myClear();MY.focus=-1;MY.fpos=null;},
     rebuild:function(){var f=MY.focus;myBuild();MY.focus=f<MY.pl.length?f:-1;MY.fpos=MY.focus<0?null:MY.pl[MY.focus].pos;},
-    focus:myFocus,pilot:pilotStart,toBuild:toBuild,turbo:function(v){MY.turbo=!!v;},land:landStart,tap:landTap,tool:landTool,pick:landPick,flush:flushLand,
+    focus:myFocus,pilot:pilotStart,pal:function(){if(MY.mode==="land")buildPal();},palTab:palTab,lojaOpen:lojaOpen,toBuild:toBuild,turbo:function(v){MY.turbo=!!v;},land:landStart,tap:landTap,tool:landTool,pick:landPick,flush:flushLand,
     mode:function(){return MY.mode;},got:function(){return [MY.got,MY.stars.length];},rename:function(i,n){if(MY.tags[i])MY.tags[i].textContent=n;}};
 
   var ptrs={},down=null,pinch=0;
