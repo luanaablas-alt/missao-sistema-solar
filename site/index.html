@@ -317,6 +317,8 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .ghsheet[hidden]{display:none}
 .ghsheet-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);font:700 18px/1 var(--display)}
 .ghsheet-body{overflow:auto;padding:12px 14px}
+.lockp{display:flex;align-items:center;gap:10px;border:1px dashed var(--line);border-radius:14px;padding:10px 12px;margin:8px 0 4px;background:rgba(255,255,255,.04)}
+.lockp span{font-size:22px}.lockp p{margin:0;font-size:15px}
 .acf label[for]{display:block;font-weight:700;margin:0 0 6px}
 .acf input[type=email]{width:100%;font:600 18px/1.2 var(--body,inherit);color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
 .consent{border:2px solid var(--sun);border-radius:14px;padding:12px;margin:0 0 10px;background:rgba(255,200,60,.07)}
@@ -1371,10 +1373,17 @@ function startMission(sub,k){
 }
 function newQ(){var ms=G.ms,d=Math.max(1,Math.min(3,ms.m[2]+ms.boost)),q=SK[ms.m[1]](d);q.wrong=[];q.ok=false;q.first=true;q.miss=0;ms.q=q;}
 function skKey(ms){return ms.sub+":"+(ms.kind==="g"?ms.game:ms.m[1]);}
+/* planetas da área Criar: o primeiro é livre; cada novo abre a cada 5 missões cumpridas (no máximo 8) */
+var MISS_PLANETA=5;
+function missFeitas(){return mCount("pt")+mCount("mt");}
+function planetasLib(){return Math.min(8,1+Math.floor(missFeitas()/MISS_PLANETA));}
+function faltaPlaneta(){return Math.max(1,MISS_PLANETA*MEU.planets.length-missFeitas());}
 function finishMission(){
   var ms=G.ms;if(!ms||ms.fim)return;ms.fim=true;state.game="q";
   var rating=ms.err===0?3:ms.err<=2?2:1,prev=TR.done[ms.id]||0,bonus=prev?(rating>prev?rating-prev:0)+1:2+rating;
-  ms.rating=rating;ms.bonus=bonus;ms.novo=!prev;addStars(bonus);TR.done[ms.id]=Math.max(prev,rating);saveTR();diaAdd(ms.sub);
+  var lib0=planetasLib();
+  ms.rating=rating;ms.bonus=bonus;ms.novo=!prev;addStars(bonus);TR.done[ms.id]=Math.max(prev,rating);saveTR();
+  ms.planeta=planetasLib()>lib0?planetasLib():0;if(ms.planeta)setTimeout(function(){toast("🪐 Você liberou o planeta "+ms.planeta+" na área Criar!");},400);diaAdd(ms.sub);
 }
 function qWin(){var ms=G.ms,q=ms.q;q.ok=true;ms.n++;stat(skKey(ms),"ok");
   if(q.first){ms.first++;addStars(1);diaAdd("acertos");ms.streak++;if(ms.streak>=3&&ms.boost<1){ms.boost++;ms.streak=0;}}
@@ -1387,6 +1396,7 @@ function qHtml(top,nxt){
   var ms=G.ms;if(!ms)return "";var head=top(ms.fim?"Missão cumprida":mNome(ms.m));
   if(ms.fim){var nk=ms.k+1<TRILHAS[ms.sub].length&&mOpen(ms.sub,ms.k+1)?ms.k+1:-1,ganho=ms.first+ms.bonus;
     return head+'<div class="result">'+stars3(ms.rating)+'<h2 class="say" id="say-nome">'+(ms.rating===3?"Perfeito!":ms.rating===2?"Muito bem!":"Missão cumprida!")+'</h2>'+
+      (ms.planeta?'<p class="done say" id="say-f0" style="margin:0 0 10px">Você liberou um planeta novo! Vá em Criar para montar o planeta '+ms.planeta+'.</p>':'')+
       '<p class="lead say" id="say-lead">Você ganhou '+stTxt(ganho)+' nesta missão.'+(ms.rating<3?" Jogue de novo sem errar para ganhar 3 estrelas.":"")+'</p></div>'+
       '<div class="nav">'+(nk>=0?'<button type="button" class="btn go" id="ms-next" data-g="ms-go" data-v="'+ms.sub+':'+nk+'">Próxima missão →</button>':'')+
       '<button type="button" class="btn" id="ms-again" data-g="ms-go" data-v="'+ms.sub+':'+ms.k+'">Jogar de novo</button><button type="button" class="btn" id="ms-trail" data-g="trail" data-v="'+ms.sub+'">Ver a trilha</button></div>';}
@@ -1732,7 +1742,8 @@ function meuHtml(){
       '<p class="note" style="margin:0 0 10px">Pouse para andar pelo planeta, construir com blocos e procurar estrelas escondidas.</p>'+
       '<div class="nav"><button type="button" class="btn go" id="my-land" data-my="land">Pousar ▾</button><button type="button" class="btn" id="my-back" data-my="back">Ver tudo</button><button type="button" class="btn" id="my-del" data-my="del">Apagar</button></div>';}
   return head("Meu universo")+'<h2 class="say" id="say-nome">Meu universo</h2><p class="lead say" id="say-lead">Este universo é seu. Crie planetas, espalhe objetos e voe de foguete.</p>'+
-    '<div class="nav" style="margin-bottom:6px"><button type="button" class="btn go" id="my-add" data-my="add"'+(MEU.planets.length>=8?" disabled":"")+'>+ Novo planeta</button><button type="button" class="btn" id="my-pilot" data-my="pilot">Pilotar foguete</button></div>'+
+    '<div class="nav" style="margin-bottom:6px"><button type="button" class="btn go" id="my-add" data-my="add"'+(MEU.planets.length>=planetasLib()?" disabled":"")+'>+ Novo planeta</button><button type="button" class="btn" id="my-pilot" data-my="pilot">Pilotar foguete</button></div>'+
+    (MEU.planets.length>=planetasLib()&&MEU.planets.length<8?'<div class="lockp"><span aria-hidden="true">🔒</span><p class="say" id="say-lock">Para criar o planeta '+(MEU.planets.length+1)+', cumpra mais '+(faltaPlaneta()===1?'1 missão':faltaPlaneta()+' missões')+' na aba Missões.</p></div>':'')+
     '<button type="button" class="shopbtn" id="my-loja" data-my="loja"><span class="lico emo" aria-hidden="true">🛍️</span><span><b>Loja espacial</b><small>Animais, objetos, blocos e roupas</small></span><span class="gstars" style="margin:0">★ '+saldo()+'</span></button>'+
     '<h3 class="grp">Cor da estrela</h3><div class="sw" style="margin-bottom:6px">'+STARS.map(function(c,i){return '<button type="button" class="swb" id="my-star-'+i+'" data-my="star" data-v="'+c+'" style="--c:'+c+'" aria-pressed="'+(MEU.star===c)+'" aria-label="Cor '+(i+1)+'"></button>';}).join("")+'</div>'+
     '<h3 class="grp">Objetos</h3>'+OBJS.map(function(o){var n=MEU.objs[o[0]]||0;return '<div class="objrow"><span>'+o[1]+'</span>'+
@@ -1742,7 +1753,7 @@ function meuHtml(){
 function meuAct(act,v,btnId){
   var m=state.my,p=MEU.planets[m.sel],cl=function(x,a,b){return Math.max(a,Math.min(b,x));};
   var rb=function(){saveMeu();if(myw){myw.rebuild();if(m.sel>=0)myw.focus(m.sel,true);}renderDock();redraw(btnId);};
-  if(act==="add"){if(MEU.planets.length>=8)return;var used=MEU.planets.map(function(q){return q.dist;}),d=1;while(used.indexOf(d)>=0&&d<8)d++;
+  if(act==="add"){if(MEU.planets.length>=8)return;if(MEU.planets.length>=planetasLib()){speakFree("Cumpra mais "+(faltaPlaneta()===1?"uma missão":faltaPlaneta()+" missões")+" para liberar um planeta novo.");return;}var used=MEU.planets.map(function(q){return q.dist;}),d=1;while(used.indexOf(d)>=0&&d<8)d++;
     MEU.planets.push({nome:"Planeta "+(MEU.planets.length+1),look:MEU.planets.length%LOOKS.length,size:2,ring:false,moons:0,dist:d,items:[]});m.sel=MEU.planets.length-1;m.mode="build";
     saveMeu();if(myw){if(myw.mode()!=="build")myw.toBuild();myw.rebuild();myw.focus(m.sel);}renderDock();redraw();speakFree("Planeta novo! Escolha a aparência dele.");buddy("happy",1600);}
   else if(act==="sel"){if(m.mode!=="build")return;m.sel=+v;if(myw)myw.focus(m.sel);renderDock();redraw();}
@@ -2113,7 +2124,7 @@ function renderDock(){
   ["sistema","ceu","cmp","jogos","mapa","meu"].forEach(function(t){$("tab-"+t).setAttribute("aria-pressed",String(state.tab===t));});
   if(state.tab==="meu"){
     dock.innerHTML=MEU.planets.map(function(p,i){return '<button type="button" id="myp-'+i+'" data-my="sel" data-v="'+i+'" aria-current="'+(state.my.sel===i)+'">'+lookDot(p.look)+esc(p.nome)+'</button>';}).join("")+
-      (MEU.planets.length<8?'<button type="button" id="myp-add" data-my="add"><span class="dot ico">+</span>Novo</button>':'');return;
+      (MEU.planets.length<8?'<button type="button" id="myp-add" data-my="add"'+(MEU.planets.length>=planetasLib()?' aria-label="Novo planeta: fechado, cumpra mais missões"':'')+'><span class="dot ico">'+(MEU.planets.length>=planetasLib()?'🔒':'+')+'</span>Novo</button>':'');return;
   }
   if(state.tab==="mapa"){
     var ri=rankOf(G.stars);
