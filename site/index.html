@@ -269,6 +269,44 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .gq{font:700 42px/1 var(--display);text-align:center;margin:10px 0 14px;font-variant-numeric:tabular-nums}
 .gform{display:flex;gap:8px;margin:0 0 10px}
 .gform input{flex:1;min-width:0;font:700 24px/1 var(--display);text-align:center;color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px}
+/* missões, trilha e loja */
+.toast{position:absolute;left:50%;top:14px;z-index:30;transform:translate(-50%,-140%);background:var(--sun);color:#221400;font:700 16px/1.2 var(--display);padding:10px 16px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .35s;max-width:calc(100% - 24px);text-align:center;pointer-events:none}
+.toast.on{transform:translate(-50%,0)}
+.dia{border:1px solid var(--line);border-radius:16px;padding:12px;margin:0 0 14px;background:rgba(255,185,56,.06)}
+.diar{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:15px}
+.diar:first-of-type{border-top:0}.diar span{flex:1}.diar b{font:700 15px/1 var(--display);color:var(--ice);font-variant-numeric:tabular-nums}.diar small{color:var(--sun);font:600 13px/1 var(--display);min-width:34px;text-align:right}
+.diar.ok span{text-decoration:line-through;color:var(--muted)}.diar.ok b{color:var(--sun)}
+.subj{border:1px solid var(--line);border-radius:18px;padding:14px;margin:0 0 12px;background:rgba(255,255,255,.04)}
+.subj.pt{border-left:6px solid #ff7fb0}.subj.mt{border-left:6px solid #8fe3ff}
+.subj-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 8px}.subj-h b{font:700 22px/1 var(--display)}.subj-h span{color:var(--muted);font-size:14px}
+.msbar{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--muted);font:600 14px/1.2 var(--display)}
+.mst i{font-style:normal;color:rgba(255,255,255,.22);font-size:18px}.mst i.on{color:var(--sun)}
+.result{text-align:center;margin:6px 0 10px}.result .mst i{font-size:52px}.result h2{margin:6px 0}
+.txtbox{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 12px;font-size:18px;line-height:1.5}
+.bigword.long{font-size:26px;letter-spacing:.01em;line-height:1.3}
+.opt.longopt{font-size:16px;letter-spacing:0;padding:12px 8px;line-height:1.25}
+.mvis{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:6px;margin:0 0 14px}
+.bar10{width:12px;height:60px;border-radius:3px;background:repeating-linear-gradient(var(--ice) 0 5px,#5fb3d0 5px 6px)}
+.cubo1{width:12px;height:12px;border-radius:3px;background:var(--sun)}
+.din .ced{background:#5fbf74;color:#062b10;font:700 15px/1 var(--display);padding:12px 10px;border-radius:6px;border:2px solid #2f8a46}
+.din .moe{background:#f2c230;color:#3a2a00;font:700 12px/1 var(--display);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:2px solid #b8901a}
+.grupos .grupo{display:flex;gap:2px;padding:4px 6px;border:1px dashed var(--line);border-radius:10px}.grupos i{font-style:normal;color:var(--sun);font-size:14px}
+.fbar{gap:3px;width:min(280px,100%);margin-left:auto;margin-right:auto}.fbar span{flex:1;height:26px;border-radius:5px;border:2px solid var(--ice)}.fbar span.on{background:var(--ice)}
+.clock{width:150px;height:150px}
+.trail{display:grid;gap:8px;margin:0 0 6px}
+.tstep{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);font:600 15px/1.2 var(--display);cursor:pointer}
+.tstep .tn{width:34px;height:34px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:14px}
+.tstep .tt{flex:1}.tstep.done .tn{background:var(--sun);color:#221400}
+.tstep.cur{border-color:var(--sun);box-shadow:0 0 0 2px rgba(255,185,56,.35)}.tstep.cur .tn{background:var(--ice);color:#06202b}
+.tstep:disabled{opacity:.45;cursor:default}
+.shopbtn{display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 4px;padding:12px;border-radius:16px;border:2px solid var(--sun);background:rgba(255,185,56,.1);color:var(--ink);text-align:left;cursor:pointer;font:600 15px/1.2 var(--body)}
+.shopbtn span:nth-child(2){flex:1;display:grid;gap:2px}.shopbtn b{font:700 18px/1.1 var(--display)}.shopbtn small{color:var(--muted)}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:0 0 12px}
+.sitem{display:grid;justify-items:center;gap:6px;padding:12px 8px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.05);text-align:center}
+.sitem b{font:600 15px/1.15 var(--display)}.sitem .pr{color:var(--sun);font:700 16px/1 var(--display)}.sitem.own{border-color:var(--sun)}
+.sitem .btn{width:100%}
+.lico{display:grid;place-items:center;width:56px;height:56px}.lico.emo{font-size:42px;line-height:1}.lico svg{width:56px;height:56px}
+.lico.blk{width:44px;height:44px;border-radius:8px;border:2px solid rgba(0,0,0,.25);box-shadow:inset 0 0 0 3px rgba(255,255,255,.2)}
 .acf label[for]{display:block;font-weight:700;margin:0 0 6px}
 .acf input[type=email]{width:100%;font:600 18px/1.2 var(--body,inherit);color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
 .consent{border:2px solid var(--sun);border-radius:14px;padding:12px;margin:0 0 10px;background:rgba(255,200,60,.07)}
@@ -372,7 +410,7 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
         <button type="button" id="tab-sistema" data-tab="sistema" aria-pressed="true">Planetas</button>
         <button type="button" id="tab-ceu" data-tab="ceu" aria-pressed="false">Estrelas</button>
         <button type="button" id="tab-cmp" data-tab="cmp" aria-pressed="false">Tamanhos</button>
-        <button type="button" id="tab-jogos" data-tab="jogos" aria-pressed="false">Jogos</button>
+        <button type="button" id="tab-jogos" data-tab="jogos" aria-pressed="false">Missões</button>
         <button type="button" id="tab-mapa" data-tab="mapa" aria-pressed="false">Mapa</button>
         <button type="button" id="tab-meu" data-tab="meu" aria-pressed="false">Criar</button>
       </div>
@@ -399,6 +437,7 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
       <div class="gh-pal" id="gh-pal" role="group" aria-label="Blocos e objetos"></div>
     </div>
   </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <div class="ovl" id="who" hidden><div class="ovl-card" id="who-body"></div></div>
   <div class="ovl" id="rest" hidden><div class="ovl-card" id="rest-body"></div></div>
   <div class="ovl" id="pais" role="dialog" aria-modal="true" aria-label="Área dos pais" hidden><div class="ovl-card wide" id="pais-body"></div></div>
@@ -534,7 +573,7 @@ var PROF=(function(){
   return {list:list,cur:cur,get:get,set:set,del:del};
 })();
 var store={get:function(k,d){var v=PROF.get("mss:"+PROF.cur+":"+k);return v==null?d:v;},
-           set:function(k,v){PROF.set("mss:"+PROF.cur+":"+k,v);}};
+           set:function(k,v){PROF.set("mss:"+PROF.cur+":"+k,v);if(AC)AC.marcar(PROF.cur);}};
 var SET=store.get("set",{limit:30,rate:.8});
 var LEGAL={priv:"/privacidade",termos:"/termos"}; /* na versão do site: endereços da política de privacidade e dos termos */
 var hot=(window.claude&&window.claude.hot)||null;
@@ -862,30 +901,36 @@ function saveLv(){store.set("lv",LVS);}
 function LVL(id){return lv(id).lvl;}
 var STATS=store.get("stats",{});
 function stat(id,f){if(!id)return;var o=STATS[id]||(STATS[id]={ok:0,err:0});o[f]++;store.set("stats",STATS);}
-function errStat(){if(state.sel===-3)stat(state.game,"err");}
+function errStat(){if(state.sel===-3){stat(state.game,"err");if(G.ms&&G.ms.kind==="g"){G.ms.err++;stat(G.ms.sub+":"+G.ms.game,"err");}}}
 function won(){var id=state.game,L=lv(id),need=NEED[id]||3;stat(id,"ok");
+  if(G.ms&&G.ms.kind==="g"&&G.ms.game===id){G.ms.n++;stat(G.ms.sub+":"+id,"ok");}
+  if(id==="memoria")diaAdd("memoria");
   if(L.lvl===L.max){if(L.max<MAXLV){L.wins++;if(L.wins>=need){L.max++;L.wins=0;G.up=L.max;}}else if(!L.full){L.wins++;if(L.wins>=need)L.full=true;}}
   saveLv();}
 /* ---------- Mapa de evolução: patentes pelas estrelas ganhas e o caminho de níveis de cada jogo ---------- */
 var RANKS=[[0,"Cadete"],[10,"Explorador"],[30,"Piloto"],[60,"Capitão"],[100,"Comandante"],[200,"Comandante das Galáxias"]];
 function rankOf(n){var r=0;RANKS.forEach(function(x,i){if(n>=x[0])r=i;});return r;}
 function mapHtml(){
-  var st=G.stars,ri=rankOf(st),nx=RANKS[ri+1],done=0,vis=state.visited.length;
-  GAMES.forEach(function(g){var L=lv(g.id);done+=L.max-1+(L.full?1:0);});
+  var st=G.stars,ri=rankOf(st),nx=RANKS[ri+1],vis=state.visited.length,mc=mCount("pt")+mCount("mt"),mt=TRILHAS.pt.length+TRILHAS.mt.length;
   var pct=nx?Math.round((st-RANKS[ri][0])/(nx[0]-RANKS[ri][0])*100):100,falta=nx?nx[0]-st:0;
   return '<div class="toprow"><span class="kind">Mapa de evolução</span><button type="button" class="voz" id="btn-voz"></button></div>'+
     '<div class="mapbud">'+budPic()+'<div><h2 class="say" id="say-nome">'+RANKS[ri][1]+'</h2><p class="lead say" id="say-lead" style="margin:0">Você já ganhou '+st+(st===1?' estrela.':' estrelas.')+'</p></div></div>'+
     (nx?'<div class="bar" role="img" aria-label="'+pct+' por cento do caminho até a próxima patente"><i style="width:'+pct+'%"></i></div><p class="say" id="say-f0" style="margin:0 0 14px">'+(falta===1?'Falta 1 estrela':'Faltam '+falta+' estrelas')+' para virar '+nx[1]+'.</p>':
         '<p class="say" id="say-f0" style="margin:0 0 14px">Você chegou na patente mais alta!</p>')+
-    '<dl class="data"><div><dt>Níveis completos</dt><dd>'+done+' de '+(GAMES.length*MAXLV)+'</dd></div><div><dt>Lugares visitados</dt><dd>'+vis+' de '+BODIES.length+'</dd></div></dl>'+
-    GRUPOS.map(function(gr){return '<h3 class="grp">'+gr[0]+'</h3>'+GAMES.filter(function(g){return g.grp===gr[1];}).map(function(g){var L=lv(g.id),stars="";
+    '<dl class="data"><div><dt>Missões cumpridas</dt><dd>'+mc+' de '+mt+'</dd></div><div><dt>Estrelas para gastar</dt><dd>'+saldo()+'</dd></div><div><dt>Lugares visitados</dt><dd>'+vis+' de '+BODIES.length+'</dd></div></dl>'+
+    ["pt","mt"].map(function(sub){var n=mCount(sub),tot=TRILHAS[sub].length,k=mNext(sub);
+      return '<h3 class="grp">'+subNome(sub)+'</h3><button type="button" class="mrow" id="map-'+sub+'" data-g="trail" data-v="'+sub+'"><span>'+ANOS[TRILHAS[sub][k][0]]+'<small>'+n+' de '+tot+' missões</small></span>'+
+        '<span class="bar" style="flex:1;margin:0 0 0 12px" aria-hidden="true"><i style="width:'+Math.max(3,n/tot*100)+'%"></i></span></button>';}).join("")+
+    [["Espaço","e"]].map(function(gr){return '<h3 class="grp">'+gr[0]+'</h3>'+GAMES.filter(function(g){return g.grp===gr[1];}).map(function(g){var L=lv(g.id),stars="";
       for(var i=1;i<=MAXLV;i++)stars+='<i class="'+(i<L.max||(i===L.max&&L.full)?"on":i===L.max?"cur":"")+'">★</i>';
       return '<button type="button" class="mrow" id="map-'+g.id+'" data-game="'+g.id+'" aria-label="'+g.nome+', nível '+L.max+' de '+MAXLV+'"><span>'+g.nome+'<small>Nível '+L.max+'</small></span><span class="mstars">'+stars+'</span></button>';}).join("");}).join("")+
     '<h3 class="grp">Meu astronauta</h3><div class="edit"><label for="bud-nome">Nome</label><input type="text" id="bud-nome" maxlength="12" autocomplete="off" value="'+budNome()+'">'+
-      swRow("suit",SUITS,"Roupa")+swRow("skin",SKINS,"Pele")+swRow("hair",HAIRS,"Cabelo")+'</div>'+
-    '<p class="note">Estrela amarela: nível completo. Estrela azul: nível em que ele está. Toque em um jogo para continuar de onde parou.</p>';
+      swRow("suit",suitsAll(),"Roupa")+swRow("skin",SKINS,"Pele")+swRow("hair",HAIRS,"Cabelo")+'</div>'+
+    '<h3 class="grp">Como ganhar estrelas</h3><ul class="facts"><li>Acertar de primeira nas missões: 1 estrela por pergunta.</li><li>Terminar uma missão: até 5 estrelas.</li><li>Cumprir as missões do dia: 5 estrelas cada, e mais 5 se fizer as três.</li>'+
+      '<li>Visitar um lugar novo do espaço: 1 estrela.</li><li>Achar as estrelas escondidas nos seus planetas.</li><li>Jogar Desafio, Memória e Ligue as estrelas.</li></ul>'+
+    '<p class="note">As patentes contam todas as estrelas que você já ganhou, mesmo as que trocou na loja.</p>';
 }
-function applyUp(){var did=false;if(G.up&&state.game){var L=lv(state.game);L.lvl=Math.min(L.max,G.up);saveLv();did=true;}G.up=0;return did;}
+function applyUp(){if(G.ms){G.up=0;return false;}var did=false;if(G.up&&state.game){var L=lv(state.game);L.lvl=Math.min(L.max,G.up);saveLv();did=true;}G.up=0;return did;}
 
 /* ---------- Rodadas: o que muda em cada nível ---------- */
 function newClue(){
@@ -973,7 +1018,7 @@ function newMaior(){
   G.g=g;
 }
 function startGame(id){
-  state.game=id;G.up=0;
+  state.game=id;G.up=0;G.ms=null;
   ({desafio:newClue,palavra:newWord,memoria:newMemory,ligue:newLigue,inicial:newInicial,imagem:newImagem,falta:newFalta,foguete:newFoguete,regressiva:newRegressiva,contar:newContar,soma:newSoma,maior:newMaior})[id]();
 }
 /* ao abrir uma rodada: nos jogos em que a palavra não pode aparecer escrita, a voz fala a palavra; nos outros, lê o que está na tela */
@@ -985,24 +1030,440 @@ function announce(){
   else speakPanel();
 }
 
+/* ---------- Trilha de missões: atividades de Português e Matemática (pré-escola ao 5º ano, seguindo a BNCC) ---------- */
+/* Cada habilidade (SK) gera uma pergunta nova a cada vez, no nível de dificuldade d (1 a 3).
+   Pergunta: {say: enunciado lido em voz alta, big: texto grande opcional, vis: desenho opcional, opts: alternativas, ans: resposta, fb: explicação depois do acerto, kb: resposta digitada} */
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function uniq(a){var o=[];a.forEach(function(x){if(o.indexOf(x)<0)o.push(x);});return o;}
+function mkOpts(ans,pool,n){var o=[String(ans)];shuffle(pool.map(String)).forEach(function(x){if(o.length<n&&o.indexOf(x)<0)o.push(x);});return shuffle(o);}
+function numOpts(ans,n,spread){var p=[],s=spread||Math.max(2,Math.round(Math.abs(ans)*.15));for(var i=1;i<=s+3;i++){p.push(ans+i,ans-i);}
+  p=p.filter(function(x){return x>=0;});if(ans>=10)p.push(ans+10,ans-10>=0?ans-10:ans+20);return mkOpts(ans,shuffle(p).slice(0,8),n||4);}
+function fmtN(n){return n.toLocaleString("pt-BR");}
+function fmtD(n,c){return n.toLocaleString("pt-BR",{minimumFractionDigits:c==null?0:c,maximumFractionDigits:c==null?3:c});}
+function reais(n){return "R$ "+n.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});}
+var EXT={u:["zero","um","dois","três","quatro","cinco","seis","sete","oito","nove","dez","onze","doze","treze","catorze","quinze","dezesseis","dezessete","dezoito","dezenove"],
+  d:["","","vinte","trinta","quarenta","cinquenta","sessenta","setenta","oitenta","noventa"],
+  c:["","cento","duzentos","trezentos","quatrocentos","quinhentos","seiscentos","setecentos","oitocentos","novecentos"]};
+function ext3(n){if(n<20)return EXT.u[n];if(n<100)return EXT.d[Math.floor(n/10)]+(n%10?" e "+EXT.u[n%10]:"");if(n===100)return "cem";
+  return EXT.c[Math.floor(n/100)]+(n%100?" e "+ext3(n%100):"");}
+function extenso(n){if(n<1000)return ext3(n);var m=Math.floor(n/1000),r=n%1000,s=(m===1?"":ext3(m)+" ")+"mil";
+  if(!r)return s;return s+((r<100||r%100===0)?" e ":" ")+ext3(r);}
+
+/* ---------- Palavras ---------- */
+var SIL=[["BO-LA"],["CA-SA"],["GA-TO"],["PA-TO"],["SA-PO"],["SOL"],["PÃO"],["FLOR"],["MAR"],["LUZ"],["LU-A"],["PEI-XE"],["MA-CA-CO"],["BA-NA-NA"],["BO-NE-CA"],["JA-NE-LA"],["CA-VA-LO"],
+ ["TO-MA-TE"],["PI-PO-CA"],["ES-CO-LA"],["CA-DER-NO"],["LÁ-PIS"],["TE-SOU-RA"],["GI-RA-FA"],["CO-E-LHO"],["FO-GUE-TE"],["PLA-NE-TA"],["ES-TRE-LA"],["CO-ME-TA"],["A-MI-GO"],["MO-RAN-GO"],["JA-CA-RÉ"],
+ ["BOR-BO-LE-TA"],["A-BA-CA-XI"],["CHO-CO-LA-TE"],["E-LE-FAN-TE"],["TAR-TA-RU-GA"],["BI-CI-CLE-TA"],["HI-PO-PÓ-TA-MO"],["GE-LA-DEI-RA"],["TE-LE-VI-SÃO"],["ME-LAN-CI-A"]].map(function(x){return x[0].split("-");});
+var RIMAS=[["MÃO","PÃO","CHÃO","LIMÃO","BALÃO","AVIÃO","FEIJÃO"],["GATO","PATO","RATO","SAPATO","PRATO"],["BOLA","COLA","ESCOLA","CEBOLA","MOLA"],["JANELA","PANELA","CANELA","VELA"],
+ ["ANEL","PAPEL","PASTEL","MEL","CHAPÉU"],["FLOR","COR","TAMBOR","CALOR"],["MACACO","CASACO","BURACO","SACO"],["CAMELO","MARTELO","CABELO","AMARELO"],["QUEIJO","BEIJO","DESEJO"],["LUA","RUA","PERUA"],["SAPO","PAPO","TRAPO"],["DEDO","MEDO","SEGREDO","CEDO"]];
+RIMAS[4]=["ANEL","PAPEL","PASTEL","MEL"];
+var FRASES=["O GATO BEBE LEITE.","A LUA BRILHA.","EU GOSTO DE BOLO.","O SOL É QUENTE.","A MENINA PULA CORDA.","O FOGUETE VOOU ALTO.","MEU CACHORRO SE CHAMA TOTÓ.","A ESTRELA BRILHA NO CÉU.","O PATO NADA NO LAGO.","VAMOS BRINCAR NO PARQUE.","O ASTRONAUTA CHEGOU NA LUA.","A BOLA É AZUL."];
+var ANTON=[["GRANDE","PEQUENO"],["ALTO","BAIXO"],["QUENTE","FRIO"],["CHEIO","VAZIO"],["FORTE","FRACO"],["ABERTO","FECHADO"],["LIMPO","SUJO"],["NOVO","VELHO"],["CLARO","ESCURO"],["DIA","NOITE"],
+ ["ALEGRE","TRISTE"],["LONGE","PERTO"],["DENTRO","FORA"],["SUBIR","DESCER"],["ENTRAR","SAIR"],["LIGAR","DESLIGAR"],["MOLHADO","SECO"],["DOCE","AMARGO"],["CEDO","TARDE"],["RÁPIDO","LENTO"],["COMEÇO","FIM"],["MUITO","POUCO"]];
+var SINON=[["BONITO","LINDO"],["FELIZ","CONTENTE"],["MENINO","GAROTO"],["ACHAR","ENCONTRAR"],["COMEÇAR","INICIAR"],["RÁPIDO","VELOZ"],["FALAR","DIZER"],["ACABAR","TERMINAR"],["BRAVO","ZANGADO"],
+ ["PEDRA","ROCHA"],["ENORME","GIGANTE"],["CERTO","CORRETO"],["CASA","LAR"],["PRESENTE","LEMBRANÇA"],["AJUDAR","AUXILIAR"],["CAMINHO","TRILHA"]];
+/* ortografia: [palavra com _, resposta, outra opção, palavra inteira] */
+var ORTO={
+ rr:[["TE_A","RR","R","TERRA"],["GA_AFA","RR","R","GARRAFA"],["BA_IGA","RR","R","BARRIGA"],["CO_ER","RR","R","CORRER"],["JA_A","RR","R","JARRA"],["CACHO_O","RR","R","CACHORRO"],["BA_ATA","R","RR","BARATA"],["PE_A","R","RR","PERA"],["A_ARA","R","RR","ARARA"],["PI_ULITO","R","RR","PIRULITO"],["TOU_O","R","RR","TOURO"],["_ATO","R","RR","RATO"]],
+ ss:[["PÁ_ARO","SS","S","PÁSSARO"],["A_ADO","SS","S","ASSADO"],["PE_OA","SS","S","PESSOA"],["PÊ_EGO","SS","S","PÊSSEGO"],["MA_A","SS","S","MASSA"],["ME_A","S","SS","MESA"],["CAMI_A","S","SS","CAMISA"],["VA_O","S","SS","VASO"],["CA_ACO","S","SS","CASACO"],["RO_A","S","SS","ROSA"]],
+ qu:[["_EIJO","QU","C","QUEIJO"],["ES_ILO","QU","C","ESQUILO"],["MOS_ITO","QU","C","MOSQUITO"],["PERI_ITO","QU","C","PERIQUITO"],["_AVALO","C","QU","CAVALO"],["_OELHO","C","QU","COELHO"],["MA_ACO","C","QU","MACACO"],["BRIN_EDO","QU","C","BRINQUEDO"]],
+ gu:[["_ITARRA","GU","G","GUITARRA"],["_ERRA","GU","G","GUERRA"],["FO_EIRA","GU","G","FOGUEIRA"],["_ATO","G","GU","GATO"],["_OLFINHO","G","GU","GOLFINHO"],["PRE_UIÇA","G","GU","PREGUIÇA"],["MAN_UEIRA","G","GU","MANGUEIRA"]],
+ mn:[["CA_PO","M","N","CAMPO"],["BO_BA","M","N","BOMBA"],["TA_BOR","M","N","TAMBOR"],["LÂ_PADA","M","N","LÂMPADA"],["PO_TE","N","M","PONTE"],["CA_TO","N","M","CANTO"],["BA_CO","N","M","BANCO"],["PE_TE","N","M","PENTE"],["E_PADA","M","N","EMPADA"],["SA_BA","M","N","SAMBA"]],
+ cc:[["CAL_A","Ç","SS","CALÇA"],["A_ÚCAR","Ç","SS","AÇÚCAR"],["PALHA_O","Ç","SS","PALHAÇO"],["CORA_ÃO","Ç","SS","CORAÇÃO"],["PA_OCA","Ç","SS","PAÇOCA"],["PÁ_ARO","SS","Ç","PÁSSARO"],["O_O","SS","Ç","OSSO"]],
+ xch:[["_ÍCARA","X","CH","XÍCARA"],["BAI_O","X","CH","BAIXO"],["PEI_E","X","CH","PEIXE"],["LI_O","X","CH","LIXO"],["_UVA","CH","X","CHUVA"],["_AVE","CH","X","CHAVE"],["MO_ILA","CH","X","MOCHILA"],["_INELO","CH","X","CHINELO"],["BRU_A","X","CH","BRUXA"],["_ICLETE","CH","X","CHICLETE"]],
+ sz:[["CA_A","S","Z","CASA"],["A_UL","Z","S","AZUL"],["BELE_A","Z","S","BELEZA"],["DO_E","Z","S","DOZE"],["PRE_ENTE","S","Z","PRESENTE"],["FA_ENDA","Z","S","FAZENDA"],["VA_IO","Z","S","VAZIO"],["ME_A","S","Z","MESA"],["TRI_TE","S","Z","TRISTE"]],
+ suf:[["TRISTE_A","Z","S","TRISTEZA"],["BELE_A","Z","S","BELEZA"],["GOSTO_O","S","Z","GOSTOSO"],["CORAJO_O","S","Z","CORAJOSO"],["CHEIRO_O","S","Z","CHEIROSO"],["VIA_EM","G","J","VIAGEM"],["GARA_EM","G","J","GARAGEM"],["CORA_EM","G","J","CORAGEM"],
+   ["ORGANI_AR","Z","S","ORGANIZAR"],["REALI_AR","Z","S","REALIZAR"],["PESQUI_AR","S","Z","PESQUISAR"],["AVI_AR","S","Z","AVISAR"]]};
+/* certo ou errado: [certa, errada] */
+var GRAFIA={
+ acento1:[["PÉ","PE"],["SOFÁ","SOFA"],["CAFÉ","CAFE"],["VOCÊ","VOCE"],["AVÔ","AVO"],["JACARÉ","JACARE"],["TATU","TATÚ"],["CAJU","CAJÚ"],["SACI","SACÍ"],["PERU","PERÚ"],["ÍNDIO","INDIO"],["BEBÊ","BÉBE"]],
+ acento2:[["FÁCIL","FACIL"],["DIFÍCIL","DIFICIL"],["LÁPIS","LAPIS"],["AÇÚCAR","AÇUCAR"],["TÚNEL","TUNEL"],["MÓVEL","MOVEL"],["ÚTIL","UTIL"],["AMÁVEL","AMAVEL"],["FÓSSIL","FOSSIL"],["ÓRFÃO","ORFÃO"]],
+ acento3:[["PÁSSARO","PASSARO"],["LÂMPADA","LAMPADA"],["MÉDICO","MEDICO"],["MÚSICA","MUSICA"],["ÁRVORE","ARVORE"],["ÔNIBUS","ONIBUS"],["PÁGINA","PAGINA"],["MÁGICO","MAGICO"],["SÁBADO","SABADO"],["RELÂMPAGO","RELAMPAGO"]],
+ ditongo:[["CAIXA","CAXA"],["PEIXE","PEXE"],["BEIJO","BEJO"],["CENOURA","CENORA"],["OURO","ORO"],["DINHEIRO","DINHERO"],["VASSOURA","VASSORA"],["MANTEIGA","MANTEGA"],["TESOURA","TESORA"],["BANDEJA","BANDEIJA"],["CARANGUEJO","CARANGUEIJO"]],
+ h:[["HOJE","OJE"],["HORA","ORA"],["HOMEM","OMEM"],["HOSPITAL","OSPITAL"],["HISTÓRIA","ISTÓRIA"],["HIPOPÓTAMO","IPOPÓTAMO"],["ONTEM","HONTEM"],["OVO","HOVO"],["ÓCULOS","HÓCULOS"],["HUMANO","UMANO"],["ERVILHA","HERVILHA"]]};
+var TONICA=[["CA-FÉ",1],["SA-PA-TO",1],["LÂM-PA-DA",0],["PÁS-SA-RO",0],["JA-NE-LA",1],["SO-FÁ",1],["MÉ-DI-CO",0],["BO-LA",0],["PA-NE-LA",1],["LÁ-PIS",0],["JA-CA-RÉ",2],["FU-TE-BOL",2],
+ ["CA-DER-NO",1],["MÚ-SI-CA",0],["PI-JA-MA",1],["TA-TU",1],["ÁR-VO-RE",0],["CHO-CO-LA-TE",2],["A-ZUL",1],["MA-CA-CO",1]].map(function(x){return {s:x[0].split("-"),t:x[1]};});
+var PLURAL=[[1,"BOLA","BOLAS"],[1,"CASA","CASAS"],[1,"GATO","GATOS"],[1,"LIVRO","LIVROS"],[1,"ESTRELA","ESTRELAS"],[2,"FLOR","FLORES"],[2,"MAR","MARES"],[2,"LUZ","LUZES"],[2,"COLHER","COLHERES"],[2,"PAÍS","PAÍSES"],
+ [3,"PÃO","PÃES"],[3,"MÃO","MÃOS"],[3,"LEÃO","LEÕES"],[3,"BALÃO","BALÕES"],[3,"CÃO","CÃES"],[3,"IRMÃO","IRMÃOS"],[3,"AVIÃO","AVIÕES"],[3,"ANEL","ANÉIS"],[3,"PAPEL","PAPÉIS"]];
+var GENERO=[[1,"MENINO","MENINA"],[1,"GATO","GATA"],[1,"PROFESSOR","PROFESSORA"],[1,"TIO","TIA"],[1,"AMIGO","AMIGA"],[2,"LEÃO","LEOA"],[2,"REI","RAINHA"],[2,"GALO","GALINHA"],[2,"AVÔ","AVÓ"],[2,"PRÍNCIPE","PRINCESA"],
+ [3,"HOMEM","MULHER"],[3,"BOI","VACA"],[3,"CAVALO","ÉGUA"],[3,"PAI","MÃE"],[3,"ATOR","ATRIZ"],[3,"GENRO","NORA"]];
+var PROPRIO=[["Brasil","país"],["Maria","menina"],["Rex","cachorro"],["Amazonas","rio"],["Lua","satélite"],["Pedro","menino"],["Recife","cidade"],["Marte","planeta"],["Natal","festa"]];
+/* [frase com ___, certa, erradas...] */
+var CONCV=[[1,"O menino ___ no parque.","corre","correm"],[1,"Os meninos ___ no parque.","correm","corre"],[1,"A menina ___ uma música.","canta","cantam"],[1,"As meninas ___ uma música.","cantam","canta"],
+ [1,"O cachorro ___ alto.","late","latem"],[1,"Os pássaros ___ no céu.","voam","voa"],[2,"Eu ___ suco de laranja.","bebo","bebe","bebemos"],[2,"Nós ___ na mesma escola.","estudamos","estuda","estudam"],
+ [2,"Eles ___ muito felizes.","ficaram","ficou","fiquei"],[2,"Você ___ desenhar bem.","sabe","sabem","sabemos"],[2,"Ana e Pedro ___ bola.","jogam","joga","jogo"],
+ [3,"A turma da escola ___ ao museu.","foi","foram"],[3,"O grupo de astronautas ___ na Lua.","pousou","pousaram"],[3,"Meus pais e eu ___ ao cinema.","fomos","foram","fui"],[3,"A maioria dos alunos ___ na prova.","passou","passaram"]];
+var CONCN=[[1,"As casas são ___.","bonitas","bonita"],[1,"O carro ___ chegou.","vermelho","vermelha","vermelhos"],[1,"A flor ___ cheira bem.","amarela","amarelo","amarelas"],[2,"Comprei duas blusas ___.","novas","nova","novos"],
+ [2,"Os planetas são ___.","enormes","enorme"],[2,"Vi ___ estrelas no céu.","muitas","muitos","muita"],[3,"O menino e a menina estão ___.","cansados","cansadas","cansado"],[3,"Encontrei ___ pedras na praia.","algumas","alguns","alguma"]];
+var PRON=[[1,"Ana foi à escola. ___ levou o lanche.","Ela","Ele","Eles"],[1,"Pedro jogou bola. Depois, ___ tomou banho.","ele","ela","nós"],[1,"Os meninos brincaram. Depois, ___ dormiram.","eles","ele","elas"],
+ [2,"Eu e minha irmã fomos ao parque. ___ brincamos muito.","Nós","Eles","Vocês"],[2,"A professora chegou. Os alunos cumprimentaram ___.","a professora","ele","nós"],[2,"Este é o meu cachorro. O nome ___ é Totó.","dele","dela","deles"],
+ [3,"Ana tem uma boneca. A boneca ___ é linda.","dela","dele","delas"],[3,"Os astronautas voltaram. A nave ___ pousou no mar.","deles","dele","dela"],[3,"Você trouxe o seu livro? Eu trouxe o ___.","meu","seu","dele"]];
+var TEMPO=[["brincar","brinco","brinquei","brincarei"],["comer","como","comi","comerei"],["estudar","estudo","estudei","estudarei"],["correr","corro","corri","correrei"],["ler","leio","li","lerei"],
+ ["viajar","viajo","viajei","viajarei"],["cantar","canto","cantei","cantarei"],["dormir","durmo","dormi","dormirei"],["desenhar","desenho","desenhei","desenharei"],["beber","bebo","bebi","beberei"]];
+var COMP=["um carrinho","uma pipa","um livro","pão","a lição","água"],TEMPOCOMP={brincar:"de pega-pega",comer:"uma maçã",estudar:"matemática",correr:"no parque",ler:"um gibi",viajar:"para a praia",cantar:"uma música",dormir:"cedo",desenhar:"um foguete",beber:"suco"};
+var HOMO=[["Eu quero ___ suco.","mais","mas"],["Eu queria ir, ___ choveu.","mas","mais"],["O lobo ___ assustou todos.","mau","mal"],["Ele dormiu ___ esta noite.","mal","mau"],["___ você chorou?","Por que","Porque"],
+ ["Chorei ___ caí da bicicleta.","porque","por que"],["Moro aqui ___ dez anos.","há","a"],["Daqui ___ dois dias é meu aniversário.","a","há"],["Não sei ___ ele saiu.","por que","porque"]];
+var CONJ=[["Eu estudei, ___ tirei nota boa.","por isso","mas","ou"],["Queria brincar, ___ estava chovendo.","mas","porque","ou"],["Você quer suco ___ água?","ou","mas","porque"],["Fiquei em casa ___ estava doente.","porque","mas","ou"],
+ ["Comi o lanche ___ bebi o suco.","e","mas","ou"],["Estava com frio, ___ coloquei o casaco.","então","mas","ou"]];
+var CLASSE=[["A menina corre no parque.","verbo","corre",["menina","parque"]],["O gato preto dormiu.","adjetivo","preto",["gato","dormiu"]],["O foguete subiu rápido.","substantivo","foguete",["subiu","rápido"]],
+ ["Meu irmão comeu bolo.","verbo","comeu",["irmão","bolo"]],["A casa amarela é grande.","adjetivo","amarela",["casa","é"]],["A estrela brilha no céu.","substantivo","estrela",["brilha","no"]],["O cachorro bravo latiu.","adjetivo","bravo",["cachorro","latiu"]],["A professora explicou a lição.","verbo","explicou",["professora","lição"]]];
+var CLASSEN={verbo:"um verbo (uma ação)",adjetivo:"um adjetivo (diz como é)",substantivo:"um substantivo (dá nome)"};
+/* textos curtos: [ano mínimo, texto, pergunta, certa, erradas...] */
+var TEXTOS=[
+ [1,"Lia tem um gato chamado Bolinha. Bolinha é branco e gosta de dormir no sofá.","Qual é o nome do gato?","Bolinha","Lia","Sofá"],
+ [1,"O foguete partiu de manhã. Ele levou três astronautas para a Lua.","Quantos astronautas o foguete levou?","Três","Dois","Quatro"],
+ [1,"Tom foi à feira com a mãe. Eles compraram bananas, maçãs e uvas.","O que eles compraram?","Frutas","Brinquedos","Livros"],
+ [2,"Hoje choveu muito. Por isso, a festa da escola foi dentro do ginásio. Todos dançaram e comeram pipoca.","Onde foi a festa?","No ginásio","No parque","Na praia"],
+ [2,"Marte é chamado de planeta vermelho. A cor vem da poeira de ferro que cobre o chão. Lá faz muito frio.","Por que Marte parece vermelho?","Por causa da poeira de ferro","Porque é muito quente","Porque tem muita água"],
+ [2,"Bia plantou uma semente num vaso. Todo dia ela regava a terra. Depois de uma semana, nasceu uma plantinha.","O que Bia fazia todo dia?","Regava a terra","Comprava sementes","Colhia frutas"],
+ [3,"Os pinguins vivem em lugares muito frios. Eles não voam, mas nadam muito bem. Para se aquecer, ficam bem juntinhos uns dos outros.","O que os pinguins fazem para se aquecer?","Ficam juntinhos","Voam para longe","Entram na água quente"],
+ [3,"Na sexta-feira, Caio esqueceu o casaco na escola. No sábado esfriou e ele sentiu falta do casaco. Na segunda, foi direto buscá-lo.","Quando Caio buscou o casaco?","Na segunda-feira","No sábado","Na sexta-feira"],
+ [3,"A Lua não tem luz própria. Ela brilha porque reflete a luz do Sol, como um espelho.","Por que a Lua brilha?","Porque reflete a luz do Sol","Porque tem fogo dentro","Porque é feita de luz"],
+ [4,"Júlia queria comprar um livro que custava 30 reais. Ela guardou 5 reais por semana. Depois de algumas semanas, voltou à livraria toda feliz.","Por que Júlia voltou feliz à livraria?","Porque juntou o dinheiro do livro","Porque ganhou o livro de presente","Porque a livraria fechou"],
+ [4,"As abelhas visitam as flores para pegar o néctar. Enquanto isso, levam o pólen de uma flor para outra. Assim, ajudam as plantas a formar frutos.","Como as abelhas ajudam as plantas?","Levando o pólen de flor em flor","Comendo as folhas","Regando as flores"],
+ [4,"O céu estava cheio de nuvens escuras e o vento soprava forte. Mamãe recolheu as roupas do varal correndo.","Por que Mamãe recolheu as roupas?","Porque ia chover","Porque as roupas estavam sujas","Porque era noite"],
+ [5,"Gabriel sempre dizia que odiava legumes. Um dia, ajudou o avô a plantar uma horta. Quando as cenouras cresceram, ele quis provar a primeira, e gostou tanto que pediu mais.","O que fez Gabriel mudar de ideia sobre os legumes?","Ele ajudou a plantar e provou","O avô brigou com ele","Ele viu um filme sobre legumes"],
+ [5,"A Estação Espacial Internacional dá uma volta na Terra a cada 90 minutos. Por isso, os astronautas que vivem lá veem o Sol nascer e se pôr várias vezes por dia.","Por que os astronautas veem vários nasceres do Sol por dia?","Porque a estação dá voltas rápidas na Terra","Porque o Sol gira em volta deles","Porque eles dormem pouco"],
+ [5,"O time da escola perdeu as três primeiras partidas. Em vez de desistir, os jogadores passaram a treinar mais cedo. No fim do campeonato, chegaram à final.","Qual é a lição do texto?","Esforço e persistência ajudam a melhorar","É melhor desistir quando se perde","Treinar cedo é chato"]];
+
+var SK={};
+/* ===== Português ===== */
+SK.alfa=function(d){var A="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  if(d===1){var i=rnd(1,A.length-2),af=Math.random()<.6;return {say:"Qual letra vem "+(af?"depois":"antes")+" da letra "+A[i]+"?",big:af?A[i-1]+"  "+A[i]+"  ?":"?  "+A[i]+"  "+A[i+1],opts:mkOpts(af?A[i+1]:A[i-1],A.filter(function(x,k){return Math.abs(k-i)<=4&&k!==i;}),4),ans:af?A[i+1]:A[i-1],fb:"Na ordem do alfabeto: "+A[i-1]+", "+A[i]+", "+A[i+1]+"."};}
+  var ws,tries=0;
+  if(d===2){var pool=SIL.map(function(s){return s.join("");});do{ws=shuffle(pool.slice()).slice(0,3);}while(uniq(ws.map(function(w){return w[0];})).length<3);}
+  else{var GR=[["BOLA","BONECA","BORBOLETA","BALÃO","BICICLETA","BURACO"],["CASA","CAVALO","COELHO","CUBO","CIDADE","CEBOLA"],["PATO","PIPOCA","PEIXE","POTE","PULO","PERA"],["MAR","MOCHILA","MEL","MUNDO","MIGALHA"],["SOL","SAPO","SINO","SUCO","SELO"]],g=pick(GR);
+    do{ws=shuffle(g.slice()).slice(0,3);tries++;}while(tries<50&&uniq(ws.map(function(w){return w.slice(0,2);})).length<3);}
+  var first=ws.slice().sort(function(a,b){return a.localeCompare(b,"pt-BR");})[0];
+  return {say:"Qual destas palavras vem primeiro na ordem alfabética?",opts:shuffle(ws),ans:first,word:1,fb:d===3?"Quando a primeira letra é igual, olhamos a segunda.":"Olhe a primeira letra de cada palavra."};};
+SK.maimin=function(d){var P=[["A","a"],["B","b"],["D","d"],["E","e"],["F","f"],["G","g"],["H","h"],["L","l"],["M","m"],["N","n"],["Q","q"],["R","r"],["T","t"]];
+  var p=pick(P),up=d===1||Math.random()<.5;
+  return {say:"Qual é a letra "+(LETRA[p[0]]||p[0])+(up?" minúscula?":" maiúscula?"),big:up?p[0]:p[1],opts:mkOpts(up?p[1]:p[0],up?["b","d","p","q","g","h","n","m","l","t","f","a","e","r"]:["B","D","P","Q","G","H","N","M","L","T","F","A","E","R"],d===3?4:3),ans:up?p[1]:p[0]};};
+SK.rima=function(d){var g=pick(RIMAS),w=pick(g),r=pick(g.filter(function(x){return x!==w;})),others=[];
+  RIMAS.forEach(function(o){if(o!==g)others=others.concat(o);});
+  return {say:"Qual palavra rima com "+w.toLowerCase()+"?",big:w,opts:mkOpts(r,others,d+1),ans:r,word:1,fb:w+" e "+r+" terminam com o mesmo som."};};
+SK.silabas=function(d){var pool=SIL.filter(function(s){return d===1?s.length<=3:d===2?s.length>=2&&s.length<=4:s.length>=3;}),s=pick(pool),w=s.join("");
+  return {say:"Quantas sílabas tem a palavra "+w.toLowerCase()+"? Bata palmas para contar.",big:w,opts:mkOpts(s.length,[1,2,3,4,5,6].filter(function(n){return Math.abs(n-s.length)<=2;}),3),ans:String(s.length),fb:w+": "+s.join(" - ")+"."};};
+SK.silfim=function(d){var s=pick(SIL.filter(function(x){return d===3?x.length===3:x.length>=2;})),w=s.join(""),pos=d===1?s.length-1:d===2?(Math.random()<.5?0:s.length-1):1,
+  ask=pos===0?"começa":pos===s.length-1?"termina":"tem no meio",pool=[];SIL.forEach(function(x){x.forEach(function(y){if(y!==s[pos])pool.push(y);});});
+  return {say:"Com qual sílaba a palavra "+w.toLowerCase()+" "+ask+"?",big:w,opts:mkOpts(s[pos],pool,4),ans:s[pos],fb:w+": "+s.join(" - ")+"."};};
+SK.frase=function(d){var f=pick(FRASES),n=f.replace(".","").split(" ").length;
+  return {say:"Quantas palavras tem esta frase?",big:f,opts:mkOpts(n,[n-2,n-1,n+1,n+2].filter(function(x){return x>0;}),3),ans:String(n),fb:"Os espaços em branco separam as palavras."};};
+SK.antonimo=function(d){var p=pick(ANTON),rev=Math.random()<.5,w=rev?p[1]:p[0],a=rev?p[0]:p[1],pool=[];ANTON.forEach(function(x){if(x!==p)pool.push(x[0],x[1]);});
+  return {say:"Qual é o contrário de "+w.toLowerCase()+"?",big:w,opts:mkOpts(a,pool,d+1),ans:a,word:1,fb:"O contrário de "+w+" é "+a+"."};};
+SK.sinonimo=function(d){var p=pick(SINON),rev=Math.random()<.5,w=rev?p[1]:p[0],a=rev?p[0]:p[1],pool=[];SINON.forEach(function(x){if(x!==p)pool.push(x[0],x[1]);});
+  return {say:"Qual palavra quer dizer quase o mesmo que "+w.toLowerCase()+"?",big:w,opts:mkOpts(a,pool,d+1),ans:a,word:1,fb:w+" e "+a+" têm sentidos parecidos."};};
+function ortoQ(sets){return function(d){var x=pick(ORTO[pick(sets)]);
+  return {say:"Complete a palavra "+x[3].toLowerCase()+".",big:x[0].replace("_","__"),opts:shuffle([x[1],x[2]]),ans:x[1],fb:"Escreve-se "+x[3]+"."};};}
+SK.ortoA=ortoQ(["rr","qu","gu"]);SK.ortoB=ortoQ(["ss","mn","rr"]);SK.ortoC=ortoQ(["cc","xch","sz"]);SK.sufixo=ortoQ(["suf"]);
+function grafQ(set,dica){return function(d){var x=pick(GRAFIA[set]);return {say:"Qual palavra está escrita do jeito certo?",opts:shuffle([x[0],x[1]]),ans:x[0],word:1,fb:"O certo é "+x[0]+"."+(dica?" "+dica:"")};};}
+SK.acento1=grafQ("acento1");SK.acento2=grafQ("acento2","Paroxítonas terminadas em L, R, X, I(S) e ÃO levam acento.");SK.acento3=grafQ("acento3","Toda proparoxítona leva acento.");
+SK.ditongo=grafQ("ditongo","Na fala às vezes some um som, mas na escrita ele fica.");SK.hini=grafQ("h","O H no começo não tem som: é preciso lembrar como se escreve.");
+SK.pontofinal=function(d){var F=[["Que horas são","?"],["Você gosta de bolo","?"],["Onde fica a Lua","?"],["Que susto","!"],["Que planeta lindo","!"],["Cuidado","!"],["Eu gosto de bolo","."],["O Sol é uma estrela","."],["Hoje é domingo","."],["Amanhã vou à escola","."]],f=pick(F);
+  return {say:"Qual sinal termina esta frase? "+f[0]+".",big:f[0].toUpperCase()+" __",opts:["?","!","."],ans:f[1],fb:f[1]==="?"?"É uma pergunta: ponto de interrogação.":f[1]==="!"?"Mostra emoção: ponto de exclamação.":"É uma afirmação: ponto final."};};
+SK.plural=function(d){var x=pick(PLURAL.filter(function(p){return p[0]<=d&&p[0]>=d-1;})),w=x[2],b=x[1],wrong=uniq([b+"S",b+"ES",b.replace(/ÃO$/,"ÕES"),b.replace(/ÃO$/,"ÃES"),b.replace(/L$/,"IS")].filter(function(y){return y!==w&&y!==b;}));
+  return {say:"Qual é o plural de "+b.toLowerCase()+"? Mais de um.",big:b,opts:mkOpts(w,wrong,3),ans:w,word:1,fb:"Um "+b+", dois "+w+"."};};
+SK.genero=function(d){var x=pick(GENERO.filter(function(p){return p[0]<=d&&p[0]>=d-1;})),pool=GENERO.map(function(g){return g[2];}).filter(function(y){return y!==x[2];});
+  return {say:"Qual é o feminino de "+x[1].toLowerCase()+"?",big:x[1],opts:mkOpts(x[2],pool,3),ans:x[2],word:1};};
+SK.tonica=function(d){var x=pick(TONICA),w=x.s.join("");
+  return {say:"Qual é a sílaba mais forte da palavra "+w.toLowerCase()+"?",big:x.s.join(" - "),opts:x.s.slice(),ans:x.s[x.t],fb:"Em "+w+", a sílaba mais forte é "+x.s[x.t]+"."};};
+SK.proprio=function(d){var x=pick(PROPRIO),others=shuffle(PROPRIO.filter(function(p){return p!==x;})).slice(0,2).map(function(p){return p[1];});
+  return {say:"Qual destas palavras é um nome próprio? Nome próprio começa com letra maiúscula.",opts:shuffle([x[0],x[1]].concat(others)),ans:x[0],word:1,fb:x[0]+" é o nome de um só: por isso começa com letra maiúscula."};};
+function fraseQ(list,say){return function(d){var x=pick(list.filter(function(p){return p[0]<=d&&p[0]>=d-1;}));
+  return {say:say,big:x[1],opts:shuffle(x.slice(2)),ans:x[2],word:1,fb:x[1].replace("___",x[2])};};}
+SK.concv=fraseQ(CONCV,"Qual palavra completa a frase do jeito certo?");SK.concn=fraseQ(CONCN,"Qual palavra completa a frase do jeito certo?");SK.pronome=fraseQ(PRON,"Qual palavra completa a frase?");
+SK.tempo=function(d){var v=pick(TEMPO),t=d===1?pick([0,1]):pick([0,1,2]),quando=["Todos os dias eu","Ontem eu","Amanhã eu"][t],c=TEMPOCOMP[v[0]]||"";
+  return {say:"Qual palavra completa a frase?",big:quando+" ___ "+c+".",opts:shuffle(v.slice(1,d===1?3:4)),ans:v[1+t],word:1,fb:["Todos os dias: presente.","Ontem: passado.","Amanhã: futuro."][t]};};
+SK.homo=function(d){var x=pick(HOMO);return {say:"Qual palavra completa a frase do jeito certo?",big:x[0],opts:shuffle([x[1],x[2]]),ans:x[1],word:1};};
+SK.conj=function(d){var x=pick(CONJ);return {say:"Qual palavra liga as ideias da frase?",big:x[0],opts:shuffle(x.slice(1)),ans:x[1],word:1};};
+SK.classe=function(d){var x=pick(CLASSE);return {say:"Na frase, qual palavra é "+CLASSEN[x[1]]+"?",big:x[0],opts:shuffle([x[2]].concat(x[3])),ans:x[2],word:1};};
+SK.adjetivo=function(d){var x=pick(CLASSE.filter(function(c){return c[1]==="adjetivo";}));return {say:"Qual palavra diz como é a coisa da frase?",big:x[0],opts:shuffle([x[2]].concat(x[3])),ans:x[2],word:1,fb:"Palavras que dizem como uma coisa é se chamam adjetivos."};};
+SK.texto=function(d){var lim=[0,2,3,5][d],x=pick(TEXTOS.filter(function(t){return t[0]<=lim&&t[0]>=lim-2;}));
+  return {say:x[2],txt:x[1],opts:shuffle(x.slice(3)),ans:x[3],word:1};};
+var textoN=function(n){return function(d){var x=pick(TEXTOS.filter(function(t){return t[0]===n||t[0]===n-1;}));return {say:x[2],txt:x[1],opts:shuffle(x.slice(3)),ans:x[3],word:1};};};
+SK.texto1=textoN(1);SK.texto2=textoN(2);SK.texto3=textoN(3);SK.texto4=textoN(4);SK.texto5=textoN(5);
+SK.virgula=function(d){var X=[["Comprei pão, leite e ovos.","Comprei, pão leite e ovos.","Comprei pão leite, e ovos."],["Na mochila tem lápis, caderno e borracha.","Na mochila, tem lápis caderno e borracha.","Na mochila tem lápis caderno, e borracha."],
+  ["Vi Marte, Vênus e Júpiter.","Vi, Marte Vênus e Júpiter.","Vi Marte Vênus, e Júpiter."]],x=pick(X);return {say:"Em qual frase a vírgula está no lugar certo?",opts:shuffle(x.slice()),ans:x[0],word:1,fb:"A vírgula separa os itens de uma lista. Antes do E não precisa."};};
+
+/* ===== Matemática ===== */
+SK.seq=function(d){var st=d===1?pick([1,2]):d===2?pick([2,5,10]):pick([3,4,5,10,25]),a=rnd(0,d===1?10:d===2?40:100),desc=d===3&&Math.random()<.4,s=[];
+  if(desc)a+=st*5;for(var i=0;i<4;i++)s.push(desc?a-st*i:a+st*i);var ans=desc?a-st*4:a+st*4;
+  return {say:"Qual número vem depois na sequência?",big:s.join(", ")+", ?",opts:numOpts(ans,4,Math.max(3,st)),ans:String(ans),fb:"A sequência vai "+(desc?"diminuindo":"pulando")+" de "+st+" em "+st+"."};};
+SK.dezena=function(d){var dz=rnd(1,d===1?2:9),u=rnd(0,9),n=dz*10+u,rev=d===3&&Math.random()<.5;
+  if(rev)return {say:"Quantas dezenas tem o número "+n+"? Cada dezena vale 10.",big:String(n),opts:mkOpts(dz,[u,dz+1,dz-1,n].filter(function(x){return x>=0;}),4),ans:String(dz),fb:n+" = "+dz+" dezenas e "+u+" unidades."};
+  return {say:dz+(dz===1?" dezena":" dezenas")+" e "+u+(u===1?" unidade":" unidades")+". Que número é esse?",vis:dezVis(dz,u),opts:mkOpts(n,[u*10+dz,n+10,n-1,n+1].filter(function(x){return x>=0&&x!==n;}),4),ans:String(n)};};
+function dezVis(dz,u){var o='<div class="mvis dezv">';for(var i=0;i<dz;i++)o+='<span class="bar10" aria-hidden="true"></span>';for(i=0;i<u;i++)o+='<span class="cubo1" aria-hidden="true"></span>';return o+'</div>';}
+var NOMES=["Ana","Leo","Bia","Theo","Lara","Davi","Maya","Caio","Nina","Enzo"],COISAS=[["figurinhas","figurinha"],["bolinhas de gude","bolinha de gude"],["lápis de cor","lápis de cor"],["adesivos de estrela","adesivo de estrela"],["balas","bala"],["pedrinhas da Lua","pedrinha da Lua"]];
+SK.prob=function(d){var n=pick(NOMES),m=pick(NOMES.filter(function(x){return x!==n;})),c=pick(COISAS),max=[0,10,20,100][d],t=rnd(0,3),a,b,ans,say;
+  if(t===0){a=rnd(1,max-1);b=rnd(1,max-a);ans=a+b;say=n+" tinha "+a+" "+c[0]+" e ganhou mais "+b+". Com quantas ficou?";}
+  else if(t===1){a=rnd(2,max);b=rnd(1,a-1);ans=a-b;say=n+" tinha "+a+" "+c[0]+" e deu "+b+" para "+m+". Com quantas ficou?";}
+  else if(t===2){a=rnd(1,max-1);b=rnd(1,max-a);ans=b;say=n+" tem "+a+" "+c[0]+". "+m+" tem "+(a+b)+". Quantas "+m+" tem a mais?";}
+  else{a=rnd(1,max-1);b=rnd(1,max-a);ans=a+b;say=n+" tem "+a+" "+c[0]+" e "+m+" tem "+b+". Quantas os dois têm juntos?";}
+  return {say:say,opts:numOpts(ans,4),ans:String(ans),kb:d===3};};
+var CED=[200,100,50,20,10,5,2],MOE=[1,0.5,0.25,0.1,0.05];
+function dinVis(vals){return '<div class="mvis din">'+vals.map(function(v){return v>=2?'<span class="ced">R$ '+v+'</span>':'<span class="moe">'+(v>=1?"R$ 1":(v*100)+"¢")+'</span>';}).join("")+'</div>';}
+SK.dinheiro=function(d){if(d===1){var v=[pick([2,5,10]),pick([1,1,2,5])],s=v[0]+v[1];return {say:"Quantos reais tem aqui?",vis:dinVis(v),opts:mkOpts(s,[s+1,s-1,s+2,s+5].filter(function(x){return x>0;}),3).map(function(x){return "R$ "+x;}),ans:"R$ "+s};}
+  if(d===2){var v2=[pick([10,20]),pick([5,10]),pick([2,1,1]),1].slice(0,rnd(2,4)),s2=v2.reduce(function(a,b){return a+b;},0);return {say:"Quantos reais tem aqui?",vis:dinVis(v2),opts:numOpts(s2,4,4).map(function(x){return "R$ "+x;}),ans:"R$ "+s2};}
+  var preco=rnd(3,18),pago=preco<=5?pick([5,10]):preco<=10?pick([10,20]):20,troco=pago-preco;if(troco===0)return SK.dinheiro(3);
+  return {say:pick(NOMES)+" comprou um lanche de "+preco+" reais e pagou com uma nota de "+pago+" reais. Quanto recebeu de troco?",vis:dinVis([pago]),opts:numOpts(troco,4,3).map(function(x){return "R$ "+x;}),ans:"R$ "+troco};};
+SK.troco=function(d){var preco=d===1?rnd(3,9):d===2?rnd(11,45):rnd(3,40)+pick([0,.5,.25,.75]),pago=preco<10?10:preco<20?20:preco<50?50:100,troco=Math.round((pago-preco)*100)/100;
+  var f=function(x){return d===3?reais(x):"R$ "+x;},op=[troco,troco+1,troco-1,troco+(d===3?.5:5)].filter(function(x){return x>0;});
+  return {say:"Uma pipa custa "+(d===3?reais(preco).replace("R$ ","")+" reais":preco+" reais")+". "+pick(NOMES)+" pagou com uma nota de "+pago+" reais. Qual é o troco?",vis:dinVis([pago]),opts:shuffle(uniq(op).slice(0,4)).map(f),ans:f(troco)};};
+SK.num1000=function(d){var max=[0,999,9999,99999][d],n=rnd(d===1?100:1000,max),ex=extenso(n),rev=Math.random()<.5;
+  if(rev)return {say:"Como se lê este número?",big:fmtN(n),opts:mkOpts(ex,uniq([extenso(n+(d===1?10:100)),extenso(Math.max(1,n-1)),extenso(swapDig(n))]).filter(function(x){return x!==ex;}),3),ans:ex,word:1};
+  return {say:"Escreva com algarismos: "+ex+".",opts:mkOpts(fmtN(n),[n+10,n-10,swapDig(n),n+(d>=2?1000:100)].filter(function(x){return x>0&&x!==n;}).map(fmtN),4),ans:fmtN(n)};};
+function swapDig(n){var s=String(n).split("");if(s.length<2)return n+1;var i=rnd(0,s.length-2),t=s[i];s[i]=s[i+1];s[i+1]=t;if(s[0]==="0")return n+1;var r=+s.join("");return r===n?n+1:r;}
+SK.posicional=function(d){var n=d===1?rnd(100,999):d===2?rnd(1000,9999):rnd(10000,99999),s=String(n),casas=["unidades","dezenas","centenas","unidades de milhar","dezenas de milhar"],k=rnd(0,s.length-1),dig=s[s.length-1-k];
+  if(dig==="0"||Math.random()<.5)return {say:"No número "+fmtN(n)+", qual algarismo está na casa das "+casas[k]+"?",big:fmtN(n),opts:mkOpts(dig,uniq(s.split("")).concat("0123456789".split("")),4),ans:dig};
+  var val=+dig*Math.pow(10,k);return {say:"No número "+fmtN(n)+", quanto vale o algarismo "+dig+" que está na casa das "+casas[k]+"?",big:fmtN(n),opts:mkOpts(fmtN(val),[+dig*Math.pow(10,(k+1)%s.length),+dig,+dig*Math.pow(10,k+1)].filter(function(x){return x!==val;}).map(fmtN),3),ans:fmtN(val)};};
+SK.decomp=function(d){var n=d===1?rnd(100,999):d===2?rnd(1000,9999):rnd(10000,999999),s=String(n),parts=[];
+  for(var i=0;i<s.length;i++)if(s[i]!=="0")parts.push(fmtN(+s[i]*Math.pow(10,s.length-1-i)));
+  return {say:"Quanto dá esta soma?",big:parts.join(" + ")+" = ?",opts:mkOpts(fmtN(n),[swapDig(n),n+(n>1000?1000:100),n-(n>1000?1000:10)].filter(function(x){return x>0&&x!==n;}).map(fmtN),4),ans:fmtN(n),kb:d===3};};
+SK.conta=function(d){var op=Math.random()<.5?"+":"-",a,b,lim=[0,20,100,1000][d];
+  if(op==="+"){a=rnd(d===1?2:11,lim-10);b=rnd(d===1?1:5,lim-a);}else{a=rnd(d===1?5:20,lim);b=rnd(d===1?1:5,a-1);}
+  var r=op==="+"?a+b:a-b;return {say:"Quanto é "+a+(op==="+"?" mais ":" menos ")+b+"?",big:a+" "+(op==="+"?"+":"−")+" "+b+" = ?",opts:numOpts(r,4,d===1?3:10),ans:String(r),kb:d>=2};};
+SK.dobro=function(d){var t=d===1?pick(["dobro","metade"]):pick(["dobro","metade","triplo","terça parte"]),n=t==="metade"?rnd(1,d===1?10:30)*2:t==="terça parte"?rnd(1,10)*3:rnd(1,d===1?10:25),r={dobro:n*2,metade:n/2,triplo:n*3,"terça parte":n/3}[t];
+  return {say:"Qual é "+(t==="metade"||t==="terça parte"?"a ":"o ")+t+" de "+n+"?",big:t.toUpperCase()+" DE "+n,opts:numOpts(r,4,4),ans:String(r)};};
+SK.parimpar=function(d){var n=rnd(d===1?1:10,d===1?20:d===2?100:999);return {say:"O número "+fmtN(n)+" é par ou ímpar?",big:fmtN(n),opts:["Par","Ímpar"],ans:n%2?"Ímpar":"Par",fb:"Olhe o último algarismo: "+String(n).slice(-1)+(n%2?" é ímpar.":" é par.")};};
+function relogio(h,m){var ha=(h%12+m/60)*30,ma=m*6,hand=function(a,l,w,c){var r=a*Math.PI/180;return '<line x1="50" y1="50" x2="'+(50+l*Math.sin(r)).toFixed(1)+'" y2="'+(50-l*Math.cos(r)).toFixed(1)+'" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round"/>';},nums="";
+  for(var i=1;i<=12;i++){var a=i*30*Math.PI/180;nums+='<text x="'+(50+38*Math.sin(a)).toFixed(1)+'" y="'+(54-38*Math.cos(a)).toFixed(1)+'" font-size="10" text-anchor="middle" fill="#221400" font-family="Fredoka,sans-serif" font-weight="700">'+i+'</text>';}
+  return '<div class="mvis"><svg class="clock" viewBox="0 0 100 100" role="img" aria-label="Relógio"><circle cx="50" cy="50" r="47" fill="#fff7e6" stroke="#ffb938" stroke-width="4"/>'+nums+hand(ha,24,5,"#221400")+hand(ma,36,3,"#2f7bff")+'<circle cx="50" cy="50" r="3" fill="#221400"/></svg></div>';}
+function hTxt(h,m){return h+":"+(m<10?"0":"")+m;}
+SK.hora=function(d){var h=rnd(1,12),m=d===1?pick([0,0,30]):d===2?rnd(0,11)*5:rnd(0,11)*5;
+  if(d<3){var ops=uniq([hTxt(h,m),hTxt(h%12+1,m),hTxt(h,(m+30)%60),hTxt(m/5||12,h*5%60)]).slice(0,4);return {say:"Que horas o relógio está mostrando? O ponteiro pequeno mostra as horas e o grande, os minutos.",vis:relogio(h,m),opts:shuffle(ops),ans:hTxt(h,m)};}
+  var dur=pick([15,30,45,60,90,120]),hi=rnd(7,18),mi=pick([0,15,30]),fim=hi*60+mi+dur,dTxt=function(x){var hh=Math.floor(x/60),mm=x%60;return (hh?hh+(hh===1?" hora":" horas"):"")+(hh&&mm?" e ":"")+(mm?mm+" minutos":"");};
+  return {say:"O filme começou às "+hTxt(hi,mi)+" e terminou às "+hTxt(Math.floor(fim/60),fim%60)+". Quanto tempo durou?",opts:mkOpts(dTxt(dur),[15,30,45,60,90,120,150].filter(function(x){return x!==dur;}).map(dTxt),4),ans:dTxt(dur),word:1};};
+SK.tabuada=function(d){var T=d===1?[2,3,5,10]:d===2?[2,3,4,5,10]:[6,7,8,9],a=pick(T),b=rnd(1,10);if(Math.random()<.5){var t=a;a=b;b=t;}
+  return {say:"Quanto é "+a+" vezes "+b+"?",big:a+" × "+b+" = ?",vis:d===1&&a*b<=30?gruposVis(a,b):"",opts:numOpts(a*b,4,Math.max(a,b)),ans:String(a*b),kb:d===3};};
+function gruposVis(a,b){var o='<div class="mvis grupos">';for(var i=0;i<a;i++){o+='<span class="grupo">';for(var j=0;j<b;j++)o+='<i>★</i>';o+='</span>';}return o+'</div>';}
+SK.divisao=function(d){var b=rnd(2,d===1?5:9),q=rnd(2,d===3?20:10),r=d===2&&Math.random()<.5?rnd(1,b-1):0,a=b*q+r;
+  if(d===3){a=b*rnd(11,40);q=a/b;return {say:"Quanto é "+a+" dividido por "+b+"?",big:a+" ÷ "+b+" = ?",opts:numOpts(q,4,4),ans:String(q),kb:true};}
+  if(r)return {say:a+" "+pick(COISAS)[0]+" divididas igualmente entre "+b+" amigos. Quantas sobram?",big:a+" ÷ "+b,opts:mkOpts(r,[0,1,2,3,4,5,6,7,8].filter(function(x){return x<b&&x!==r;}),4),ans:String(r),fb:b+" × "+q+" = "+(b*q)+". Sobram "+r+"."};
+  return {say:"Dividindo "+a+" por "+b+", quanto dá?",big:a+" ÷ "+b+" = ?",opts:numOpts(q,4,3),ans:String(q),fb:b+" × "+q+" = "+a+"."};};
+SK.partes=function(d){var P=[[2,"metade"],[3,"terça parte"],[4,"quarta parte"],[5,"quinta parte"],[10,"décima parte"]],p=d===1?P[pick([0,0,2])]:pick(P),n=p[0]*rnd(2,d===1?5:12);
+  return {say:"Qual é a "+p[1]+" de "+n+"?",big:"1/"+p[0]+" de "+n,opts:numOpts(n/p[0],4,3),ans:String(n/p[0]),fb:n+" ÷ "+p[0]+" = "+(n/p[0])+"."};};
+SK.medida=function(d){var M=[["o comprimento de uma mesa","metro","litro","quilograma"],["a água de uma garrafa","litro","metro","quilograma"],["o peso de um saco de arroz","quilograma","litro","metro"],["quanto tempo dura uma aula","hora","metro","litro"],
+  ["o tamanho de uma formiga","milímetro","quilômetro","litro"],["a distância entre duas cidades","quilômetro","centímetro","litro"],["o remédio de uma colherzinha","mililitro","litro","metro"],["o peso de uma folha de papel","grama","quilograma","metro"]],x=pick(M);
+  return {say:"Qual unidade é a melhor para medir "+x[0]+"?",opts:shuffle(x.slice(1)),ans:x[1],word:1};};
+SK.mult=function(d){var a=d===1?rnd(11,30):d===2?rnd(12,99):rnd(100,999),b=d===3?rnd(2,9):rnd(2,d===1?5:9),r=a*b;return {say:"Quanto é "+a+" vezes "+b+"?",big:a+" × "+b+" = ?",opts:numOpts(r,4,Math.max(b,10)),ans:String(r),kb:d>=2};};
+var FRN={2:["meio","meios"],3:["um terço","terços"],4:["um quarto","quartos"],5:["um quinto","quintos"],10:["um décimo","décimos"]};
+SK.fracao=function(d){var den=pick(d===1?[2,4]:[2,3,4,5,10]),num=d===3?rnd(1,den-1):1,n=den*rnd(2,d===1?5:10),r=n/den*num;if(den===2&&num===1&&d!==1)return SK.fracao(d);
+  return {say:"Quanto é "+(num===1?(den===2?"a metade":FRN[den][0]):numWord(num)+" "+FRN[den][1])+" de "+n+"?",big:num+"/"+den+" de "+n,vis:fracVis(num,den),opts:numOpts(r,4,4),ans:String(r),fb:n+" ÷ "+den+" = "+(n/den)+(num>1?" e "+(n/den)+" × "+num+" = "+r:"")+"."};};
+function fracVis(num,den){var o='<div class="mvis fbar" aria-hidden="true">';for(var i=0;i<den;i++)o+='<span class="'+(i<num?"on":"")+'"></span>';return o+'</div>';}
+SK.fracEquiv=function(d){var b=pick([2,3,4,5]),a=rnd(1,b-1),k=rnd(2,d===3?6:4),A=a*k,B=b*k;
+  return {say:"Qual fração vale o mesmo que "+a+" sobre "+b+"?",big:a+"/"+b+" = ?",vis:fracVis(a,b),opts:mkOpts(A+"/"+B,[(A+1)+"/"+B,A+"/"+(B+1),a+"/"+B,(a+k)+"/"+(b+k)].filter(function(x){return x!==A+"/"+B;}),4),ans:A+"/"+B,fb:"Multiplicando em cima e embaixo por "+k+"."};};
+SK.decimal=function(d){if(d===1){var a=rnd(1,9)+pick([.5,.25,.75,.1]),b=rnd(1,9)+pick([.5,.25,.5,.2]),s=Math.round((a+b)*100)/100;return {say:"Quanto dá "+reais(a)+" mais "+reais(b)+"?",big:reais(a)+" + "+reais(b),opts:mkOpts(reais(s),[s+1,s-1,s+.5,s-.5].filter(function(x){return x>0;}).map(reais),4),ans:reais(s)};}
+  var x=Math.round(rnd(1,99)/10*10)/10,y=Math.round((x+pick([-1,1])*rnd(1,30)/100)*100)/100;if(x===y||y<=0)return SK.decimal(d);
+  var L=[x,y,Math.round((x+y)/2*100)/100];if(d===3){L.push(Math.round((y+.5)*100)/100);var srt=uniq(L).sort(function(p,q){return p-q;});return {say:"Qual destes números é o maior?",opts:shuffle(srt.map(function(v){return fmtD(v);})),ans:fmtD(srt[srt.length-1])};}
+  return {say:"Qual número é maior?",opts:shuffle([fmtD(x),fmtD(y)]),ans:fmtD(Math.max(x,y)),fb:"Compare primeiro a parte inteira, depois os décimos e os centésimos."};};
+SK.incognita=function(d){var t=d===1?"+":pick(["+","-","×"]),b=rnd(2,d===3?12:9),x=rnd(1,d===1?10:15),lhs;
+  if(t==="+")lhs="? + "+b+" = "+(x+b);else if(t==="-"){x=b+rnd(1,15);lhs="? − "+b+" = "+(x-b);}else lhs="? × "+b+" = "+(x*b);
+  return {say:"Qual número esconde o ponto de interrogação?",big:lhs,opts:numOpts(x,4,4),ans:String(x),kb:d===3};};
+SK.converte=function(d){var C=[["m","cm",100,"metros","centímetros"],["kg","g",1000,"quilos","gramas"],["h","min",60,"horas","minutos"],["L","mL",1000,"litros","mililitros"],["km","m",1000,"quilômetros","metros"]],c=pick(d===1?C.slice(0,3):C),n=d===3?rnd(2,9)+.5:rnd(1,d===1?3:9),r=n*c[2];
+  return {say:"Quantos "+c[4]+" são "+fmtD(n)+" "+c[3]+"?",big:fmtD(n)+" "+c[0]+" = ? "+c[1],opts:numOpts(r,4,c[2]/4).filter(function(x){return +x>0;}).map(function(x){return fmtN(+x);}),ans:fmtN(r),fb:"1 "+c[0]+" = "+c[2]+" "+c[1]+"."};};
+SK.grande=function(d){var a=rnd(10000,999999),b=a+pick([-1,1])*pick([1,10,100,1000,10000]),more=Math.random()<.5;
+  return {say:"Qual número é "+(more?"maior":"menor")+"?",opts:shuffle([fmtN(a),fmtN(b)]),ans:fmtN(more?Math.max(a,b):Math.min(a,b)),fb:"Compare da casa mais alta para a mais baixa."};};
+SK.porcento=function(d){var P=d===1?[50,10]:[10,25,50,75],p=pick(P),n=p===25||p===75?4*rnd(2,25):p===10?10*rnd(1,30):2*rnd(2,50),r=n*p/100;
+  return {say:"Quanto é "+p+" por cento de "+n+"?",big:p+"% de "+n,opts:numOpts(r,4,5),ans:String(r),fb:{10:"10% é a décima parte.",25:"25% é a quarta parte.",50:"50% é a metade.",75:"75% são três quartos."}[p]};};
+SK.decop=function(d){var a=rnd(1,30)+pick([.5,.25,.2,.75]),b=d===1?rnd(1,9)+pick([.5,.25]):rnd(2,6),mul=d>1&&Math.random()<.5,r=Math.round((mul?a*b:a+b)*100)/100;if(mul&&d===2){a=rnd(1,9)+.5;r=a*b;}
+  return {say:"Quanto é "+fmtD(a)+(mul?" vezes ":" mais ")+fmtD(b)+"?",big:fmtD(a)+(mul?" × ":" + ")+fmtD(b)+" = ?",opts:mkOpts(fmtD(r),[r+1,r-1,r+.5,r*10,r+.1].filter(function(x){return x>0&&x!==r;}).map(function(x){return fmtD(Math.round(x*100)/100);}),4),ans:fmtD(r)};};
+SK.combina=function(d){var a=rnd(2,d===1?3:5),b=rnd(2,d===1?3:5),c=d===3?rnd(2,3):1,r=a*b*c;
+  var say=pick(NOMES)+" tem "+a+" camisetas e "+b+" bermudas"+(c>1?" e "+c+" bonés":"")+". De quantos jeitos diferentes pode se vestir usando uma de cada?";
+  return {say:say,big:a+" × "+b+(c>1?" × "+c:"")+" = ?",opts:numOpts(r,4,4).concat([]).filter(function(x,i,arr){return arr.indexOf(x)===i;}),ans:String(r),fb:"Cada camiseta combina com cada bermuda: multiplicamos."};};
+SK.proporcao=function(d){var a=rnd(2,4),b=a*rnd(2,5),k=rnd(2,d===3?6:4),r=b*k,n=a*k;
+  return {say:"Para fazer "+a+" bolos, a vovó usa "+b+" ovos. Quantos ovos ela usa para fazer "+n+" bolos?",opts:numOpts(r,4,b),ans:String(r),fb:n+" bolos é "+k+" vezes "+a+". Então "+b+" × "+k+" = "+r+"."};};
+function areaVis(w,h){var s=Math.min(14,160/Math.max(w,h)),o='<div class="mvis"><svg viewBox="0 0 '+(w*s+4)+' '+(h*s+4)+'" style="width:'+Math.min(220,w*s+4)+'px" role="img" aria-label="Retângulo de '+w+' por '+h+'">';
+  for(var i=0;i<w;i++)for(var j=0;j<h;j++)o+='<rect x="'+(2+i*s)+'" y="'+(2+j*s)+'" width="'+s+'" height="'+s+'" fill="#8fe3ff" fill-opacity=".35" stroke="#8fe3ff" stroke-width=".6"/>';
+  return o+'<rect x="2" y="2" width="'+(w*s)+'" height="'+(h*s)+'" fill="none" stroke="#ffb938" stroke-width="2"/></svg></div>';}
+SK.area=function(d){var w=rnd(2,d===1?6:12),h=rnd(2,d===1?5:9),per=Math.random()<.5&&d>1,r=per?2*(w+h):w*h;
+  return {say:"Um retângulo tem "+w+" quadradinhos de largura e "+h+" de altura. "+(per?"Qual é o perímetro, a volta toda?":"Qual é a área, quantos quadradinhos cabem dentro?"),vis:d<3?areaVis(w,h):"",opts:numOpts(r,4,4),ans:String(r),fb:per?"Perímetro: "+w+" + "+h+" + "+w+" + "+h+" = "+r+".":"Área: "+w+" × "+h+" = "+r+"."};};
+
+/* ---------- A trilha: [ano, habilidade, nível] ou [ano, "g:jogo", nível do jogo] para os jogos que já existiam ---------- */
+var ANOS=["Pré-escola","1º ano","2º ano","3º ano","4º ano","5º ano"];
+var SKN={alfa:"Ordem alfabética",maimin:"Maiúsculas e minúsculas",rima:"Rimas",silabas:"Contar sílabas",silfim:"Começo, meio e fim",frase:"Palavras na frase",antonimo:"Contrários",sinonimo:"Sinônimos",
+ ortoA:"R ou RR, C ou QU, G ou GU",ortoB:"S ou SS, M ou N",ortoC:"Ç, X ou CH, S ou Z",sufixo:"Finais -EZA, -OSO, -AGEM",acento1:"Acento em palavras curtas",acento2:"Acento: fácil, lápis",acento3:"Acento: pássaro, música",
+ ditongo:"Sons que somem na fala",hini:"H no começo",pontofinal:"Ponto final, ? e !",plural:"Singular e plural",genero:"Masculino e feminino",tonica:"Sílaba mais forte",proprio:"Nome próprio",concv:"Combinar o verbo",concn:"Combinar as palavras",
+ pronome:"Ele, ela, eles",tempo:"Ontem, hoje e amanhã",homo:"Mas ou mais, mal ou mau",conj:"Palavras que ligam ideias",classe:"Classes de palavras",adjetivo:"Palavras que descrevem",texto1:"Leitura: histórias curtas",texto2:"Leitura: entender o texto",
+ texto3:"Leitura: encontrar no texto",texto4:"Leitura: por que aconteceu",texto5:"Leitura: a lição da história",virgula:"Vírgula na lista",
+ seq:"Sequências",dezena:"Dezenas e unidades",prob:"Probleminhas",dinheiro:"Dinheiro",troco:"Troco",num1000:"Ler e escrever números",posicional:"Valor de cada algarismo",decomp:"Montar números",conta:"Contas de mais e de menos",
+ dobro:"Dobro, metade e triplo",parimpar:"Par ou ímpar",hora:"Horas",tabuada:"Tabuada",divisao:"Divisão",partes:"Metade, terça, quarta parte",medida:"Medidas",mult:"Multiplicação",fracao:"Frações",fracEquiv:"Frações equivalentes",
+ decimal:"Números com vírgula",incognita:"Número escondido",converte:"Converter medidas",grande:"Números grandes",porcento:"Porcentagem",decop:"Contas com vírgula",combina:"Combinações",proporcao:"Proporção",area:"Área e perímetro"};
+var GNAME={inicial:"Letra inicial",foguete:"Foguete das sílabas",falta:"Letra que falta",palavra:"Monte a palavra",imagem:"Palavra e imagem",regressiva:"Contagem regressiva",contar:"Conte as estrelas",soma:"Contas espaciais",maior:"Maior ou menor"};
+var TRILHAS={
+ pt:[[0,"g:inicial",1],[0,"g:imagem",1],[0,"g:inicial",3],[0,"g:imagem",3],[0,"g:falta",1],[0,"g:foguete",1],[0,"g:inicial",5],[0,"g:palavra",1],
+  [1,"alfa",1],[1,"maimin",1],[1,"g:palavra",3],[1,"rima",1],[1,"silabas",1],[1,"g:foguete",5],[1,"silfim",1],[1,"g:falta",5],[1,"frase",1],[1,"maimin",2],[1,"rima",2],[1,"silabas",2],[1,"texto1",1],[1,"g:palavra",7],[1,"silfim",2],[1,"alfa",2],
+  [2,"antonimo",1],[2,"ortoA",1],[2,"pontofinal",1],[2,"sinonimo",1],[2,"plural",1],[2,"ortoB",1],[2,"genero",1],[2,"silabas",3],[2,"texto2",1],[2,"antonimo",2],[2,"ortoA",2],[2,"plural",2],[2,"genero",2],[2,"silfim",3],[2,"texto2",2],
+  [3,"ortoC",1],[3,"tonica",1],[3,"acento1",1],[3,"proprio",1],[3,"alfa",3],[3,"adjetivo",1],[3,"sinonimo",2],[3,"plural",3],[3,"texto3",1],[3,"ortoC",2],[3,"genero",3],[3,"ortoB",2],[3,"texto3",2],
+  [4,"concv",1],[4,"ditongo",1],[4,"acento2",1],[4,"concn",1],[4,"sufixo",1],[4,"pronome",1],[4,"hini",1],[4,"virgula",1],[4,"texto4",1],[4,"concv",2],[4,"pronome",2],[4,"concn",2],[4,"texto4",2],
+  [5,"tempo",1],[5,"acento3",1],[5,"homo",1],[5,"conj",1],[5,"classe",1],[5,"tempo",2],[5,"concv",3],[5,"pronome",3],[5,"texto5",1],[5,"homo",2],[5,"concn",3],[5,"texto5",2]],
+ mt:[[0,"g:contar",1],[0,"g:regressiva",1],[0,"g:maior",1],[0,"g:contar",3],[0,"g:soma",1],[0,"g:regressiva",2],[0,"g:maior",3],[0,"g:soma",3],
+  [1,"g:contar",6],[1,"seq",1],[1,"g:soma",5],[1,"dezena",1],[1,"g:maior",5],[1,"prob",1],[1,"dinheiro",1],[1,"conta",1],[1,"g:regressiva",6],[1,"dezena",2],[1,"seq",2],[1,"prob",1],[1,"g:soma",9],[1,"parimpar",1],
+  [2,"num1000",1],[2,"posicional",1],[2,"conta",2],[2,"dobro",1],[2,"hora",1],[2,"prob",2],[2,"dinheiro",2],[2,"dezena",3],[2,"seq",3],[2,"decomp",1],[2,"parimpar",2],[2,"dobro",2],[2,"tabuada",1],[2,"prob",3],
+  [3,"tabuada",2],[3,"num1000",2],[3,"divisao",1],[3,"partes",1],[3,"hora",2],[3,"troco",1],[3,"medida",1],[3,"conta",3],[3,"decomp",2],[3,"divisao",2],[3,"dinheiro",3],[3,"posicional",2],[3,"partes",2],[3,"hora",3],
+  [4,"tabuada",3],[4,"mult",1],[4,"fracao",1],[4,"incognita",1],[4,"converte",1],[4,"decimal",1],[4,"divisao",3],[4,"mult",2],[4,"troco",2],[4,"num1000",3],[4,"fracao",2],[4,"incognita",2],[4,"area",1],[4,"posicional",3],
+  [5,"grande",1],[5,"decimal",2],[5,"fracEquiv",1],[5,"porcento",1],[5,"decop",1],[5,"combina",1],[5,"proporcao",1],[5,"area",2],[5,"mult",3],[5,"fracao",3],[5,"porcento",2],[5,"decimal",3],[5,"decomp",3],[5,"incognita",3],[5,"troco",3],[5,"converte",2]]};
+
+/* ---------- Estrelas: total ganho (dá as patentes) e saldo para gastar na loja ---------- */
+var GASTO=store.get("gasto",0),OWN=store.get("loja",[]);
+function saldo(){return Math.max(0,G.stars-GASTO);}
+function stTxt(n){return n===1?"1 estrela":n+" estrelas";}
+function toast(txt){var el=$("toast");if(!el)return;el.textContent=txt;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(function(){el.classList.remove("on");},3200);}
+
+/* ---------- Missões do dia: três por dia, sem castigo se ficar para depois ---------- */
+var DIAT={pt:["Cumpra 1 missão de Português",1],mt:["Cumpra 1 missão de Matemática",1],acertos:["Acerte 10 perguntas de primeira",10],visita:["Visite 2 lugares do espaço",2],
+  estrela:["Ache 1 estrela escondida num planeta",1],blocos:["Coloque 10 blocos num planeta",10],memoria:["Ganhe 1 partida da Memória",1]};
+var DIA=store.get("dia",null);
+function diaHoje(){var k=dayKey();
+  if(!DIA||DIA.d!==k){var ex=["acertos","visita","estrela","blocos","memoria"],seed=0;for(var i=0;i<k.length;i++)seed+=k.charCodeAt(i)*(i+1);
+    var t=ex[seed%ex.length];DIA={d:k,l:[{t:"pt",n:0},{t:"mt",n:0},{t:t,n:0}],bonus:false};store.set("dia",DIA);}
+  return DIA;}
+function diaAdd(t,n){var D=diaHoje(),mud=false;
+  D.l.forEach(function(x){var need=DIAT[x.t][1];if(x.t===t&&x.n<need){x.n=Math.min(need,x.n+(n||1));mud=true;if(x.n>=need){addStars(5);toast("Missão do dia cumprida! +5 ★");}}});
+  if(!mud)return;
+  if(!D.bonus&&D.l.every(function(x){return x.n>=DIAT[x.t][1];})){D.bonus=true;addStars(5);setTimeout(function(){toast("Você cumpriu as 3 missões do dia! +5 ★ extras");},3400);}
+  store.set("dia",D);}
+function diaHtml(){var D=diaHoje();
+  return '<div class="dia"><h3 class="grp" style="margin-top:0">Missões do dia</h3>'+D.l.map(function(x,i){var need=DIAT[x.t][1],ok=x.n>=need;
+    return '<div class="diar'+(ok?" ok":"")+'"><span class="say" id="say-d'+i+'">'+DIAT[x.t][0]+'</span><b>'+(ok?"✓":x.n+"/"+need)+'</b><small>+5 ★</small></div>';}).join("")+
+    '<p class="note" style="margin:6px 0 0">'+(D.bonus?"Todas cumpridas hoje! Amanhã tem novas.":"Cumprindo as 3, você ganha mais 5 estrelas.")+'</p></div>';}
+
+/* ---------- Trilha: progresso de cada missão ---------- */
+var TR=store.get("trilha",null)||{done:{},inicio:0};if(!TR.done)TR.done={};
+function saveTR(){store.set("trilha",TR);}
+var TRID={};
+["pt","mt"].forEach(function(sub){var seen={};TRID[sub]=TRILHAS[sub].map(function(m){var b=sub+":"+m[1]+":"+m[2];seen[b]=(seen[b]||0)+1;return b+(seen[b]>1?":"+seen[b]:"");});});
+function mNome(m){return m[1].indexOf("g:")===0?GNAME[m[1].slice(2)]+" · nível "+m[2]:SKN[m[1]]+(m[2]>1?" "+["","","II","III"][m[2]]:"");}
+function mDone(sub,k){return TR.done[TRID[sub][k]]||0;}
+function mOpen(sub,k){var L=TRILHAS[sub];if(TR.all||k===0||mDone(sub,k-1))return true;var ini=TR.inicio||0;
+  return L[k][0]<ini||(L[k][0]===ini&&L[k-1][0]<ini);}
+function mNext(sub){var L=TRILHAS[sub],ini=TR.inicio||0;for(var k=0;k<L.length;k++)if(L[k][0]>=ini&&mOpen(sub,k)&&!mDone(sub,k))return k;
+  for(k=0;k<L.length;k++)if(mOpen(sub,k)&&!mDone(sub,k))return k;
+  for(k=L.length-1;k>=0;k--)if(mOpen(sub,k))return k;return 0;}
+function mCount(sub){return TRILHAS[sub].filter(function(m,k){return mDone(sub,k);}).length;}
+function subNome(sub){return sub==="pt"?"Português":"Matemática";}
+function stars3(n){var o="";for(var i=1;i<=3;i++)o+='<i class="'+(i<=n?"on":"")+'">★</i>';return '<span class="mst" aria-label="'+n+' de 3 estrelas">'+o+'</span>';}
+
+/* ---------- Rodando uma missão ---------- */
+function startMission(sub,k){
+  var m=TRILHAS[sub][k];if(!m)return;
+  var ms={sub:sub,k:k,m:m,id:TRID[sub][k],n:0,err:0,first:0,boost:0,streak:0,fim:false,q:null};
+  if(m[1].indexOf("g:")===0){var gid=m[1].slice(2),L=lv(gid);L.max=Math.max(L.max,m[2]);L.lvl=m[2];saveLv();startGame(gid);ms.kind="g";ms.game=gid;ms.need=3;}
+  else{state.game="q";ms.kind="q";ms.need=5;G.ms=ms;newQ();}
+  G.ms=ms;state.trail=null;select(-3);announce();
+}
+function newQ(){var ms=G.ms,d=Math.max(1,Math.min(3,ms.m[2]+ms.boost)),q=SK[ms.m[1]](d);q.wrong=[];q.ok=false;q.first=true;q.miss=0;ms.q=q;}
+function skKey(ms){return ms.sub+":"+(ms.kind==="g"?ms.game:ms.m[1]);}
+function finishMission(){
+  var ms=G.ms;if(!ms||ms.fim)return;ms.fim=true;state.game="q";
+  var rating=ms.err===0?3:ms.err<=2?2:1,prev=TR.done[ms.id]||0,bonus=prev?(rating>prev?rating-prev:0)+1:2+rating;
+  ms.rating=rating;ms.bonus=bonus;ms.novo=!prev;addStars(bonus);TR.done[ms.id]=Math.max(prev,rating);saveTR();diaAdd(ms.sub);
+}
+function qWin(){var ms=G.ms,q=ms.q;q.ok=true;ms.n++;stat(skKey(ms),"ok");
+  if(q.first){ms.first++;addStars(1);diaAdd("acertos");ms.streak++;if(ms.streak>=3&&ms.boost<1){ms.boost++;ms.streak=0;}}
+}
+function qMiss(v){var ms=G.ms,q=ms.q;if(q.wrong.indexOf(v)<0)q.wrong.push(v);q.first=false;q.miss++;ms.err++;ms.streak=0;stat(skKey(ms),"err");
+  if(q.miss===2&&ms.boost>-1)ms.boost--;}
+function msBar(){var ms=G.ms;if(!ms)return "";var pp="";for(var i=0;i<ms.need;i++)pp+='<i class="'+(i<ms.n?"on":"")+'"></i>';
+  return '<div class="msbar"><span>'+ANOS[ms.m[0]]+' · missão '+(ms.k+1)+'</span><span class="pips" role="img" aria-label="'+ms.n+' de '+ms.need+' acertos">'+pp+'</span></div>';}
+function qHtml(top,nxt){
+  var ms=G.ms;if(!ms)return "";var head=top(ms.fim?"Missão cumprida":mNome(ms.m));
+  if(ms.fim){var nk=ms.k+1<TRILHAS[ms.sub].length&&mOpen(ms.sub,ms.k+1)?ms.k+1:-1,ganho=ms.first+ms.bonus;
+    return head+'<div class="result">'+stars3(ms.rating)+'<h2 class="say" id="say-nome">'+(ms.rating===3?"Perfeito!":ms.rating===2?"Muito bem!":"Missão cumprida!")+'</h2>'+
+      '<p class="lead say" id="say-lead">Você ganhou '+stTxt(ganho)+' nesta missão.'+(ms.rating<3?" Jogue de novo sem errar para ganhar 3 estrelas.":"")+'</p></div>'+
+      '<div class="nav">'+(nk>=0?'<button type="button" class="btn go" id="ms-next" data-g="ms-go" data-v="'+ms.sub+':'+nk+'">Próxima missão →</button>':'')+
+      '<button type="button" class="btn" id="ms-again" data-g="ms-go" data-v="'+ms.sub+':'+ms.k+'">Jogar de novo</button><button type="button" class="btn" id="ms-trail" data-g="trail" data-v="'+ms.sub+'">Ver a trilha</button></div>';}
+  var q=ms.q,short=q.opts&&q.opts.every(function(o){return String(o).length<=3;}),body="";
+  if(q.txt)body+='<div class="txtbox say" id="say-t">'+esc(q.txt)+'</div>';
+  body+='<p class="lead say" id="say-q">'+esc(q.say)+'</p>';
+  if(q.big)body+='<p class="bigword'+(q.big.length>14?" long":"")+'">'+esc(q.big)+'</p>';
+  if(q.vis)body+=q.vis;
+  if(q.ok){var last=ms.n>=ms.need;body+='<p class="done say" id="say-fb">'+(q.first?"Isso! ":"Agora sim! ")+esc(q.fb||("A resposta é "+q.ans+"."))+'</p>'+nxt("q-next",last?"Ver o resultado →":"Próxima →");}
+  else{if(q.miss)body+='<p class="say" id="say-f0" style="margin:0 0 8px">Ainda não. Tente '+(q.kb?"de novo":"outra")+'.</p>';
+    if(q.kb)body+='<form class="gform" id="q-form"><label for="q-in" style="position:absolute;left:-9999px">Sua resposta</label><input type="text" inputmode="numeric" autocomplete="off" id="q-in" maxlength="9"><button type="submit" class="btn go" id="q-ok">Confirmar</button></form>';
+    else if(short)body+='<div class="tiles">'+q.opts.map(function(c,k){return '<button type="button" class="tile big" id="qo-'+k+'" data-g="q-pick" data-v="'+esc(c)+'"'+(q.wrong.indexOf(c)>=0?" disabled":"")+'>'+esc(c)+'</button>';}).join("")+'</div>';
+    else body+='<div class="opts'+(q.opts.length===3?" three":"")+'">'+q.opts.map(function(c,k){return '<button type="button" class="opt word'+(String(c).length>24?" longopt":"")+'" id="qo-'+k+'" data-g="q-pick" data-v="'+esc(c)+'"'+(q.wrong.indexOf(c)>=0?" disabled":"")+'>'+esc(c)+'</button>';}).join("")+'</div>';}
+  return head+msBar()+body;
+}
+function qAnswer(v){var ms=G.ms;if(!ms||ms.fim||!ms.q||ms.q.ok)return;var q=ms.q,okv=q.kb?String(v).replace(/\D/g,"")===String(q.ans).replace(/\D/g,""):String(v)===String(q.ans);
+  if(!String(v).trim())return;
+  if(okv){qWin();redraw("g-next");speakPanel();buddy("happy",2200);}
+  else{qMiss(String(v));redraw(q.kb?"q-in":null);speakFree(q.word&&!q.kb?"Aí está escrito: "+String(v).toLowerCase()+". Tente outra.":"Ainda não. Tente "+(q.kb?"de novo.":"outra."));}}
+document.addEventListener("submit",function(ev){if(ev.target&&ev.target.id==="q-form"){ev.preventDefault();var i=$("q-in");if(i)qAnswer(i.value);}});
+function trailGo(v){var p=String(v).split(":");if(mOpen(p[0],+p[1]))startMission(p[0],+p[1]);}
+
+/* ---------- Telas: início das missões e a trilha de cada matéria ---------- */
+function missHome(top){
+  var card=function(sub){var k=mNext(sub),m=TRILHAS[sub][k],n=mCount(sub),tot=TRILHAS[sub].length;
+    return '<div class="subj '+sub+'"><div class="subj-h"><b>'+subNome(sub)+'</b><span>'+n+' de '+tot+' missões</span></div>'+
+      '<div class="bar" role="img" aria-label="'+n+' de '+tot+' missões"><i style="width:'+Math.max(3,n/tot*100)+'%"></i></div>'+
+      '<p style="margin:0 0 10px">Próxima: <b>'+mNome(m)+'</b> <small style="color:var(--muted)">('+ANOS[m[0]]+')</small></p>'+
+      '<div class="nav"><button type="button" class="btn go" id="go-'+sub+'" data-g="ms-go" data-v="'+sub+':'+k+'">Continuar</button><button type="button" class="btn" id="tr-'+sub+'" data-g="trail" data-v="'+sub+'">Ver a trilha</button></div></div>';};
+  return top("Missões")+'<p class="lead say" id="say-lead">Cumpra missões de Português e de Matemática para ganhar estrelas e trocar por coisas na loja da área Criar.</p>'+
+    diaHtml()+card("pt")+card("mt")+
+    '<h3 class="grp">Espaço</h3><div class="opts">'+GAMES.filter(function(g){return g.grp==="e";}).map(function(g){
+      return '<button type="button" class="opt" id="pick-'+g.id+'" data-game="'+g.id+'"><span class="dot ico'+(g.ico.length>1?" sm":"")+'">'+g.ico+'</span>'+g.nome+'<small style="color:var(--muted);font-size:12px">Nível '+lv(g.id).lvl+' de '+MAXLV+'</small></button>';}).join("")+'</div>'+
+    '<p class="note">As missões ficam mais difíceis conforme a criança acerta, do pré ao 5º ano, seguindo a BNCC. Na área dos pais dá para escolher o ano escolar de onde começar.</p>';
+}
+function trailHtml(top,sub){
+  var L=TRILHAS[sub],cur=mNext(sub),out=top("Trilha de "+subNome(sub))+'<p class="lead say" id="say-lead">'+mCount(sub)+' de '+L.length+' missões cumpridas. Toque numa missão aberta para jogar.</p>',ano=-1;
+  L.forEach(function(m,k){if(m[0]!==ano){if(ano>=0)out+='</div>';ano=m[0];out+='<h3 class="grp">'+ANOS[ano]+'</h3><div class="trail">';}
+    var op=mOpen(sub,k),dn=mDone(sub,k);
+    out+='<button type="button" class="tstep'+(dn?" done":"")+(k===cur?" cur":"")+'" id="ts-'+sub+'-'+k+'" data-g="ms-go" data-v="'+sub+':'+k+'"'+(op?"":" disabled")+' aria-label="Missão '+(k+1)+': '+esc(mNome(m))+(op?"":", fechada")+'">'+
+      '<span class="tn">'+(op?k+1:"🔒")+'</span><span class="tt">'+esc(mNome(m))+'</span>'+(dn?stars3(dn):'')+'</button>';});
+  return out+'</div><div class="nav" style="margin-top:14px"><button type="button" class="btn" id="tr-back" data-g="mhome">← Voltar às missões</button></div>';
+}
+
+/* ---------- Loja da área Criar: tudo se troca só por estrelas, sempre sabendo o que vem (sem sorteio) ---------- */
+var LOJA=[
+ {id:"cachorro",cat:"animais",nome:"Cachorro",p:40,ico:"🐶"},{id:"gato",cat:"animais",nome:"Gato",p:40,ico:"🐱"},{id:"coelho",cat:"animais",nome:"Coelho",p:35,ico:"🐰"},
+ {id:"pinguim",cat:"animais",nome:"Pinguim",p:50,ico:"🐧"},{id:"tartaruga",cat:"animais",nome:"Tartaruga",p:45,ico:"🐢"},{id:"dino",cat:"animais",nome:"Dinossauro",p:80,ico:"🦕"},
+ {id:"alien",cat:"animais",nome:"Alienígena amigo",p:70,ico:"👽"},{id:"robo",cat:"animais",nome:"Robô",p:60,ico:"🤖"},
+ {id:"arvore",cat:"objetos",nome:"Árvore",p:15,ico:"🌳"},{id:"casa",cat:"objetos",nome:"Casa",p:30,ico:"🏠"},{id:"lampiao",cat:"objetos",nome:"Poste de luz",p:20,ico:"💡"},
+ {id:"telescopio",cat:"objetos",nome:"Telescópio",p:35,ico:"🔭"},{id:"castelo",cat:"objetos",nome:"Castelo",p:90,ico:"🏰"},
+ {id:"b15",cat:"blocos",nome:"Bloco de ouro",p:20,blk:15},{id:"b16",cat:"blocos",nome:"Bloco de diamante",p:30,blk:16},{id:"b17",cat:"blocos",nome:"Bloco de lava",p:25,blk:17},
+ {id:"b18",cat:"blocos",nome:"Bloco arco-íris",p:35,blk:18},{id:"b19",cat:"blocos",nome:"Pedra roxa",p:15,blk:19},
+ {id:"r-ouro",cat:"roupas",nome:"Roupa dourada",p:40,cor:"#d9a92e"},{id:"r-prata",cat:"roupas",nome:"Roupa prateada",p:30,cor:"#b9c2cf"},{id:"r-noite",cat:"roupas",nome:"Roupa da noite",p:30,cor:"#2b2f6b"},
+ {id:"r-neon",cat:"roupas",nome:"Roupa verde-neon",p:35,cor:"#39e66b"},{id:"r-rosa",cat:"roupas",nome:"Roupa rosa-choque",p:35,cor:"#ff3fa4"},{id:"r-branca",cat:"roupas",nome:"Roupa branca da NASA",p:25,cor:"#f4f6fb"}];
+var LCAT=[["animais","Animais"],["objetos","Objetos"],["blocos","Blocos"],["roupas","Roupas"]];
+function tem(id){return OWN.indexOf(id)>=0;}
+function lojaItem(id){return LOJA.filter(function(x){return x.id===id;})[0];}
+function comprar(id){var it=lojaItem(id);if(!it||tem(id)||saldo()<it.p)return false;GASTO+=it.p;OWN.push(id);store.set("gasto",GASTO);store.set("loja",OWN);return true;}
+function suitsAll(){return SUITS.concat(LOJA.filter(function(x){return x.cor&&tem(x.id);}).map(function(x){return x.cor;}));}
+function vobjAll(){return VOBJ.concat(LOJA.filter(function(x){return (x.cat==="animais"||x.cat==="objetos")&&tem(x.id);}).map(function(x){return [x.id,x.nome,x.ico];}));}
+function palbAll(){return PALB.concat(LOJA.filter(function(x){return x.blk&&tem(x.id);}).map(function(x){return x.blk;}));}
+function lojaIco(it){if(it.blk)return '<span class="lico blk" style="background:'+(it.blk===18?"linear-gradient(#ff5a5a,#ffb938,#6fdc7a,#2f7bff,#b48cff)":BLK[it.blk].c)+'"></span>';
+  if(it.cor)return '<span class="lico" style="--c:'+it.cor+'">'+astroFor({nome:"",suit:it.cor,skin:BUD.skin,hair:BUD.hair})+'</span>';return '<span class="lico emo" aria-hidden="true">'+it.ico+'</span>';}
+function lojaHtml(head){var m=state.my,cat=m.cat||"animais",sd=saldo();
+  return head("Loja")+'<h2 class="say" id="say-nome">Loja espacial</h2><p class="gstars" style="font-size:22px">★ '+stTxt(sd)+' para gastar</p>'+
+    '<p class="lead say" id="say-lead">Troque suas estrelas por animais, objetos, blocos e roupas. Tudo aqui se ganha estudando: não precisa de dinheiro.</p>'+
+    '<div class="seg" role="group" aria-label="Tipo" style="margin-bottom:12px;flex-wrap:wrap">'+LCAT.map(function(c){return '<button type="button" id="lc-'+c[0]+'" data-my="lcat" data-v="'+c[0]+'" aria-pressed="'+(cat===c[0])+'">'+c[1]+'</button>';}).join("")+'</div>'+
+    '<div class="shop">'+LOJA.filter(function(x){return x.cat===cat;}).map(function(it){var own=tem(it.id),conf=m.conf===it.id,falta=it.p-sd;
+      return '<div class="sitem'+(own?" own":"")+'">'+lojaIco(it)+'<b>'+it.nome+'</b><span class="pr">★ '+it.p+'</span>'+
+        (own?'<span class="tag2">É seu</span>':conf?'<button type="button" class="btn sm go" id="buy-'+it.id+'" data-my="buyok" data-v="'+it.id+'">Trocar '+it.p+' ★</button><button type="button" class="btn sm" id="buyno-'+it.id+'" data-my="buyno">Agora não</button>':
+          '<button type="button" class="btn sm" id="buyq-'+it.id+'" data-my="buy" data-v="'+it.id+'"'+(falta>0?' disabled':'')+'>'+(falta>0?"Faltam "+falta+" ★":"Quero este")+'</button>')+'</div>';}).join("")+'</div>'+
+    '<p class="note">'+(cat==="roupas"?"As roupas aparecem para escolher no Mapa, em Meu astronauta.":cat==="blocos"?"Os blocos aparecem quando você pousa num planeta e toca em Colocar.":"Pouse num planeta e toque em Colocar para pôr o que você ganhou.")+' Não tem caixa surpresa: você sempre vê o que vai ganhar.</p>'+
+    '<div class="nav"><button type="button" class="btn" id="loja-back" data-my="lojasair">← Voltar</button></div>';}
+
 /* ---------- Telas dos jogos ---------- */
 function gameHtml(){
   var id=state.game;
   function lvRow(){
-    if(!id)return "";var L=lv(id),need=NEED[id]||3,pp="";
+    if(!id||id==="q"||id==="trail")return "";if(G.ms&&G.ms.kind==="g")return msBar();var L=lv(id),need=NEED[id]||3,pp="";
     if(L.max<MAXLV&&L.lvl===L.max){for(var q=0;q<need;q++)pp+='<i class="'+(q<L.wins?"on":"")+'"></i>';pp='<span class="pips" role="img" aria-label="'+L.wins+' de '+need+' acertos para abrir o próximo nível">'+pp+'</span>';}
     return '<div class="lvls"><button type="button" class="lvb" id="lv-prev" data-lvl="'+(L.lvl-1)+'" aria-label="Nível anterior"'+(L.lvl<=1?" disabled":"")+'>‹</button>'+
       '<span class="lvn">Nível <b>'+L.lvl+'</b> de '+MAXLV+'</span>'+
       '<button type="button" class="lvb" id="lv-next" data-lvl="'+(L.lvl+1)+'" aria-label="Próximo nível"'+(L.lvl>=L.max?' disabled title="Nível ainda fechado"':"")+'>›</button>'+pp+'</div>'+
       (G.up?'<p class="done say" id="say-up" style="margin:0 0 12px">Parabéns! Você abriu o nível '+G.up+'.</p>':'');
   }
-  var top=function(t){return '<div class="toprow"><span class="kind">'+t+'</span><button type="button" class="voz" id="btn-voz"></button></div><p class="gstars" aria-label="Estrelas ganhas">★ '+G.stars+(G.stars===1?" estrela":" estrelas")+'</p>'+lvRow();};
+  var top=function(t){return '<div class="toprow"><span class="kind">'+t+'</span><button type="button" class="voz" id="btn-voz"></button></div><p class="gstars" aria-label="Estrelas para gastar">★ '+stTxt(saldo())+'</p>'+lvRow();};
   var nxt=function(act,txt){return '<div class="nav"><button type="button" class="btn go" id="g-next" data-g="'+act+'">'+(txt||"Próxima →")+'</button></div>';};
   var hear='<p style="margin:0 0 14px;text-align:center"><button type="button" class="btn" id="g-hear" data-g="hear">Ouvir a palavra</button></p>';
   var hero=function(w){return w[3]?'<span class="hero">'+pic(byId[w[3]],"hero")+'</span>':'';};
   var slots=function(word,fn){return '<div class="slots'+(word.length>8?" sm":"")+'" aria-label="Palavra">'+word.split("").map(fn).join("")+'</div>';};
   var tiles=function(g,act,cls){return '<div class="tiles">'+g.opts.map(function(c,k){return '<button type="button" class="tile '+(cls||"big")+'" id="nt-'+k+'" data-g="'+act+'" data-v="'+c+'"'+(g.wrong.indexOf(c)>=0?" disabled":"")+'>'+c+'</button>';}).join("")+'</div>';};
-  if(!id){
+  if(!id){G.ms=null;return missHome(top);}
+  if(id==="trail")return trailHtml(top,state.trail);
+  if(id==="q")return qHtml(top,nxt);
+  if(false){
     return top("Jogos")+'<p class="lead say" id="say-lead">Escolha um jogo.</p>'+
       GRUPOS.map(function(gr){return '<h3 class="grp">'+gr[0]+'</h3><div class="opts">'+GAMES.filter(function(g){return g.grp===gr[1];}).map(function(g){
         return '<button type="button" class="opt" id="pick-'+g.id+'" data-game="'+g.id+'"><span class="dot ico'+(g.ico.length>1?" sm":"")+'">'+g.ico+'</span>'+g.nome+'<small style="color:var(--muted);font-size:12px">Nível '+lv(g.id).lvl+' de '+MAXLV+'</small></button>';}).join("")+'</div>';}).join("")+
@@ -1124,9 +1585,18 @@ function gameHtml(){
 }
 function redraw(focusId){var sc=panel.scrollTop;renderPanel();panel.scrollTop=sc;var f=focusId&&$(focusId);if(f){try{f.focus({preventScroll:true});}catch(e){}}}
 function inGame(id){return state.sel===-3&&state.game===id;}
+function gTitle(){if(state.game==="q")return G.ms&&G.ms.fim?"Missão cumprida":"Missão";if(state.game==="trail")return "Trilha de "+subNome(state.trail);
+  if(!state.game)return "Missões";var g=GAMES.filter(function(x){return x.id===state.game;})[0];return g?g.nome:"Missões";}
 
 /* ---------- Jogadas ---------- */
 function gameAct(act,v,btnId){
+  if(act==="q-pick"){qAnswer(v);return;}
+  if(act==="q-next"){var msq=G.ms;if(!msq)return;if(msq.n>=msq.need)finishMission();else newQ();renderDock();redraw();panel.scrollTop=0;announce();return;}
+  if(act==="ms-go"){trailGo(v);return;}
+  if(act==="trail"){G.ms=null;state.game="trail";state.trail=v;if(state.sel!==-3)select(-3);else{renderDock();redraw();}panel.scrollTop=0;
+    var cs=panel.querySelector(".tstep.cur");if(cs)panel.scrollTop=Math.max(0,cs.offsetTop-panel.clientHeight/3);if(state.voz)speakPanel();return;}
+  if(act==="mhome"){G.ms=null;state.game=null;if(state.sel!==-3)select(-3);else{renderDock();redraw();}panel.scrollTop=0;if(state.voz)speakPanel();return;}
+  if(/-(next|new)$/.test(act)&&G.ms&&G.ms.kind==="g"&&G.ms.n>=G.ms.need){finishMission();renderDock();redraw();panel.scrollTop=0;speakPanel();buddy("happy",2600);return;}
   if(/-(next|new)$/.test(act))applyUp();
   var win=function(n){addStars(n||1);won();redraw("g-next");speakPanel();buddy("happy",G.up?3600:2200);};
   var miss=function(g,val){errStat();if(g.wrong.indexOf(val)<0)g.wrong.push(val);};
@@ -1213,6 +1683,7 @@ function lookDot(i){var L=LOOKS[i]||LOOKS[0];return L[0]==="tex"?'<span class="p
 function meuHtml(){
   var m=state.my,head=function(t){return '<div class="toprow"><span class="kind">'+t+'</span><button type="button" class="voz" id="btn-voz"></button></div>';};
   var step=function(label,key,val,txt){return '<div class="stepper"><span>'+label+'</span><button type="button" id="my-'+key+'-d" data-my="'+key+'" data-v="-1" aria-label="Diminuir">−</button><output>'+txt+'</output><button type="button" id="my-'+key+'-u" data-my="'+key+'" data-v="1" aria-label="Aumentar">+</button></div>';};
+  if(m.mode==="loja")return lojaHtml(head);
   if(m.mode==="pilot"){var g=myw?myw.got():[0,0];
     return head("Pilotando")+'<h2 class="say" id="say-nome">Foguete</h2><p class="lead say" id="say-lead">Arraste o dedo na tela para virar o foguete. Pegue as estrelas!</p>'+
       '<p class="gstars" style="font-size:24px">★ '+g[0]+' de '+g[1]+'</p>'+(g[1]&&g[0]>=g[1]?'<p class="done say" id="say-f0" style="margin:0 0 12px">Você pegou todas as estrelas!</p>':'')+
@@ -1232,6 +1703,7 @@ function meuHtml(){
       '<div class="nav"><button type="button" class="btn go" id="my-land" data-my="land">Pousar ▾</button><button type="button" class="btn" id="my-back" data-my="back">Ver tudo</button><button type="button" class="btn" id="my-del" data-my="del">Apagar</button></div>';}
   return head("Meu universo")+'<h2 class="say" id="say-nome">Meu universo</h2><p class="lead say" id="say-lead">Este universo é seu. Crie planetas, espalhe objetos e voe de foguete.</p>'+
     '<div class="nav" style="margin-bottom:6px"><button type="button" class="btn go" id="my-add" data-my="add"'+(MEU.planets.length>=8?" disabled":"")+'>+ Novo planeta</button><button type="button" class="btn" id="my-pilot" data-my="pilot">Pilotar foguete</button></div>'+
+    '<button type="button" class="shopbtn" id="my-loja" data-my="loja"><span class="lico emo" aria-hidden="true">🛍️</span><span><b>Loja espacial</b><small>Animais, objetos, blocos e roupas</small></span><span class="gstars" style="margin:0">★ '+saldo()+'</span></button>'+
     '<h3 class="grp">Cor da estrela</h3><div class="sw" style="margin-bottom:6px">'+STARS.map(function(c,i){return '<button type="button" class="swb" id="my-star-'+i+'" data-my="star" data-v="'+c+'" style="--c:'+c+'" aria-pressed="'+(MEU.star===c)+'" aria-label="Cor '+(i+1)+'"></button>';}).join("")+'</div>'+
     '<h3 class="grp">Objetos</h3>'+OBJS.map(function(o){var n=MEU.objs[o[0]]||0;return '<div class="objrow"><span>'+o[1]+'</span>'+
       '<div class="stepper"><button type="button" id="my-o-'+o[0]+'-d" data-my="obj" data-v="'+o[0]+':-1" aria-label="Tirar">−</button><output>'+n+'</output><button type="button" id="my-o-'+o[0]+'-u" data-my="obj" data-v="'+o[0]+':1" aria-label="Colocar">+</button></div></div>';}).join("")+
@@ -1253,6 +1725,13 @@ function meuAct(act,v,btnId){
   else if(act==="dist"&&p){p.dist=cl(p.dist+(+v),1,8);rb();}
   else if(act==="star"){MEU.star=v;rb();}
   else if(act==="obj"){var q=v.split(":"),o=OBJS.filter(function(x){return x[0]===q[0];})[0];MEU.objs[q[0]]=cl((MEU.objs[q[0]]||0)+(+q[1]),0,o[2]);rb();}
+  else if(act==="loja"){m.mode="loja";m.conf=null;redraw();panel.scrollTop=0;speakPanel();}
+  else if(act==="lcat"){m.cat=v;m.conf=null;redraw(btnId);}
+  else if(act==="buy"){m.conf=v;redraw("buy-"+v);var it0=lojaItem(v);speakFree("Trocar "+it0.p+" estrelas por "+it0.nome.toLowerCase()+"?");}
+  else if(act==="buyno"){m.conf=null;redraw();}
+  else if(act==="buyok"){var it=lojaItem(v);m.conf=null;if(comprar(v)){redraw();buddy("happy",2600);
+      speakFree((it.cat==="roupas"?"Que roupa linda! Escolha ela no Mapa, em Meu astronauta.":it.cat==="blocos"?"Agora "+it.nome.toLowerCase()+" é seu! Pouse num planeta para construir.":"Agora "+it.nome.toLowerCase()+" é seu! Pouse num planeta e toque em Colocar."));}else redraw();}
+  else if(act==="lojasair"){m.mode="build";m.conf=null;redraw();}
   else if(act==="pilot"){m.mode="pilot";m.turbo=false;if(myw)myw.pilot();redraw();speakPanel();}
   else if(act==="turbo"){m.turbo=!m.turbo;if(myw)myw.turbo(m.turbo);redraw(btnId);}
   else if(act==="exitpilot"){m.mode="build";if(myw)myw.toBuild();redraw();}
@@ -1269,7 +1748,8 @@ function meuEvent(name,a,b){
 /* n: nome, c: cor (null = cor do próprio planeta), tr: deixa ver através, op: opacidade, glow: brilho próprio, soft: dá para atravessar */
 var BLK=[null,{n:"Pedra",c:"#8a8f99"},{n:"Terra",c:null},{n:"Chão",c:null},{n:"Cristal",c:"#5ff0ff",glow:.55,tr:1,op:.88},{n:"Metal",c:"#c9ced8"},
  {n:"Vidro",c:"#d7f3ff",tr:1,op:1},{n:"Luz",c:"#ffd23a",glow:.9},{n:"Tijolo",c:"#b5523b"},{n:"Gelo",c:"#bfe6ff"},{n:"Madeira",c:"#a2723f"},
- {n:"Água",c:"#2f7fd8",tr:1,op:.62,soft:1},{n:"Cogumelo",c:"#ff6fb5",glow:.3},{n:"Caule",c:"#f3e6c8"},{n:"Neve",c:"#f7f9ff"}];
+ {n:"Água",c:"#2f7fd8",tr:1,op:.62,soft:1},{n:"Cogumelo",c:"#ff6fb5",glow:.3},{n:"Caule",c:"#f3e6c8"},{n:"Neve",c:"#f7f9ff"},
+ {n:"Ouro",c:"#f2c230",glow:.25},{n:"Diamante",c:"#8ef5ff",glow:.45,tr:1,op:.9},{n:"Lava",c:"#ff5a1f",glow:.95},{n:"Arco-íris",c:"#ffffff",glow:.15},{n:"Pedra roxa",c:"#7a4fd6"}];
 var PALB=[3,2,1,10,8,5,6,4,7,9,12,14];
 var VOBJ=[["bandeira","Bandeira","⚑"],["base","Base","◠"],["planta","Planta","✿"],["foguete","Foguete","▲"]];
 /* chão de cada aparência: [cor do chão, cor da terra, céu no alto, céu no horizonte, quantas estrelas aparecem de dia] */
@@ -1345,15 +1825,14 @@ function skillRow(g){var L=lv(g.id),st=STATS[g.id]||{ok:0,err:0},tot=st.ok+st.er
     '<small>'+(tot?'Nível '+L.max+' · '+pct+'% certo':'Ainda não jogou')+'</small></div>';}
 function paisHtml(){
   var me=PROF.list.filter(function(q){return q.id===PROF.cur;})[0]||PROF.list[0],gm=function(id){return GAMES.filter(function(g){return g.id===id;})[0];};
-  var LET=["inicial","foguete","falta","palavra","imagem"].map(gm),NUMS=["regressiva","contar","soma","maior"].map(gm),ESP=["desafio","memoria","ligue"].map(gm);
-  var played=LET.concat(NUMS).filter(function(g){var st=STATS[g.id];return st&&st.ok+st.err>0;}),hl=[];
-  if(played.length){var best=played.slice().sort(function(a,b){return lv(b.id).max-lv(a.id).max||(STATS[b.id].ok-STATS[a.id].ok);})[0],
-      low=played.slice().sort(function(a,b){var sa=STATS[a.id],sb=STATS[b.id];return lv(a.id).max-lv(b.id).max||(sa.ok/(sa.ok+sa.err)-sb.ok/(sb.ok+sb.err));})[0];
-    hl.push('<li class="up">Vai melhor em <b>'+best.nome+'</b> (nível '+lv(best.id).max+').</li>');
-    if(low!==best)hl.push('<li>Pode praticar mais <b>'+low.nome+'</b> (nível '+lv(low.id).max+').</li>');}
-  var never=LET.concat(NUMS).filter(function(g){return played.indexOf(g)<0;});
-  if(never.length)hl.push('<li>Ainda não jogou: '+never.map(function(g){return g.nome;}).join(", ")+'.</li>');
-  if(!hl.length)hl.push('<li>Os destaques aparecem depois que ele jogar um pouco.</li>');
+  var LET=[],NUMS=[],ESP=["desafio","memoria","ligue"].map(gm);
+  var hl=[],sk=Object.keys(STATS).filter(function(k){var x=STATS[k];return /^(pt|mt):/.test(k)&&x.ok+x.err>=4;}).map(function(k){var x=STATS[k],id=k.split(":")[1];
+      return {k:k,nome:(SKN[id]||GNAME[id]||id)+" ("+subNome(k.slice(0,2))+")",pct:Math.round(x.ok/(x.ok+x.err)*100),tot:x.ok+x.err};});
+  if(sk.length){sk.sort(function(a,b){return b.pct-a.pct||b.tot-a.tot;});
+    hl.push('<li class="up">Vai melhor em <b>'+sk[0].nome+'</b>: '+sk[0].pct+'% de acerto.</li>');
+    var low=sk.filter(function(x){return x.pct<80;}).slice(-2).reverse();
+    low.forEach(function(x){if(x!==sk[0])hl.push('<li>Pode praticar mais <b>'+x.nome+'</b>: '+x.pct+'% de acerto.</li>');});}
+  if(!hl.length)hl.push('<li>Os destaques aparecem depois de algumas missões.</li>');
   var days=[],DS=["D","S","T","Q","Q","S","S"],mx=60;for(var k=6;k>=0;k--){var d=new Date();d.setDate(d.getDate()-k);var sec=TIME[dayKey(d)]||0;mx=Math.max(mx,sec);days.push([d,sec,k===0]);}
   var week=days.reduce(function(a,x){return a+x[1];},0),ri=rankOf(G.stars);
   var blocks=MEU.planets.reduce(function(a,q){return a+(q.vox||[]).filter(function(e){return e[1];}).length;},0);
@@ -1370,16 +1849,22 @@ function paisHtml(){
     '<h3>Destaques</h3><ul class="hl">'+hl.join("")+'</ul>'+
     '<h3>Tempo de tela por dia</h3><div class="days" role="img" aria-label="Minutos jogados nos últimos 7 dias">'+days.map(function(x){
       return '<div class="'+(x[2]?"hoje":"")+'"><span>'+Math.round(x[1]/60)+'</span><i style="height:'+Math.max(2,x[1]/mx*100)+'%"></i><span>'+(x[2]?"Hoje":DS[x[0].getDay()])+'</span></div>';}).join("")+'</div>'+
-    '<h3>Leitura e escrita</h3>'+LET.map(skillRow).join("")+
-    '<h3>Números</h3>'+NUMS.map(skillRow).join("")+
+    ["pt","mt"].map(function(sub){var n=mCount(sub),tot=TRILHAS[sub].length,k=mNext(sub),tk=Object.keys(STATS).filter(function(x){return x.indexOf(sub+":")===0;}),ok=0,er=0;
+      tk.forEach(function(x){ok+=STATS[x].ok;er+=STATS[x].err;});
+      return '<h3>'+subNome(sub)+'</h3><div class="skill"><span>'+ANOS[TRILHAS[sub][k][0]]+'</span><div class="bar" role="img" aria-label="'+n+' de '+tot+' missões"><i style="width:'+Math.max(4,n/tot*100)+'%"></i></div>'+
+        '<small>'+n+' de '+tot+' missões'+(ok+er?' · '+Math.round(ok/(ok+er)*100)+'% de acerto':'')+'</small></div>'+
+        '<p class="note" style="margin:4px 0 0">Próxima missão: '+esc(mNome(TRILHAS[sub][k]))+'.</p>';}).join("")+
+    '<h3>Ano escolar de '+esc(me.nome)+'</h3><div class="seg" role="group" aria-label="Ano escolar" style="flex-wrap:wrap">'+ANOS.map(function(a,i){return '<button type="button" id="ano-'+i+'" data-pa="ano" data-v="'+i+'" aria-pressed="'+((TR.inicio||0)===i)+'">'+a.replace(" ano","").replace("Pré-escola","Pré")+'</button>';}).join("")+'</div>'+
+    '<p class="note">As missões dos anos anteriores ficam abertas. Escolha o ano em que a criança está (ou um antes, para revisar).</p>'+
     '<h3>Espaço</h3>'+ESP.map(skillRow).join("")+
     '<h3>Limite de tempo por dia</h3><div class="seg" role="group" aria-label="Limite de tempo por dia" style="flex-wrap:wrap">'+lim.map(function(o){return '<button type="button" id="lim-'+o[0]+'" data-pa="limit" data-v="'+o[0]+'" aria-pressed="'+((SET.limit||0)===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
     '<p class="note">Quando o tempo acaba, o astronauta avisa que a missão do dia terminou. Só um adulto consegue liberar mais tempo.</p>'+
     (SET.limit&&playedToday()>=limitToday()?'<p style="margin:10px 0 0"><button type="button" class="btn sm" id="pa-extra" data-pa="extra">Liberar mais 15 minutos hoje</button></p>':'')+
     '<h3>Voz</h3><div class="seg" role="group" aria-label="Velocidade da voz">'+[[.8,"Devagar"],[1,"Normal"]].map(function(o){return '<button type="button" id="rate-'+(o[0]*10)+'" data-pa="rate" data-v="'+o[0]+'" aria-pressed="'+(RATE===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
-    '<h3>Níveis e progresso</h3><div class="nav"><button type="button" class="btn sm" id="pa-unlock" data-pa="unlock">Abrir todos os níveis</button>'+
+    '<h3>Níveis e progresso</h3><div class="nav"><button type="button" class="btn sm" id="pa-unlock" data-pa="unlock">Abrir todas as missões e níveis</button>'+
       '<button type="button" class="btn sm'+(PA.reset?' danger':'')+'" id="pa-reset" data-pa="reset">'+(PA.reset?'Confirmar: apagar o progresso de '+esc(me.nome):'Apagar o progresso')+'</button></div>'+
-    AC.paisHtml()+'<h3>Privacidade</h3><p class="note" style="margin:0 0 10px">O progresso fica salvo só neste aparelho, separado para cada criança. O jogo não tem anúncios e não envia dados das crianças para a internet.</p>'+
+    '<h3>Loja e estrelas</h3><p class="note" style="margin:0 0 10px">As estrelas são só pontos do jogo: são ganhas jogando e não podem ser compradas com dinheiro. A loja não tem caixa surpresa nem itens sorteados. '+esc(me.nome)+' tem '+stTxt(saldo())+' para gastar e já ganhou '+stTxt(G.stars)+' ao todo.</p>'+
+    AC.paisHtml()+'<h3>Privacidade</h3><p class="note" style="margin:0 0 10px">'+(CONTA?'O progresso de cada criança fica salvo neste aparelho e na conta da família, para não se perder e aparecer em outro aparelho. ':'O progresso fica salvo só neste aparelho, separado para cada criança. ')+'O jogo não tem anúncios, não mostra publicidade e não usa os dados das crianças para nada além de guardar o progresso.</p>'+
     (LEGAL?'<div class="nav"><a class="btn sm" href="'+LEGAL.priv+'" target="_blank" rel="noopener">Política de privacidade</a><a class="btn sm" href="'+LEGAL.termos+'" target="_blank" rel="noopener">Termos de uso</a>'+
       '<button type="button" class="btn sm" id="pa-export" data-pa="export">Baixar os dados de '+esc(me.nome)+'</button></div>':'');
 }
@@ -1392,9 +1877,9 @@ function paisAct(a,v,t){
   else if(a==="close"){ovl("pais",false);if(!$("rest").hidden){var L=limitToday();if(!L||playedToday()<L)ovl("rest",false);}renderPanel();}
   else if(a==="pick"){usePerfil(v);}
   else if(a==="use"){usePerfil(v);}
-  else if(a==="add"){var n=PROF.list.length+1;PROF.list.push({id:"p"+Date.now().toString(36),nome:"Jogador "+n});PROF.set("mss:profiles",PROF.list);paisRedraw("pa-add");}
+  else if(a==="add"){var n=PROF.list.length+1;PROF.list.push({id:"p"+Date.now().toString(36),nome:"Jogador "+n});PROF.set("mss:profiles",PROF.list);AC.marcar("_familia");paisRedraw("pa-add");}
   else if(a==="del"){if(PA.del!==v){PA.del=v;paisRedraw(t.id);return;}
-    PROF.del("mss:"+v+":");PROF.list=PROF.list.filter(function(q){return q.id!==v;});PROF.set("mss:profiles",PROF.list);PA.del=null;
+    PROF.del("mss:"+v+":");PROF.list=PROF.list.filter(function(q){return q.id!==v;});PROF.set("mss:profiles",PROF.list);AC.apagarPerfil(v);PA.del=null;
     if(v===PROF.cur)usePerfil(PROF.list[0].id);else paisRedraw();}
   else if(a==="export"){var out={perfil:me0(),exportado_em:new Date().toISOString(),dados:{}},pre="mss:"+PROF.cur+":";
     try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf(pre)===0)out.dados[k.slice(pre.length)]=JSON.parse(localStorage.getItem(k));}}catch(e){}
@@ -1403,13 +1888,14 @@ function paisAct(a,v,t){
   else if(a==="limit"){SET.limit=+v;store.set("set",SET);paisRedraw(t.id);}
   else if(a==="extra"){var ex=(SET.extra&&SET.extra.d===dayKey())?SET.extra.m:0;SET.extra={d:dayKey(),m:ex+15};store.set("set",SET);ovl("rest",false);paisRedraw();}
   else if(a==="rate"){SET.rate=+v;RATE=+v;store.set("set",SET);paisRedraw(t.id);}
-  else if(a==="unlock"){GAMES.forEach(function(g){lv(g.id).max=MAXLV;});saveLv();paisRedraw(t.id);t=$("pa-unlock");if(t)t.textContent="Todos os níveis estão abertos";}
+  else if(a==="ano"){TR.inicio=+v;saveTR();paisRedraw(t.id);}
+  else if(a==="unlock"){GAMES.forEach(function(g){lv(g.id).max=MAXLV;});saveLv();TR.all=true;saveTR();paisRedraw(t.id);t=$("pa-unlock");if(t)t.textContent="Todos os níveis estão abertos";}
   else if(a==="reset"){if(!PA.reset){PA.reset=true;paisRedraw(t.id);return;}
-    var nm=PROF.list.filter(function(q){return q.id===PROF.cur;})[0];PROF.del("mss:"+PROF.cur+":");usePerfil(PROF.cur);}
+    PROF.del("mss:"+PROF.cur+":");AC.marcar(PROF.cur);var cur0=PROF.cur;AC.enviarJa().then(function(){usePerfil(cur0);},function(){usePerfil(cur0);});setTimeout(function(){usePerfil(cur0);},2500);}
 }
 document.addEventListener("change",function(ev){var el=ev.target;if(!el||!el.id||el.id.indexOf("pn-")!==0)return;
   var id=el.id.slice(3),q=PROF.list.filter(function(x){return x.id===id;})[0];if(!q)return;
-  q.nome=el.value.replace(/\s+/g," ").trim().slice(0,16)||q.nome;el.value=q.nome;PROF.set("mss:profiles",PROF.list);});
+  q.nome=el.value.replace(/\s+/g," ").trim().slice(0,16)||q.nome;el.value=q.nome;PROF.set("mss:profiles",PROF.list);AC.marcar("_familia");});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape"){if(!$("gate").hidden)paisAct("gclose");else if(!$("pais").hidden)paisAct("close");}});
 document.addEventListener("click",function(ev){
   var a=ev.target&&ev.target.closest&&ev.target.closest("a[data-ext]");if(!a)return;
@@ -1419,7 +1905,7 @@ document.addEventListener("click",function(ev){
 /* ---------- Conta da família e assinatura (só na versão do site; no artefato CONTA fica null) ---------- */
 var CONTA={"url": "https://jxughlhudhnkydnnbocs.supabase.co", "chave": "sb_publishable_0-xklnpDLoYPTKx2JuhYsQ_fKrOxz_n", "checkout": ""}; /* na versão do site: {url, chave, checkout} */
 var AC=(function(){
-  var CONS_VER="2026-11-v1",K_SES="mss:auth",K_AC="mss:acesso";
+  var CONS_VER="2026-11-v2",K_SES="mss:auth",K_AC="mss:acesso";
   var st={passo:"email",email:"",erro:"",msg:"",ocupado:false,depois:null,reenviar:0,apagar:false};
   function sesGet(){return PROF.get(K_SES);}
   function sesSet(s){if(s)PROF.set(K_SES,s);else try{localStorage.removeItem(K_SES);}catch(e){}}
@@ -1452,17 +1938,17 @@ var AC=(function(){
       '<form id="ac-f-email" class="acf"><label for="ac-email">Seu e-mail</label><input type="email" id="ac-email" autocomplete="email" inputmode="email" required value="'+e+'">'+
       '<div class="consent" role="group" aria-label="Autorização do responsável"><p><b>Autorização do responsável</b> (obrigatória)</p>'+
       '<label><input type="checkbox" id="ac-c1" required><span>Tenho 18 anos ou mais e sou responsável pela criança que vai jogar.</span></label>'+
-      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a> e autorizo a criança a usar o jogo, com o progresso salvo só neste aparelho.</span></label></div>'+
+      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a>. Autorizo a criança a usar o jogo e autorizo guardar o progresso dela (apelido, missões, estrelas e construções) na conta da família.</span></label></div>'+
       erro+'<button type="submit" class="btn go" id="ac-send"'+b+'>'+(st.ocupado?"Enviando…":"Receber código por e-mail")+'</button></form>'+
       '<p class="note">Já tem conta? Use o mesmo e-mail para entrar neste aparelho. Você pode cancelar quando quiser.</p>';
     if(st.passo==="codigo")return '<h2>Digite o código</h2>'+msg+
       '<p style="margin:0 0 10px">Enviamos um e-mail para <b>'+e+'</b>. Abra o e-mail <b>neste aparelho</b> e toque no link para entrar, ou digite aqui o código de 6 números, se o e-mail trouxer um. Se não chegar em 1 minuto, olhe a caixa de spam.</p>'+
       '<form id="ac-f-cod" class="gform"><label for="ac-cod" style="position:absolute;left:-9999px">Código</label><input type="text" id="ac-cod" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required><button type="submit" class="btn go" id="ac-ok"'+b+'>Entrar</button></form>'+erro+
       '<div class="nav"><button type="button" class="btn sm" id="ac-re" data-ac="reenviar"'+(st.reenviar>Date.now()?" disabled":"")+'>Mandar outro código</button><button type="button" class="btn sm" id="ac-outro" data-ac="outro">Usar outro e-mail</button></div>';
-    if(st.passo==="consentir")return '<h2>Falta só a autorização</h2><p style="margin:0 0 12px">Você entrou como <b>'+e+'</b>. Antes de liberar o jogo, confirme:</p>'+
+    if(st.passo==="consentir")return '<h2>'+(st.atualizar?'A autorização mudou':'Falta só a autorização')+'</h2><p style="margin:0 0 12px">'+(st.atualizar?'Agora o progresso das crianças fica salvo também na conta da família, para não se perder. Para continuar, confirme a nova autorização (conta: <b>'+e+'</b>):':'Você entrou como <b>'+e+'</b>. Antes de liberar o jogo, confirme:')+'</p>'+
       '<form id="ac-f-cons" class="acf"><div class="consent" role="group" aria-label="Autorização do responsável"><p><b>Autorização do responsável</b> (obrigatória)</p>'+
       '<label><input type="checkbox" id="ac-c1" required><span>Tenho 18 anos ou mais e sou responsável pela criança que vai jogar.</span></label>'+
-      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a> e autorizo a criança a usar o jogo, com o progresso salvo só neste aparelho.</span></label></div>'+
+      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a>. Autorizo a criança a usar o jogo e autorizo guardar o progresso dela (apelido, missões, estrelas e construções) na conta da família.</span></label></div>'+
       erro+'<button type="submit" class="btn go" id="ac-cons-ok"'+b+'>Continuar</button></form><div class="nav" style="margin-top:10px"><button type="button" class="btn sm" id="ac-sair2" data-ac="sair">Sair</button></div>';
     if(st.passo==="pagar"){var a=acGet()||{},tit,txt;
       if(a.assinatura==="atrasada"){tit="O pagamento está pendente";txt="A Kiwify ainda não confirmou o pagamento da assinatura. Quando ele for aprovado, o jogo volta a abrir.";}
@@ -1475,10 +1961,52 @@ var AC=(function(){
     return "";
   }
   function show(){$("conta-body").innerHTML=html();ovl("conta",true);var f=$(st.passo==="email"?"ac-email":st.passo==="codigo"?"ac-cod":"ac-assinar");if(f)try{f.focus();}catch(e){}}
-  function liberar(){ovl("conta",false);var f=st.depois;st.depois=null;if(f)f();}
+  function liberar(){ovl("conta",false);var f=st.depois;st.depois=null;if(!f)return;
+    if(!sesGet()){f();return;}
+    var feito=false,fim=function(rec){if(feito)return;feito=true;if(rec){try{sessionStorage.setItem("mss:sync-reload","1");}catch(e){}location.reload();}else f();};
+    setTimeout(function(){fim(false);},6000);sincronizar().then(fim,function(){fim(false);});}
+  /* ---------- Progresso na conta: cada perfil é uma linha; vale a versão mais nova ---------- */
+  var dirty={},pushT=null,pronto=false,LS0=window.localStorage;
+  function lsGet(k){try{return LS0.getItem(k);}catch(e){return null;}}
+  function lsSet(k,v){try{LS0.setItem(k,v);}catch(e){}}
+  function marcar(pid){if(!CONTA||!pronto||!sesGet())return;lsSet(pid==="_familia"?"mss:_familia_ts":"mss:"+pid+":_ts",String(Date.now()));dirty[pid]=1;clearTimeout(pushT);pushT=setTimeout(subir,4000);}
+  function dadosDe(pid){if(pid==="_familia")return {ts:+lsGet("mss:_familia_ts")||Date.now(),profiles:PROF.list};
+    var pre="mss:"+pid+":",o={};try{for(var i=0;i<LS0.length;i++){var k=LS0.key(i);if(k&&k.indexOf(pre)===0&&k!==pre+"_ts")o[k.slice(pre.length)]=JSON.parse(LS0.getItem(k));}}catch(e){}
+    return {ts:+lsGet(pre+"_ts")||Date.now(),k:o};}
+  function rest(method,q,body,tk,extra){var h={"apikey":CONTA.chave,"Authorization":"Bearer "+tk,"Content-Type":"application/json"};if(extra)for(var x in extra)h[x]=extra[x];
+    var b=body?JSON.stringify(body):undefined;return fetch(CONTA.url+"/rest/v1/progresso"+q,{method:method,headers:h,body:b,keepalive:!!b&&b.length<60000}).then(function(r){if(!r.ok)throw new Error("erro "+r.status);return r.status===204?null:r.json();});}
+  function subir(){var ids=Object.keys(dirty);if(!ids.length||!CONTA)return Promise.resolve();dirty={};
+    return token().then(function(tk){return Promise.all(ids.map(function(pid){
+      return rest("POST","?on_conflict=conta_id,perfil",{perfil:pid,dados:dadosDe(pid),atualizado_em:new Date().toISOString()},tk,{"Prefer":"resolution=merge-duplicates,return=minimal"});}));})
+    .catch(function(){ids.forEach(function(pid){dirty[pid]=1;});});}
+  function apagarPerfil(pid){if(!CONTA||!sesGet())return;delete dirty[pid];token().then(function(tk){return rest("DELETE","?perfil=eq."+encodeURIComponent(pid),null,tk);}).catch(function(){});marcar("_familia");}
+  function limparLocal(){try{for(var i=LS0.length-1;i>=0;i--){var k=LS0.key(i);if(k&&/^mss:(p[^:]*:|profiles$|cur$|_familia_ts$)/.test(k))LS0.removeItem(k);}}catch(e){}}
+  function sincronizar(){var email=(sesGet()||{}).email||st.email,ult=PROF.get("mss:nuvem")||{},trocou=ult.email&&email&&ult.email!==email,rec=false;
+    try{if(sessionStorage.getItem("mss:sync-reload")){sessionStorage.removeItem("mss:sync-reload");rec=null;}}catch(e){}
+    if(trocou){limparLocal();PROF.list=[{id:"p1",nome:"Jogador 1"}];PROF.cur="p1";PROF.set("mss:profiles",PROF.list);PROF.set("mss:cur","p1");}
+    PROF.set("mss:nuvem",{email:email});
+    return token().then(function(tk){return rest("GET","?select=perfil,dados",null,tk);}).then(function(rows){
+      rows=rows||[];var fam=rows.filter(function(x){return x.perfil==="_familia";})[0],famTs=+lsGet("mss:_familia_ts")||0,listaMudou=false,curMudou=false;
+      if(fam&&fam.dados&&fam.dados.profiles){fam.dados.profiles.forEach(function(q){var l=PROF.list.filter(function(x){return x.id===q.id;})[0];
+          if(!l){PROF.list.push({id:q.id,nome:q.nome});listaMudou=true;}else if((fam.dados.ts||0)>famTs&&l.nome!==q.nome){l.nome=q.nome;listaMudou=true;}});
+        if((fam.dados.ts||0)>famTs)lsSet("mss:_familia_ts",String(fam.dados.ts));}
+      rows.forEach(function(rw){if(rw.perfil==="_familia"||!rw.dados)return;var pid=rw.perfil,lts=+lsGet("mss:"+pid+":_ts")||0,rts=rw.dados.ts||0;
+        if(rts>lts){PROF.del("mss:"+pid+":");var K=rw.dados.k||{};Object.keys(K).forEach(function(k){lsSet("mss:"+pid+":"+k,JSON.stringify(K[k]));});lsSet("mss:"+pid+":_ts",String(rts));
+          if(!PROF.list.some(function(x){return x.id===pid;})){PROF.list.push({id:pid,nome:"Jogador "+(PROF.list.length+1)});listaMudou=true;}
+          if(pid===PROF.cur)curMudou=true;}
+        else if(lts>rts)dirty[pid]=1;});
+      PROF.list.forEach(function(q){if(!rows.some(function(x){return x.perfil===q.id;})&&+lsGet("mss:"+q.id+":_ts"))dirty[q.id]=1;});
+      if(listaMudou)PROF.set("mss:profiles",PROF.list);
+      if(!fam||listaMudou)dirty._familia=1;
+      pronto=true;if(Object.keys(dirty).length)setTimeout(subir,1500);
+      if(trocou)return rec!==null;
+      return rec!==null&&(curMudou||listaMudou);});}
+  window.addEventListener("online",function(){if(Object.keys(dirty).length)subir();});
+  document.addEventListener("visibilitychange",function(){if(document.hidden&&Object.keys(dirty).length){clearTimeout(pushT);subir();}});
   function decidir(a){if(a.email){st.email=a.email;var s=sesGet();if(s&&!s.email){s.email=a.email;sesSet(s);}}
     if(!a.conta){if(PROF.get("mss:consent")){PROF.set("mss:consent",null);rpc("iniciar_conta",{versao:CONS_VER}).then(verificar).then(decidir).catch(function(er){st.passo="consentir";st.erro=erroTxt(er);show();});return;}
-      st.passo="consentir";st.erro="";show();return;}
+      st.passo="consentir";st.atualizar=false;st.erro="";show();return;}
+    if(a.consentimento_versao&&a.consentimento_versao!==CONS_VER){st.passo="consentir";st.atualizar=true;st.erro="";show();return;}
     if(a.liberado)liberar();else{st.passo="pagar";show();}}
   function sair(){var s=sesGet();if(s)token().then(function(t){return api("/auth/v1/logout",{},t);}).catch(function(){});
     sesSet(null);acSet(null);st.passo="email";st.erro="";st.msg="";ovl("pais",false);if(!st.depois)st.depois=function(){};show();}
@@ -1542,7 +2070,8 @@ var AC=(function(){
         '<button type="button" class="btn sm" id="pa-sair" data-ac="psair">Sair da conta neste aparelho</button>'+
         '<button type="button" class="btn sm'+(st.apagar?' danger':'')+'" id="pa-apagar" data-ac="papagar">'+(st.apagar?'Confirmar: apagar a conta':'Apagar a conta')+'</button></div>'+
         '<p class="note">Para cancelar a assinatura, use o e-mail da compra na Kiwify. Apagar a conta remove o seu e-mail e o registro da autorização dos nossos servidores; o progresso que fica neste aparelho você apaga em "Níveis e progresso".</p>';},
-    resetConfirm:function(){st.apagar=false;}
+    resetConfirm:function(){st.apagar=false;},
+    marcar:marcar,apagarPerfil:apagarPerfil,enviarJa:function(){clearTimeout(pushT);return subir();}
   };
 })();
 function applyCaps(){stage.classList.toggle("caps",!!state.caps);$("btn-caps").setAttribute("aria-pressed",String(!!state.caps));}
@@ -1559,7 +2088,10 @@ function renderDock(){
     dock.innerHTML=RANKS.map(function(r,i){return '<button type="button" id="rank-'+i+'" data-g="rank" data-v="'+i+'" class="'+(i<=ri?"got":"")+'" aria-current="'+(i===ri)+'" title="'+r[1]+'"><span class="dot ico" style="'+(i<=ri?"":"opacity:.3")+'">★</span>'+r[1]+'</button>';}).join("");return;
   }
   if(state.tab==="jogos"){
-    dock.innerHTML=GAMES.map(function(g){return '<button type="button" id="game-'+g.id+'" data-game="'+g.id+'" aria-current="'+(state.sel===-3&&state.game===g.id)+'"><span class="dot ico'+(g.ico.length>1?" sm":"")+'">'+g.ico+'</span>'+g.nome+'</button>';}).join("");return;
+    var sb=G.ms?G.ms.sub:state.game==="trail"?state.trail:null;
+    dock.innerHTML='<button type="button" id="dk-home" data-g="mhome" aria-current="'+(state.sel===-3&&!state.game)+'"><span class="dot ico">★</span>Início</button>'+
+      [["pt","Português","Aa"],["mt","Matemática","123"]].map(function(x){return '<button type="button" id="dk-'+x[0]+'" data-g="trail" data-v="'+x[0]+'" aria-current="'+(sb===x[0])+'"><span class="dot ico'+(x[2].length>1?" sm":"")+'">'+x[2]+'</span>'+x[1]+'</button>';}).join("")+
+      GAMES.filter(function(g){return g.grp==="e";}).map(function(g){return '<button type="button" id="game-'+g.id+'" data-game="'+g.id+'" aria-current="'+(state.sel===-3&&state.game===g.id&&!G.ms)+'"><span class="dot ico'+(g.ico.length>1?" sm":"")+'">'+g.ico+'</span>'+g.nome+'</button>';}).join("");return;
   }
   if(state.tab==="cmp"){
     dock.innerHTML=CMP.map(function(c,k){
@@ -1644,7 +2176,7 @@ function renderPanel(){
       '<button type="button" class="btn go" id="btn-next" data-go="'+nx.i+'">Próxima parada: '+nx.nome+' →</button></div>'+
       (n===total?'<p class="done">Missão completa! Você visitou todo o Sistema Solar.</p>':'<p class="note">Passaporte espacial: '+n+' de '+total+' lugares visitados.</p>');
   }
-  var ttl=state.sel>=0?BODIES[state.sel].nome:state.sel===-2?"Tamanhos":state.sel===-4?"Mapa":state.sel===-5?"Meu universo":state.sel===-3?(state.game?GAMES.filter(function(g){return g.id===state.game;})[0].nome:"Jogos"):"Central de comando";
+  var ttl=state.sel>=0?BODIES[state.sel].nome:state.sel===-2?"Tamanhos":state.sel===-4?"Mapa":state.sel===-5?"Meu universo":state.sel===-3?gTitle():"Central de comando";
   panel.classList.toggle("min",!!state.min);
   panel.innerHTML='<button type="button" class="pmin" id="btn-min" aria-expanded="'+(!state.min)+'" aria-label="'+(state.min?"Abrir o cartão":"Minimizar o cartão para ver o espaço")+'"><b>'+(state.min?esc(ttl):"")+'</b><span>'+(state.min?"Abrir ▴":"Minimizar ▾")+'</span></button>'+html;voice.speaking=false;wrapWords();vozButton();drawCmp();
 }
@@ -1657,7 +2189,7 @@ function select(i,keepScroll){
   if(myw){if(i===-5&&!wasMy)myw.enter();else if(wasMy&&i!==-5){state.my.mode="build";myw.exit();}}
   if(i!==-5)stage.classList.remove("landing");
   if(i>=0)state.tab=tabOf(BODIES[i]);else if(i===-2)state.tab="cmp";else if(i===-3)state.tab="jogos";else if(i===-4)state.tab="mapa";else if(i===-5)state.tab="meu";else if(state.tab==="cmp"||state.tab==="jogos"||state.tab==="mapa"||state.tab==="meu")state.tab="sistema";
-  if(i>=0){var id=BODIES[i].id;if(state.visited.indexOf(id)<0){state.visited.push(id);store.set("visited",state.visited);}}
+  if(i>=0){var id=BODIES[i].id;if(state.visited.indexOf(id)<0){state.visited.push(id);store.set("visited",state.visited);addStars(1);toast("Lugar novo no passaporte! +1 ★");}if(G.lastVisit!==id){G.lastVisit=id;diaAdd("visita");}}
   renderDock();renderPanel();
   if(!keepScroll)panel.scrollTop=0;
   var cur=dock.querySelector('[aria-current="true"]');
@@ -2096,7 +2628,12 @@ function boot3D(){
       if(t===9&&(i*2+j)%9===0)k=1.18;
       if(t===11&&(i+j*2)%7===0)k=1.2;
       if(t===12&&i%6>=2&&i%6<=3&&j%6>=2&&j%6<=3)k=2;
-      d[o]=Math.min(255,rgb[0]*k);d[o+1]=Math.min(255,rgb[1]*k);d[o+2]=Math.min(255,rgb[2]*k);d[o+3]=a;}
+      if(t===15&&(i+j)%7===0)k=1.35;
+      if(t===16){if(edge)k=1.25;else if((i===j||i+j===15))k=1.4;}
+      if(t===17&&r()<.18)k*=.6;
+      if(t===19&&(i*3+j)%11===0)k=1.3;
+      var c3=rgb;if(t===18){var RB=[[255,90,90],[255,170,60],[255,225,70],[110,220,122],[60,140,255],[180,140,255]];c3=RB[Math.floor(j/16*6)];}
+      d[o]=Math.min(255,c3[0]*k);d[o+1]=Math.min(255,c3[1]*k);d[o+2]=Math.min(255,c3[2]*k);d[o+3]=a;}
     x.putImageData(img,0,0);return c;}
   function buildMats(look){
     var G=groundOf(look);
@@ -2151,13 +2688,44 @@ function boot3D(){
       var dr=new T.Mesh(new T.BoxGeometry(.55,.8,.15),mat(0x2f57b8,0x0c1c4a));dr.position.set(0,.4,1.3);g.add(dr);
       var an=new T.Mesh(new T.CylinderGeometry(.03,.03,.9,6),mat(0xc9d2e8));an.position.y=1.75;g.add(an);
       var lp=new T.Mesh(new T.SphereGeometry(.1,8,6),new T.MeshBasicMaterial({color:0xffb938}));lp.position.y=2.25;g.add(lp);}
+    else if(LOJA3D[kind]){LOJA3D[kind](g);}
     else if(kind==="foguete"){var rk=makeRocket();rk.userData.flame.visible=false;rk.rotation.x=-Math.PI/2;rk.scale.setScalar(.75);rk.position.y=.8;g.add(rk);}
     else{var cA=r?[0x57c46a,0xff7fb0,0x8fe3ff,0xb48cff,0xffd23a][Math.floor(r()*5)]:0xff7fb0;
       var st=new T.Mesh(new T.CylinderGeometry(.05,.08,.7,6),mat(0x3f9a4f,0x0c2a12));st.position.y=.35;g.add(st);
       [[0,.85,0,.32],[.25,.62,0,.2],[-.22,.6,.1,.18]].forEach(function(q,k){var lf=new T.Mesh(new T.SphereGeometry(q[3],10,8),mat(k?0x57c46a:cA,k?0x10301a:cA));lf.position.set(q[0],q[1],q[2]);g.add(lf);});}
     return g;}
   function buildObjs(){while(LS.objG.children.length)LS.objG.remove(LS.objG.children[0]);
-    (LS.p.vobj||[]).forEach(function(o,i){var m=makeVObj(o[3]);m.position.set(o[0]+.5,o[1],o[2]+.5);m.rotation.y=o[4]||0;m.userData.vi=i;LS.objG.add(m);});}
+    (LS.p.vobj||[]).forEach(function(o,i){var m=makeVObj(o[3]);m.position.set(o[0]+.5,o[1],o[2]+.5);m.rotation.y=o[4]||0;m.userData.vi=i;
+      var it=lojaItem(o[3]);if(it&&it.cat==="animais")m.userData.anim={y:m.position.y,r:m.rotation.y,ph:i*1.7};LS.objG.add(m);});}
+  /* animais e objetos da loja, feitos de formas simples */
+  function bx(g,w,h,d,c,x,y,z,e){var m=new T.Mesh(new T.BoxGeometry(w,h,d),mat(c,e));m.position.set(x,y,z);g.add(m);return m;}
+  function sp(g,r,c,x,y,z,sx,sy,sz,e){var m=new T.Mesh(new T.SphereGeometry(r,16,12),mat(c,e));m.position.set(x,y,z);if(sx)m.scale.set(sx,sy,sz);g.add(m);return m;}
+  function cy(g,r1,r2,h,c,x,y,z,e){var m=new T.Mesh(new T.CylinderGeometry(r1,r2,h,12),mat(c,e));m.position.set(x,y,z);g.add(m);return m;}
+  function eyes(g,y,z,dx,c){[-1,1].forEach(function(s){sp(g,.06,c||0x111111,s*dx,y,z);});}
+  function legs4(g,c,w,d,h){[[-w,-d],[w,-d],[-w,d],[w,d]].forEach(function(q){cy(g,.07,.07,h,c,q[0],h/2,q[1]);});}
+  var LOJA3D={
+    cachorro:function(g){var c=0xb07a45;legs4(g,c,.25,.14,.35);bx(g,.75,.35,.4,c,0,.5,0);bx(g,.36,.34,.34,c,0,.78,.4);bx(g,.2,.14,.16,0x8a5a2b,0,.72,.62);sp(g,.05,0x111111,0,.76,.71);
+      bx(g,.1,.22,.06,0x6d4524,-.16,.86,.38);bx(g,.1,.22,.06,0x6d4524,.16,.86,.38);eyes(g,.86,.58,.09);var t=cy(g,.04,.04,.35,c,0,.72,-.3);t.rotation.x=-.8;},
+    gato:function(g){var c=0xf0a050;legs4(g,c,.18,.12,.28);bx(g,.55,.3,.32,c,0,.42,0);sp(g,.2,c,0,.68,.3);[-1,1].forEach(function(s){var e=new T.Mesh(new T.ConeGeometry(.07,.15,4),mat(c));e.position.set(s*.1,.88,.3);g.add(e);});
+      eyes(g,.71,.48,.07,0x2a8a3a);var t=cy(g,.035,.035,.5,c,0,.68,-.3);t.rotation.x=-.3;},
+    coelho:function(g){var c=0xf4f2ee;sp(g,.3,c,0,.32,0,1,.9,1.1);sp(g,.2,c,0,.66,.2);bx(g,.07,.36,.05,c,-.08,.98,.18);bx(g,.07,.36,.05,c,.08,.98,.18);sp(g,.03,0xff8fb0,0,.64,.4);eyes(g,.7,.37,.08);sp(g,.09,0xffffff,0,.32,-.32);},
+    pinguim:function(g){sp(g,.3,0x1d1f27,0,.42,0,1,1.45,.9);sp(g,.24,0xf7f7f2,0,.4,.1,1,1.3,.8);sp(g,.2,0x1d1f27,0,.92,0);var b=new T.Mesh(new T.ConeGeometry(.05,.16,8),mat(0xffa21f));b.rotation.x=Math.PI/2;b.position.set(0,.9,.24);g.add(b);
+      eyes(g,.98,.16,.08,0xffffff);bx(g,.14,.04,.2,0xffa21f,-.1,.02,.08);bx(g,.14,.04,.2,0xffa21f,.1,.02,.08);},
+    tartaruga:function(g){var sh=new T.Mesh(new T.SphereGeometry(.38,18,10,0,6.2832,0,Math.PI/2),mat(0x3f8a3f,0x0c200c));sh.position.y=.12;sh.scale.set(1,.8,1.2);g.add(sh);
+      cy(g,.4,.4,.08,0x7cc06a,0,.12,0);sp(g,.13,0x8fd07a,0,.22,.5);eyes(g,.27,.6,.06);legs4(g,0x8fd07a,.25,.28,.16);},
+    dino:function(g){var c=0x4fb36a;legs4(g,c,.2,.18,.45);bx(g,.55,.5,.85,c,0,.65,0);var n=cy(g,.12,.16,.7,c,0,1.15,.4);n.rotation.x=.5;bx(g,.28,.24,.4,c,0,1.48,.62);eyes(g,1.55,.82,.09);
+      var t=new T.Mesh(new T.ConeGeometry(.2,.9,10),mat(c));t.rotation.x=-Math.PI/2-.2;t.position.set(0,.6,-.8);g.add(t);[0,1,2].forEach(function(i){var sp2=new T.Mesh(new T.ConeGeometry(.07,.16,4),mat(0xffb938));sp2.position.set(0,.98,.25-i*.25);g.add(sp2);});},
+    alien:function(g){var c=0x7ce870;cy(g,.18,.22,.6,c,0,.32,0);sp(g,.32,c,0,.92,0,1,.85,1);[-1,1].forEach(function(s){sp(g,.1,0x111111,s*.13,.95,.26,1,1.4,.6);var a=cy(g,.015,.015,.3,c,s*.12,1.28,0);a.rotation.z=-s*.4;sp(g,.05,0xff6fb5,s*.18,1.42,0,1,1,1,0xff6fb5);});},
+    robo:function(g){var c=0xc9ced8;bx(g,.12,.35,.12,c,-.12,.18,0);bx(g,.12,.35,.12,c,.12,.18,0);bx(g,.5,.45,.32,c,0,.6,0);bx(g,.36,.3,.3,c,0,1.02,0);bx(g,.26,.08,.04,0x3fd0ff,0,1.05,.16,0x3fd0ff);
+      bx(g,.1,.35,.1,c,-.32,.6,0);bx(g,.1,.35,.1,c,.32,.6,0);cy(g,.015,.015,.22,c,0,1.28,0);sp(g,.05,0xff4d4d,0,1.4,0,1,1,1,0xff4d4d);bx(g,.2,.12,.02,0xffb938,0,.66,.17,0x553300);},
+    arvore:function(g){cy(g,.12,.16,1.2,0x7a5534,0,.6,0);sp(g,.6,0x3f9a4f,0,1.5,0);sp(g,.45,0x4fb35c,.35,1.25,.2);sp(g,.42,0x358a45,-.3,1.3,-.15);},
+    casa:function(g){bx(g,1.6,1.1,1.4,0xf2e2c4,0,.55,0);var rf=new T.Mesh(new T.ConeGeometry(1.25,.8,4),mat(0xc0392b));rf.rotation.y=Math.PI/4;rf.position.y=1.5;rf.scale.set(1,1,.9);g.add(rf);
+      bx(g,.35,.6,.05,0x7a5534,0,.3,.71);bx(g,.3,.3,.05,0x8fe3ff,-.5,.65,.71,0x203040);bx(g,.3,.3,.05,0x8fe3ff,.5,.65,.71,0x203040);},
+    lampiao:function(g){cy(g,.05,.07,2,0x30333c,0,1,0);sp(g,.2,0xffe27a,0,2.1,0,1,1,1,0xffd23a);},
+    telescopio:function(g){[0,2.09,4.19].forEach(function(a){var l=cy(g,.025,.025,.9,0x30333c,Math.sin(a)*.2,.42,Math.cos(a)*.2);l.rotation.z=Math.sin(a)*.3;l.rotation.x=-Math.cos(a)*.3;});
+      var tb=cy(g,.09,.13,1,0xf2f4fa,0,1.05,.1);tb.rotation.x=-.9;cy(g,.14,.14,.06,0x2f57b8,0,1.38,.48).rotation.x=-.9;},
+    castelo:function(g){var c=0xc9c2b4;bx(g,1.6,1,1.6,c,0,.5,0);[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(function(q){cy(g,.28,.3,1.6,c,q[0]*.8,.8,q[1]*.8);var cn=new T.Mesh(new T.ConeGeometry(.34,.55,10),mat(0x2f57b8));cn.position.set(q[0]*.8,1.88,q[1]*.8);g.add(cn);});
+      bx(g,.4,.6,.05,0x6d4524,0,.3,.81);var fl=bx(g,.3,.2,.02,0xff5f8f,.8,2.35,.8);cy(g,.015,.015,.4,0x30333c,.66,2.25,.8);}};
   function genDeco(p){var r=rng(p.seed+23);LS.deco={};
     for(var i=0;i<28;i++){var x=2+Math.floor(r()*60),z=2+Math.floor(r()*60),h=topY(x,z),key=IDX(x,h+1,z),sc=.55+r()*.4,ry=r()*6.28;
       if(h<0||LS.grid[IDX(x,h,z)]===11||LS.grid[key])continue;
@@ -2198,12 +2766,12 @@ function boot3D(){
   function say(txt,speak){var el=$("gh-msg");if(!el)return;el.textContent=txt;el.classList.add("on");clearTimeout(LS.msgT);
     LS.msgT=setTimeout(function(){el.classList.remove("on");},Math.max(2600,txt.length*75));if(speak)speakFree(txt);}
   function buildPal(){var el=$("gh-pal");if(!el)return;
-    el.innerHTML=PALB.map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false"><img alt="" src="'+LS.urls[t]+'">'+BLK[t].n+'</button>';}).join("")+
-      VOBJ.map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false"><span class="oi" aria-hidden="true">'+o[2]+'</span>'+o[1]+'</button>';}).join("");}
+    el.innerHTML=palbAll().map(function(t){return '<button type="button" class="pb" id="pb-'+t+'" data-gh="blk" data-v="'+t+'" aria-pressed="false"><img alt="" src="'+LS.urls[t]+'">'+BLK[t].n+'</button>';}).join("")+
+      vobjAll().map(function(o){return '<button type="button" class="pb" id="pb-'+o[0]+'" data-gh="blk" data-v="'+o[0]+'" aria-pressed="false"><span class="oi" aria-hidden="true">'+o[2]+'</span>'+o[1]+'</button>';}).join("");}
   function toolUI(){["explorar","colocar","tirar"].forEach(function(k){var b=$("gh-"+k);if(b)b.setAttribute("aria-pressed",String(LS.tool===k));});
     var pb=document.querySelectorAll("#gh-pal .pb");for(var i=0;i<pb.length;i++)pb[i].setAttribute("aria-pressed",String(LS.tool==="colocar"&&pb[i].dataset.v===String(LS.block)));}
   function landTool(v){LS.tool=v;toolUI();say({explorar:"Explorar: ande e procure as estrelas.",colocar:"Colocar: escolha um bloco e toque onde quer pôr.",tirar:"Tirar: toque no bloco que quer tirar."}[v],true);}
-  function landPick(v){var num=/^\d+$/.test(v);LS.block=num?+v:v;LS.tool="colocar";toolUI();say(num?BLK[+v].n:VOBJ.filter(function(o){return o[0]===v;})[0][1],true);}
+  function landPick(v){var num=/^\d+$/.test(v);LS.block=num?+v:v;LS.tool="colocar";toolUI();var vo=num?null:vobjAll().filter(function(o){return o[0]===v;})[0];say(num?BLK[+v].n:(vo?vo[1]:v),true);}
   function landStart(i){
     var q=MY.pl[i];if(!q)return;var p=q.p;
     if(p.seed==null)p.seed=Math.floor(Math.random()*1e6);if(!p.vobj)p.vobj=[];if(!p.got)p.got=[];saveMeu();
@@ -2265,7 +2833,7 @@ function boot3D(){
       LS.p.vobj.push([px,py,pz,LS.block,+LS.camYaw.toFixed(2)]);buildObjs();saveMeu();sparkle(px+.5,py+.4,pz+.5);return;}
     var P=LS.pos;if(px+1>P.x-.3&&px<P.x+.3&&pz+1>P.z-.3&&pz<P.z+.3&&py+1>P.y&&py<P.y+1.7){say("Você está no caminho!",true);return;}
     if(Object.keys(LS.edits).length>=6000){say("Seu planeta está cheio de construções!",true);return;}
-    setBlock(px,py,pz,LS.block);sparkle(px+.5,py+.5,pz+.5);
+    setBlock(px,py,pz,LS.block);sparkle(px+.5,py+.5,pz+.5);diaAdd("blocos");
   }
   function landTick(dt,now){
     var k=MY.keys,mx=JOY.x,mz=JOY.y,t=now/1000,P=LS.pos,A=LS.A,h=LS.holder,i;
@@ -2303,8 +2871,10 @@ function boot3D(){
     /* estrelas escondidas */
     for(i=0;i<LS.stars.length;i++){var s=LS.stars[i];if(!s.m.visible)continue;s.core.rotation.y+=dt*2;s.m.position.y=s.y+Math.sin(t*2+i)*.15;
       if(LS.landed&&Math.abs(s.m.position.x-P.x)<1.1&&Math.abs(s.m.position.z-P.z)<1.1&&Math.abs(s.m.position.y-(P.y+.9))<1.7){
-        s.m.visible=false;LS.p.got.push(s.i);saveMeu();addStars(1);updStars();sparkle(s.m.position.x,s.m.position.y,s.m.position.z);
+        s.m.visible=false;LS.p.got.push(s.i);saveMeu();addStars(1);diaAdd("estrela");updStars();sparkle(s.m.position.x,s.m.position.y,s.m.position.z);
         var got=LS.p.got.length;if(got>=5){addStars(2);say("Você achou todas as estrelas deste planeta!",true);}else say("Você achou uma estrela! "+(5-got===1?"Falta 1.":"Faltam "+(5-got)+"."),true);}}
+    /* animais da loja: respiram e olham em volta */
+    for(i=0;i<LS.objG.children.length;i++){var an=LS.objG.children[i],ud=an.userData.anim;if(!ud)continue;an.position.y=ud.y+Math.abs(Math.sin(t*2.4+ud.ph))*.06;an.rotation.y=ud.r+Math.sin(t*.6+ud.ph)*.7;}
     /* pedacinhos e brilhos */
     for(i=LS.fx.length-1;i>=0;i--){var f=LS.fx[i];f.v.y-=9.8*dt;f.m.position.addScaledVector(f.v,dt);f.life-=dt;if(f.fade)f.m.material.opacity=Math.max(0,f.life*2);
       if(f.life<=0){LS.scene.remove(f.m);if(f.fade)f.m.material.dispose();LS.fx.splice(i,1);}}
