@@ -1456,9 +1456,14 @@ var AC=(function(){
       erro+'<button type="submit" class="btn go" id="ac-send"'+b+'>'+(st.ocupado?"Enviando…":"Receber código por e-mail")+'</button></form>'+
       '<p class="note">Já tem conta? Use o mesmo e-mail para entrar neste aparelho. Você pode cancelar quando quiser.</p>';
     if(st.passo==="codigo")return '<h2>Digite o código</h2>'+msg+
-      '<p style="margin:0 0 10px">Enviamos um código para <b>'+e+'</b>. Se não chegar em 1 minuto, olhe a caixa de spam.</p>'+
+      '<p style="margin:0 0 10px">Enviamos um e-mail para <b>'+e+'</b>. Abra o e-mail <b>neste aparelho</b> e toque no link para entrar, ou digite aqui o código de 6 números, se o e-mail trouxer um. Se não chegar em 1 minuto, olhe a caixa de spam.</p>'+
       '<form id="ac-f-cod" class="gform"><label for="ac-cod" style="position:absolute;left:-9999px">Código</label><input type="text" id="ac-cod" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required><button type="submit" class="btn go" id="ac-ok"'+b+'>Entrar</button></form>'+erro+
       '<div class="nav"><button type="button" class="btn sm" id="ac-re" data-ac="reenviar"'+(st.reenviar>Date.now()?" disabled":"")+'>Mandar outro código</button><button type="button" class="btn sm" id="ac-outro" data-ac="outro">Usar outro e-mail</button></div>';
+    if(st.passo==="consentir")return '<h2>Falta só a autorização</h2><p style="margin:0 0 12px">Você entrou como <b>'+e+'</b>. Antes de liberar o jogo, confirme:</p>'+
+      '<form id="ac-f-cons" class="acf"><div class="consent" role="group" aria-label="Autorização do responsável"><p><b>Autorização do responsável</b> (obrigatória)</p>'+
+      '<label><input type="checkbox" id="ac-c1" required><span>Tenho 18 anos ou mais e sou responsável pela criança que vai jogar.</span></label>'+
+      '<label><input type="checkbox" id="ac-c2" required><span>Li a <a href="'+L.priv+'" target="_blank" rel="noopener">Política de privacidade</a> e os <a href="'+L.termos+'" target="_blank" rel="noopener">Termos de uso</a> e autorizo a criança a usar o jogo, com o progresso salvo só neste aparelho.</span></label></div>'+
+      erro+'<button type="submit" class="btn go" id="ac-cons-ok"'+b+'>Continuar</button></form><div class="nav" style="margin-top:10px"><button type="button" class="btn sm" id="ac-sair2" data-ac="sair">Sair</button></div>';
     if(st.passo==="pagar"){var a=acGet()||{},tit,txt;
       if(a.assinatura==="atrasada"){tit="O pagamento está pendente";txt="A Kiwify ainda não confirmou o pagamento da assinatura. Quando ele for aprovado, o jogo volta a abrir.";}
       else if(a.assinatura==="cancelada"||a.assinatura==="reembolsada"){tit="A assinatura terminou";txt="Para continuar a missão, assine de novo com o e-mail "+(a.email||"")+".";}
@@ -1471,7 +1476,9 @@ var AC=(function(){
   }
   function show(){$("conta-body").innerHTML=html();ovl("conta",true);var f=$(st.passo==="email"?"ac-email":st.passo==="codigo"?"ac-cod":"ac-assinar");if(f)try{f.focus();}catch(e){}}
   function liberar(){ovl("conta",false);var f=st.depois;st.depois=null;if(f)f();}
-  function decidir(a){if(!a.conta){st.passo="email";st.erro="Confirme a autorização do responsável para continuar.";show();return;}
+  function decidir(a){if(a.email){st.email=a.email;var s=sesGet();if(s&&!s.email){s.email=a.email;sesSet(s);}}
+    if(!a.conta){if(PROF.get("mss:consent")){PROF.set("mss:consent",null);rpc("iniciar_conta",{versao:CONS_VER}).then(verificar).then(decidir).catch(function(er){st.passo="consentir";st.erro=erroTxt(er);show();});return;}
+      st.passo="consentir";st.erro="";show();return;}
     if(a.liberado)liberar();else{st.passo="pagar";show();}}
   function sair(){var s=sesGet();if(s)token().then(function(t){return api("/auth/v1/logout",{},t);}).catch(function(){});
     sesSet(null);acSet(null);st.passo="email";st.erro="";st.msg="";ovl("pais",false);if(!st.depois)st.depois=function(){};show();}
@@ -1487,11 +1494,13 @@ var AC=(function(){
     if(f.id==="ac-f-email"){var v=($("ac-email").value||"").trim().toLowerCase();st.email=v;
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){st.erro="Confira o e-mail.";show();return;}
       if(!$("ac-c1").checked||!$("ac-c2").checked){st.erro="Marque as duas caixas da autorização para continuar.";show();$("ac-c1").checked=false;return;}
-      st.consent=true;enviar();}
+      st.consent=true;PROF.set("mss:consent",Date.now());enviar();}
+    else if(f.id==="ac-f-cons"){if(!$("ac-c1").checked||!$("ac-c2").checked)return;st.ocupado=true;st.erro="";show();
+      rpc("iniciar_conta",{versao:CONS_VER}).then(verificar).then(function(a){st.ocupado=false;decidir(a);}).catch(function(er){st.ocupado=false;st.erro=erroTxt(er);show();});}
     else if(f.id==="ac-f-cod"){var c=($("ac-cod").value||"").replace(/\D/g,"");if(c.length<6){st.erro="O código tem 6 números.";show();return;}
       st.ocupado=true;st.erro="";show();
       api("/auth/v1/verify",{type:"email",email:st.email,token:c}).then(function(j){guardar(j);return rpc("iniciar_conta",{versao:CONS_VER});})
-      .then(verificar).then(function(a){st.ocupado=false;decidir(a);})
+      .then(verificar).then(function(a){st.ocupado=false;PROF.set("mss:consent",null);decidir(a);})
       .catch(function(er){st.ocupado=false;st.erro=erroTxt(er);show();});}
   });
   document.addEventListener("click",function(ev){var t=ev.target&&ev.target.closest&&ev.target.closest("[data-ac]");if(!t||t.disabled)return;var a=t.dataset.ac;
@@ -1511,6 +1520,11 @@ var AC=(function(){
 
   return {
     boot:function(next){if(!CONTA){next();return;}st.depois=next;
+      var hs=location.hash||"";
+      if(/access_token=|error_description=/.test(hs)){var q={};hs.slice(1).split("&").forEach(function(kv){var i=kv.indexOf("=");if(i>0)q[kv.slice(0,i)]=decodeURIComponent(kv.slice(i+1).replace(/\+/g," "));});
+        try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+        if(q.access_token){sesSet(null);acSet(null);guardar({access_token:q.access_token,refresh_token:q.refresh_token,expires_in:+q.expires_in||3600,user:null});}
+        else{st.passo="email";st.erro="O link do e-mail venceu ou já foi usado. Peça um novo.";show();return;}}
       var s=sesGet();if(!s){st.passo="email";show();return;}
       st.email=s.email||"";var cache=acGet();
       if(liberadoOffline(cache)){liberar();verificar().then(function(x){if(!x.liberado){st.passo="pagar";st.depois=function(){};show();}}).catch(function(){});return;}
