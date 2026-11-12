@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__ · Missão Sistema Solar</title>
+<meta name="theme-color" content="#060a1a">
+<link rel="icon" href="/icons/icon-192.png" type="image/png">
+<style>
+@font-face{font-family:"Fredoka";font-weight:600;font-display:swap;src:url(/fonts/fredoka-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Fredoka";font-weight:700;font-display:swap;src:url(/fonts/fredoka-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-display:swap;src:url(/fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-display:swap;src:url(/fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+:root{
+  /* Página de leitura: uma coluna de texto sobre o mesmo fundo escuro do jogo. */
+  color-scheme:dark;
+  --space:#060a1a;--panel:#10173a;--ink:#f5f0e3;--muted:#b3bbd8;--sun:#ffb938;--ice:#8fe3ff;--line:rgba(255,255,255,.16);
+  --display:"Fredoka","Trebuchet MS","Segoe UI",sans-serif;--body:"Atkinson Hyperlegible","Verdana","Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--space);color:var(--ink);font:17px/1.6 var(--body)}
+main{max-width:46rem;margin:0 auto;padding:28px 18px 64px}
+a{color:var(--ice)}
+a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.back{display:inline-block;font:600 15px/1 var(--display);color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px;margin-bottom:22px}
+h1{font:700 34px/1.1 var(--display);margin:0 0 6px;text-wrap:balance}
+h1 span{color:var(--sun)}
+h2{font:600 22px/1.2 var(--display);margin:34px 0 8px;color:var(--ice);text-wrap:balance}
+p,li{max-width:65ch}
+ul{padding-left:1.2em}
+li{margin:4px 0}
+.meta{color:var(--muted);margin:0 0 20px}
+.draft{background:rgba(255,185,56,.12);border:1px solid var(--sun);border-radius:14px;padding:12px 16px;margin:0 0 22px}
+.kids{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:18px 0}
+.kids h2{margin-top:0;color:var(--sun)}
+.fill{background:rgba(143,227,255,.14);border-radius:6px;padding:0 4px}
+footer{margin-top:44px;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="/">← Voltar ao jogo</a>
+__BODY__
+<footer>Missão Sistema Solar · <a href="/privacidade">Política de privacidade</a> · <a href="/termos">Termos de uso</a></footer>
+</main>
+</body>
+</html>
