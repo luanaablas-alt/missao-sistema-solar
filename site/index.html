@@ -340,6 +340,8 @@ a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .ghsheet-body{overflow:auto;padding:12px 14px}
 .lockp{display:flex;align-items:center;gap:10px;border:1px dashed var(--line);border-radius:14px;padding:10px 12px;margin:8px 0 4px;background:rgba(255,255,255,.04)}
 .lockp span{font-size:22px}.lockp p{margin:0;font-size:15px}
+.vozes{display:grid;gap:6px}.vozb{text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink);font:600 15px/1.2 var(--body);cursor:pointer}
+.vozb[aria-pressed="true"]{border-color:var(--sun);background:rgba(255,185,56,.14)}.vozb small{color:var(--muted);font-weight:400}
 .acf label[for]{display:block;font-weight:700;margin:0 0 6px}
 .acf input[type=email]{width:100%;font:600 18px/1.2 var(--body,inherit);color:var(--ink);background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 12px}
 .consent{border:2px solid var(--sun);border-radius:14px;padding:12px;margin:0 0 10px;background:rgba(255,200,60,.07)}
@@ -642,10 +644,20 @@ var FALA={"kg":"quilos","km":"quilômetros","betelgeuse":"Betelgêuze","rigel":"
   "centauri":"Centáuri","mintaka":"Mintáca","alnilam":"Alnilã","alnitak":"Alnitáqui","everest":"Éverest","órion":"Órion","marte":"Marte"};
 function falar(tok){var m=/^([^.,;:!?]+)([.,;:!?]*)$/.exec(tok);if(!m)return tok;var k=m[1].toLowerCase();return FALA.hasOwnProperty(k)?FALA[k]+m[2]:tok;}
 var ptVoice=null;
+/* escolhe a voz brasileira mais natural do aparelho; a de Portugal só se não houver nenhuma do Brasil */
+function vozesBR(){var vs=[];try{vs=window.speechSynthesis.getVoices()||[];}catch(e){}
+  return vs.filter(function(v){return /^pt[-_]BR/i.test(v.lang)||/brasil|brazil/i.test(v.name);});}
+function vozNota(v){var n=v.name,s=0;
+  if(/natural|neural|online/i.test(n))s+=60;if(/google/i.test(n))s+=45;if(/premium|enhanced|aprimorad|melhorad|siri/i.test(n))s+=40;
+  if(/luciana|francisca|thalita|vit[oó]ria|fernanda|leila|leticia|let[ií]cia|camila|maria/i.test(n))s+=15;if(/compact|eloquence|espeak|robot/i.test(n))s-=40;
+  if(/joana|catarina|portugal|pt-pt/i.test(n))s-=200;if(v.localService)s+=2;return s;}
+function vozDev(){try{return localStorage.getItem("mss:voz-aparelho")||"";}catch(e){return "";}}
 function pickVoice(){
   var vs=[];try{vs=window.speechSynthesis.getVoices()||[];}catch(e){}
-  var br=vs.filter(function(v){return /^pt[-_]BR/i.test(v.lang);}),pt=vs.filter(function(v){return /^pt/i.test(v.lang);});
-  ptVoice=br.filter(function(v){return v.localService;})[0]||br[0]||pt[0]||null;return ptVoice;
+  var br=vozesBR(),pref=vozDev(),esc=pref&&br.filter(function(v){return v.name===pref;})[0];
+  if(esc){ptVoice=esc;return ptVoice;}
+  br.sort(function(a,b){return vozNota(b)-vozNota(a);});
+  ptVoice=br[0]||vs.filter(function(v){return /^pt/i.test(v.lang);})[0]||null;return ptVoice;
 }
 if(voice.kind==="web"){pickVoice();try{window.speechSynthesis.addEventListener("voiceschanged",pickVoice);}catch(e){}}
 var ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9.5v5h3.6l4.9 4.2V5.3L6.6 9.5H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15 9a4.2 4.2 0 0 1 0 6M17.6 6.2a8 8 0 0 1 0 11.6"/></svg>';
@@ -863,7 +875,7 @@ function speakPanel(){
   }else{
     var pt=ptVoice||pickVoice();
     lines.forEach(function(l,i){
-      var u=new SpeechSynthesisUtterance(l.text);u.lang=pt?pt.lang:"pt-BR";u.rate=RATE;if(pt)u.voice=pt;
+      var u=new SpeechSynthesisUtterance(l.text);u.lang="pt-BR";u.rate=RATE;u.pitch=1;if(pt)u.voice=pt;
       u.onstart=function(){if(tok===voice.token)startLine(l.id);};
       u.onboundary=function(e){
         if(tok!==voice.token||(e.name&&e.name!=="word"))return;
@@ -892,7 +904,7 @@ if(window.claude&&typeof window.claude.use==="function"){
 function speakFree(text){
   if(!voice.kind)return;stopVoice();++voice.token;
   if(voice.kind==="claude"){try{var pr=voice.t.speak([{text:text,language:"pt-BR",rate:RATE}],{language:"pt-BR",rate:RATE});if(pr&&pr.catch)pr.catch(function(){});}catch(e){}}
-  else{var pt=ptVoice||pickVoice(),u=new SpeechSynthesisUtterance(text);u.lang=pt?pt.lang:"pt-BR";u.rate=RATE;if(pt)u.voice=pt;try{window.speechSynthesis.speak(u);}catch(e){}}
+  else{var pt=ptVoice||pickVoice(),u=new SpeechSynthesisUtterance(text);u.lang="pt-BR";u.rate=RATE;u.pitch=1;if(pt)u.voice=pt;try{window.speechSynthesis.speak(u);}catch(e){}}
   buddy(/^(Ainda não|Essa |Esse |Aí está|Procure)/.test(text)?"oops":"talk",Math.max(1000,text.length*80));
 }
 
@@ -1944,7 +1956,7 @@ function paisHtml(){
     '<h3>Limite de tempo por dia</h3><div class="seg" role="group" aria-label="Limite de tempo por dia" style="flex-wrap:wrap">'+lim.map(function(o){return '<button type="button" id="lim-'+o[0]+'" data-pa="limit" data-v="'+o[0]+'" aria-pressed="'+((SET.limit||0)===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
     '<p class="note">Quando o tempo acaba, o astronauta avisa que a missão do dia terminou. Só um adulto consegue liberar mais tempo.</p>'+
     (SET.limit&&playedToday()>=limitToday()?'<p style="margin:10px 0 0"><button type="button" class="btn sm" id="pa-extra" data-pa="extra">Liberar mais 15 minutos hoje</button></p>':'')+
-    '<h3>Voz</h3><div class="seg" role="group" aria-label="Velocidade da voz">'+[[.8,"Devagar"],[1,"Normal"]].map(function(o){return '<button type="button" id="rate-'+(o[0]*10)+'" data-pa="rate" data-v="'+o[0]+'" aria-pressed="'+(RATE===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
+    vozPais()+'<div class="seg" role="group" aria-label="Velocidade da voz" style="margin-top:8px">'+[[.8,"Devagar"],[1,"Normal"]].map(function(o){return '<button type="button" id="rate-'+(o[0]*10)+'" data-pa="rate" data-v="'+o[0]+'" aria-pressed="'+(RATE===o[0])+'">'+o[1]+'</button>';}).join("")+'</div>'+
     '<h3>Níveis e progresso</h3><div class="nav"><button type="button" class="btn sm" id="pa-unlock" data-pa="unlock">Abrir todas as missões e níveis</button>'+
       '<button type="button" class="btn sm'+(PA.reset?' danger':'')+'" id="pa-reset" data-pa="reset">'+(PA.reset?'Confirmar: apagar o progresso de '+esc(me.nome):'Apagar o progresso')+'</button></div>'+
     '<h3>Loja e estrelas</h3><p class="note" style="margin:0 0 10px">As estrelas são só pontos do jogo: são ganhas jogando e não podem ser compradas com dinheiro. A loja não tem caixa surpresa nem itens sorteados. '+esc(me.nome)+' tem '+stTxt(saldo())+' para gastar e já ganhou '+stTxt(G.stars)+' ao todo.</p>'+
@@ -1955,6 +1967,16 @@ function paisHtml(){
 function me0(){return PROF.list.filter(function(q){return q.id===PROF.cur;})[0]||PROF.list[0];}
 function openPais(){PA.del=null;PA.reset=false;AC.resetConfirm();stopVoice();$("pais-body").innerHTML=paisHtml();ovl("pais",true);}
 function paisRedraw(focusId){var el=$("pais-body"),sc=el.parentNode.scrollTop;el.innerHTML=paisHtml();el.parentNode.scrollTop=sc;var f=focusId&&$(focusId);if(f)try{f.focus({preventScroll:true});}catch(e){}}
+function vozPais(){
+  if(voice.kind!=="web")return '<h3>Voz</h3>';
+  var br=vozesBR().sort(function(a,b){return vozNota(b)-vozNota(a);}),cur=ptVoice||pickVoice(),o='<h3>Voz deste aparelho</h3>';
+  if(!br.length)return o+'<p class="note" style="margin:0 0 8px">Este aparelho não tem uma voz do Brasil instalada, por isso a voz pode sair com sotaque de Portugal ou robotizada. Para instalar:</p>'+
+    '<ul class="facts" style="margin:0 0 8px"><li><b>Android:</b> Configurações › Acessibilidade › Saída de texto para fala › Google › Instalar dados de voz › Português (Brasil).</li>'+
+    '<li><b>iPhone e iPad:</b> Ajustes › Acessibilidade › Conteúdo Falado › Vozes › Português (Brasil) › baixe a Luciana (Aprimorada).</li>'+
+    '<li><b>Windows:</b> Configurações › Hora e idioma › Fala › Adicionar vozes › Português (Brasil).</li></ul><p class="note">Depois, feche e abra o jogo de novo.</p>';
+  return o+'<div class="vozes" role="group" aria-label="Escolha a voz">'+br.slice(0,6).map(function(v,i){var on=cur&&cur.name===v.name;
+      return '<button type="button" class="vozb" id="voz-'+i+'" data-pa="voz" data-v="'+esc(v.name)+'" aria-pressed="'+on+'">'+esc(v.name.replace(/^Microsoft\s+/,"").replace(/\s*-\s*Portugu[eê]s[ea]?\s*\((Brazil|Brasil)\)/i,"").replace(/\s+Online\s*\(Natural\)/i," (natural)").trim())+(i===0?' <small>(a mais natural)</small>':'')+'</button>';}).join("")+'</div>'+
+    '<p class="note" style="margin:6px 0 0">Toque numa voz para ouvir. A escolha vale só para este aparelho. Para a mesma voz em todos os aparelhos da família, escolha a mais parecida em cada um.</p>';}
 function paisAct(a,v,t){
   if(a==="open"){askGate(openPais);}
   else if(a==="gclose"){GATE=null;ovl("gate",false);}
@@ -1971,6 +1993,8 @@ function paisAct(a,v,t){
     an.href=u;an.download="missao-sistema-solar-"+(me0().nome||"perfil").replace(/[^\w-]+/g,"-")+".json";document.body.appendChild(an);an.click();an.remove();setTimeout(function(){URL.revokeObjectURL(u);},2000);}
   else if(a==="limit"){SET.limit=+v;store.set("set",SET);paisRedraw(t.id);}
   else if(a==="extra"){var ex=(SET.extra&&SET.extra.d===dayKey())?SET.extra.m:0;SET.extra={d:dayKey(),m:ex+15};store.set("set",SET);ovl("rest",false);paisRedraw();}
+  else if(a==="voz"){try{localStorage.setItem("mss:voz-aparelho",v);}catch(e){}pickVoice();paisRedraw(t.id);
+    try{window.speechSynthesis.cancel();var tu=new SpeechSynthesisUtterance("Olá! Eu sou a voz da Missão Sistema Solar. Vamos explorar o espaço?");tu.lang="pt-BR";tu.rate=RATE;if(ptVoice)tu.voice=ptVoice;window.speechSynthesis.speak(tu);}catch(e){}}
   else if(a==="rate"){SET.rate=+v;RATE=+v;store.set("set",SET);paisRedraw(t.id);}
   else if(a==="ano"){TR.inicio=+v;saveTR();paisRedraw(t.id);}
   else if(a==="unlock"){GAMES.forEach(function(g){lv(g.id).max=MAXLV;});saveLv();TR.all=true;saveTR();paisRedraw(t.id);t=$("pa-unlock");if(t)t.textContent="Todos os níveis estão abertos";}
